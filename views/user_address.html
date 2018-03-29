@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <title>十年一品-我的地址</title>
+    <link href="../static/style/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../static/js/public.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/js/jqpublic.js"></script>
+    <script type="text/javascript" src="../static/js/getcookie.js"></script>
+    <script>
+        $(function () {
+            //修改地址
+            var name1= getCookie('name');
+            $('.sure').click(function () {
+                $('#name_msg').html(" ");
+                $("#address_msg").html(" ");
+                $("#phone_msg").html('');
+                //获取用户登录名
+                var name = name1
+                //获取用户输入的值
+                //省
+                var provice = $(this).parent().parent().parent().find("tr[class=tr1]").children(".td1").children(".provice").val();
+                //市
+                var city = $(this).parent().parent().parent().find("tr[class=tr1]").children(".td1").children(".city").val();
+                //区
+                var district = $(this).parent().parent().parent().find("tr[class=tr1]").children(".td1").children(".district").val();
+                //收件人姓名
+                var rename = $(this).parent().parent().parent().find("tr[class=name11]").children(".name1").children(".input_name").val();
+                //详细地址
+                var detail_address = $(this).parent().parent().parent().find("tr[class=address11]").children(".address1").children(".input_addr").val();
+                //联系电话
+                var phone = $(this).parent().parent().parent().find("tr[class=phone11]").children(".phone1").children(".input_tel").val();
+                var len = $(this).parent().parent().parent().find("tr[class=phone11]").children(".phone1").children(".input_tel").val().length;
+                //要获取当前选中地址的id
+                var id = $(this).attr("ids");
+                if (rename == '') {
+                    $('#name_msg').html("收件人不能为空！");
+                } else if (detail_address == '') {
+                    $("#address_msg").html("详细地址不能为空！");
+                }
+                else if (len != 11) {
+                    $("#phone_msg").html('手机号码错误！！！');
+                } else {
+                    $.ajax({
+                        url: '/userAddress',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            'name':name,
+                            'provice': provice,
+                            'city': city,
+                            'district': district,
+                            'rename': rename,
+                            "detail_address": detail_address,
+                            'phone': phone,
+                            'id':id
+                        },
+                        success: function (data) {
+                            if (data.ret == 200) {
+                                alert("修改信息成功")
+                            }else{
+                                alert(data.msg)
+                            }
+                        },
+                        error: function () {
+                            alert("系统错误！！！")
+                        }
+                    })
+                }
+            })
+
+            //删除地址
+            $('.delete').click(function () {
+                var id = $(this).siblings().attr("ids");
+                var b = confirm("亲！确定要删除吗？")
+                if (b) {
+                    $.ajax({
+                        url: '/deleteAddress',
+                        dataType: 'json',
+                        type: 'post',
+                        data: {"id": id},
+                        success: function (result) {
+                                if(result.ret == 200){
+                                    alert(result.msg)
+                                    window.location.href = "/userAddress"
+                                }else {
+                                    alert(result.msg)
+                                }
+                        },
+                        error: function () {
+                            alert("系统错误！！")
+                        }
+                    })
+                }
+            })
+
+            //新增地址
+            $('.C-button').click(function () {
+                $("#tt1").html("")
+                $("#tt2").html("")
+                $("#tt3").html("")
+                //获取参数
+                var province = $("#addprovince option:selected").text();
+                var city = $("#addcity option:selected").text();
+                var district = $("#adddistrict option:selected").text();
+                var address  = $("#addText").val();
+                var name = $("#addname").val();
+                var phone = $("#addphone").val();
+                if (address == ""){
+                    $("#tt1").html("收货地址不能为空！")
+                }else if (name == ""){
+                    $("#tt2").html("收件人不能为空！")
+                }else if (phone == ""){
+                    $("#tt3").html("联系电话不能为空！")
+                }else if (phone.length !=11 ) {
+                    $("#tt3").html("电话格式错误")
+                }else {
+                    $.ajax({
+                        url: '/addAddress',
+                        type: 'post',
+                        dataType:'json',
+                        data: {
+                            "province": province,
+                            "city": city,
+                            "district": district,
+                            "address": address,
+                            "name": name,
+                            "phone": phone
+                        },
+                        success: function (result) {
+                            if (result.ret == 200){
+                                alert(result.msg)
+                                window.location.href = "/userAddress"
+                            }else {
+                                alert(result.msg)
+                            }
+                        },
+                        error: function () {
+                            alert("系统错误！！！")
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+    <style>
+        .confirm_addr_f{
+             width:1200px;
+            height:auto;
+            overflow:hidden;
+            padding:8px 0;
+            margin-top: -25px;
+            margin-bottom: -16px;
+            margin-left: -10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <section class="Topmenubg">
+        <div class="Topnav">
+            <div class="LeftNav">
+                <a href="/login">注册</a>/<a href="/login">登录</a>
+            </div>
+            欢迎：<span id="msg" style="color: #d43f3a;font-weight: bold"> </span>
+            <div class="dropdown">
+                <span style="color:red;font-weight: bold"> > </span>
+                <div class="dropdown-content">
+                    <a href="/modifyUser">修改密码</a>
+                    <a href="/logout">退出登录</a>
+                </div>
+            </div>
+            <div class="RightNav">
+                <a href="/userInformation">用户中心</a> <a href="/userOrderList"  title="我的订单">我的订单</a> <a href="/shoppingCart">购物车（0）</a> <a href="/userCollect" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+            </div>
+        </div>
+    </section>
+ <div class="Logo_search">
+  <div class="Logo">
+   <img src="../static/images/logo.jpg" title="DeathGhost" alt="模板">
+   <i></i>
+   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
+  </div>
+  <div class="Search"> 
+   <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
+   <div class="Search_nav" id="selectsearch">
+    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
+    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
+   </div>
+   <div class="Search_area"> 
+   <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
+   <input type="submit" class="searchbutton" value="搜 索" />
+   </div>
+   </form>
+   <p class="hotkeywords"><a href="#" title="酸辣土豆丝">酸辣土豆丝</a><a href="#" title="这里是产品名称">螃蟹炒年糕</a><a href="#" title="这里是产品名称">牛奶炖蛋</a><a href="#" title="这里是产品名称">芝麻酱凉面</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">蒜汁茄子</a></p>
+  </div>
+ </div>
+ <nav class="menu_bg">
+  <ul class="menu">
+      <li><a href="/index_user">首页</a></li>
+      <li><a href="/orderFood">订餐</a></li>
+      <li><a href="/pointShop">积分商城</a></li>
+      <li><a href="/aboutWe">关于我们</a></li>
+  </ul>
+ </nav>
+</header>
+<!--Start content-->
+<section class="Psection MT20">
+<nav class="U-nav Font14 FontW">
+  <ul>
+      <li><i></i><a href="/userInformation">用户中心首页</a></li>
+      <li><i></i><a href="/userOrderList">我的订单</a></li>
+      <li><i></i><a href="/userAddress">收货地址</a></li>
+      <li><i></i><a href="/userLeaveWords">我的留言</a></li>
+      <li><i></i><a href="/userCoupon">我的优惠券</a></li>
+      <li><i></i><a href="/userCollect">我的收藏</a></li>
+      <li><i></i><a href="/modifyUser">账户管理</a></li>
+      <li><i></i><a href="/logout">安全退出</a></li>
+  </ul>
+ </nav>
+ <article class="U-article Overflow">
+  <!--user Address-->
+  <section class="Myaddress Overflow">
+   <span class="MDtitle Font14 FontW Block Lineheight35">收货人信息</span>
+      <div class="confirm_addr_f">
+          <form action="#">
+              <ul class="address">
+                  <li><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><img src="../static/images/newaddress.png"/></a></li>
+              </ul>
+          </form>
+          <!--add new address-->
+          <form action="#">
+              <div id="light" class="O-L-content">
+                  <ul>
+                      <li><span><label for="">选择所在地：</label></span><p><em>*</em>
+                          <select id="addprovince">
+                          <option>安徽省</option>
+                          </select>
+                          <select id="addcity">
+                              <option>马鞍山市</option>
+                          </select>
+                          <select id="adddistrict">
+                              <option>花山区</option>
+                              <option>雨山区</option>
+                              <option>博望区</option>
+                          </select></p></li>
+                      <li>
+                          <span>
+                              <label for="">收货地址：</label>
+                          </span>
+                          <p><em>*</em>
+                              <textarea id="addText" name="" cols="80" rows="5"></textarea><tt id="tt1" style="color: #d43f3a;font-weight: bold"></tt>
+                          </p>
+
+                      </li>
+                      <li>
+                          <span>
+                              <label for="">收件人姓名：</label>
+                          </span>
+                          <p><em>*</em>
+                              <input id="addname" name="" type="text"><tt id="tt2" style="color: #d43f3a;font-weight: bold"></tt>
+                          </p>
+                      </li>
+                      <li>
+                          <span>
+                              <label for="">手机号码：</label>
+                          </span>
+                          <p><em>*</em>
+                          <input id="addphone" name="" type="text" pattern="[0-9]{11}" required><tt id="tt3" style="color: #d43f3a;font-weight: bold"></tt>
+                          </p>
+                      </li>
+                      <div class="button-a"><input type="button" value="确 定" class="C-button" /><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><span><input name="" type="button" value="取 消"  class="Cancel-b"/></a></div>
+                      <div class="close-botton"><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></a></div>
+              </div>
+              <div id="fade" class="overlay"></div>
+              </ul>
+          </form>
+      </div>
+
+   <form action="#">
+   {{range $k, $a := .address}}
+   <table>
+
+           <tr hidden>
+               <td id="id">{{$a.Id}}</td>
+               <td id="uid">{{$a.Uid}}</td>
+           </tr>
+    <tr id="add" class="tr1">
+     <td width="30%" class="Font14 FontW Lineheight35" align="right">选择所在地：</td>
+     <td class="td1">
+     <select id='provice' name="" class="select_ssq provice">
+            <option>{{$a.Provice}}</option>
+     </select>
+     <select id="city" name="" class="select_ssq city">
+            <option>{{$a.City}}</option>
+     </select>
+     <select id="district" name="" class="select_ssq district">
+            {{if eq $a.District "花山区"}}
+            <option selected = selected>{{$a.District}}</option>
+            <option>博望区</option>
+            <option>雨山区</option>
+            {{else if eq $a.District "雨山区"}}
+                <option selected = selected>{{$a.District}}</option>
+                <option>博望区</option>
+                <option>花山区</option>
+            {{else if eq $a.District "博望区"}}
+                <option selected = selected>{{$a.District}}</option>
+                <option>雨山区</option>
+                <option>花山区</option>
+            {{end}}
+            </select>
+     </td>
+    </tr>
+    <tr class="name11">
+     <td width="30%"  class="Font14 FontW Lineheight35" align="right">收件人姓名：</td>
+     <td class="name1"><input id="name" type="text" name="" required value="{{$a.Rname}}" class="input_name"><span id="name_msg" style="color: #d43f3a;font-size: 15px;font-weight:bold"></span></td>
+    </tr>
+    <tr class="address11">
+     <td width="30%"  class="Font14 FontW Lineheight35" align="right">详细地址：</td>
+     <td class="address1"><input id="detail_address" type="text" required size="50" value="{{$a.Address}}" class="input_addr"><span id="address_msg" style="color: #d43f3a;font-size: 15px;font-weight:bold"></span></td>
+    </tr>
+    <tr class="phone11">
+     <td width="30%" class="Font14 FontW Lineheight35" align="right">手机号码：</td>
+     <td class="phone1"><input id="phone" type="text" name="" required pattern="[0-9]{11}" phone="5555" value="{{$a.RePhone}}" class="input_tel"><span id="phone_msg" style="color: #d43f3a;font-size: 15px;font-weight:bold"></span></td>
+    </tr>
+    <tr>
+     <td align="right"  width="30%" class="Font14 FontW Lineheight35"></td>
+     <td class="Lineheight35"><input name="" id="sure" type="button" value="确认修改" ids="{{$a.Id}}" class="Submit sure"><input id="deladdress" name="" type="button" value="删除" class="Submit delete"></td>
+    </tr>
+       <hr style="height:3px;border:none;border-top:3px double #dddddd;">
+   </table>
+       {{end}}
+   </form>
+  </section>
+ </article>
+</section>
+<!--End content-->
+<div class="F-link">
+  <span>友情链接：</span>
+  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
+  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
+  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
+  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
+ </div>
+<footer>
+ <section class="Otherlink">
+  <aside>
+   <div class="ewm-left">
+    <p>手机扫描二维码：</p>
+    <img src="../static/images/Android_ico_d.gif">
+    <img src="../static/images/iphone_ico_d.gif">
+   </div>
+   <div class="tips">
+    <p>客服热线</p>
+    <p><i>1830927**73</i></p>
+    <p>配送时间</p>
+    <p><time>09：00</time>~<time>22:00</time></p>
+    <p>网站公告</p>
+   </div>
+  </aside>
+  <section>
+    <div>
+    <span><i class="i1"></i>配送支付</span>
+    <ul>
+     <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
+    </ul>
+    </div>
+    <div>
+    <span><i class="i2"></i>关于我们</span>
+    <ul>
+     <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
+    </ul>
+    </div>
+    <div>
+    <span><i class="i3"></i>帮助中心</span>
+    <ul>
+     <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
+    </ul>
+    </div>
+  </section>
+ </section>
+</footer>
+<script>
+    var uname= getCookie('name');
+    $("#msg").html(uname)
+    $("#msg1").html(uname)
+</script>
+</body>
+</html>

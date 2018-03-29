@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <title>十年一品-点餐</title>
+    <link href="../static/style/style.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/js/jqpublic.js"></script>
+    <script type="text/javascript" src="../static/js/getcookie.js"></script>
+    <script type="text/javascript" src="../static/js/public.js"></script>
+    <style>
+        a {
+            cursor:pointer
+        }
+        .Fslmenu a span .hidden{
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            shop = $(".shop")
+            $(".select dd").click(function () {
+                var type = $("#select1 .selected").text();
+                var price = $("#select4 .selected").text();
+                var s = $(".Fslmenu .selected").attr("ids");
+                $.ajax({
+                    url:'/orderFood',
+                    type:'post',
+                    dataType:'json',
+                    data:{"s":s,"type":type,"price":price},
+                    success:function (result) {
+                        $("#dish_ul").empty()
+                        var s = $("#dish_ul");
+                        for(var i = 0 ;i<result.length;i++){
+                        var content = '<li>'+
+                        '<a href="#"  title=><img src="./static/upload/03.jpg"></a>'+
+                        '<hgroup>'+
+                        '<h3>'+result[i].DishName+'</h3>'+
+                        '<h4></h4>'+
+                        '</hgroup>'+
+                        '<p>描述：'+result[i].Detail+'</p>'+
+                        '<p>销售量：'+result[i].OrderCount+'</p>'+
+                        '<p>价格：'+result[i].Price+'元</p>'+
+                        '<p>'+
+                        '<span class="Score-l">'+
+                        '<img src="../static/images/star-on.png">'+
+                        '<img src="../static/images/star-on.png">'+
+                        '<img src="../static/images/star-on.png">'+
+                        '<img src="../static/images/star-on.png">'+
+                        '<img src="../static/images/star-off.png">'+
+                        '<span class="Score-v">4.8</span>'+
+                        '</span>'+
+                        '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+
+                        '</p>'+
+                        '</li>'
+                            s.append(content)
+                        }
+                        getshop()
+                    },
+                    error:function () {
+                        alert("系统错误！！")
+                    }
+                })
+
+            })
+
+            getshop()
+        })
+        
+        function getshop() {
+            var s = $(".shop");
+            s.click(function () {
+                var dish_id = $(this).attr("ids");
+                $.ajax({
+                url:'/shoppingCart',
+                type:'post',
+                        dataType:'json',
+                        data:{"dishId":dish_id},
+                success:function (result) {
+                   if (result.ret == 200){
+                    alert(result.msg)
+                }else{
+                       alert(result.msg)
+                   }
+
+            },
+                error:function () {
+                    alert("系统错误！！！")
+                }
+            })
+            });
+            return s
+        }
+
+    </script>
+</head>
+<body>
+<header>
+    <section class="Topmenubg">
+        <div class="Topnav">
+            <div class="LeftNav">
+                <a href="/login">注册</a>/<a href="/login">登录</a>
+            </div>
+            欢迎：<span id="msg" style="color: #d43f3a;font-weight: bold"> </span>
+            <div class="dropdown">
+                <span style="color:red;font-weight: bold"> > </span>
+                <div class="dropdown-content">
+                    <a href="/modifyUser">修改密码</a>
+                    <a href="/logout">退出登录</a>
+                </div>
+            </div>
+            <div class="RightNav">
+                <a href="/userInformation">用户中心</a> <a href="/userOrderList"  title="我的订单">我的订单</a> <a href="/shoppingCart">购物车（0）</a> <a href="/userCollect" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+            </div>
+        </div>
+    </section>
+ <div class="Logo_search">
+  <div class="Logo">
+   <img src="../static/images/logo.jpg" title="DeathGhost" alt="模板">
+   <i></i>
+   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
+  </div>
+  <div class="Search"> 
+   <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
+   <div class="Search_nav" id="selectsearch">
+    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
+    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
+   </div>
+   <div class="Search_area"> 
+   <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
+   <input type="submit" class="searchbutton" value="搜 索" />
+   </div>
+   </form>
+   <p class="hotkeywords"><a href="#" title="酸辣土豆丝">酸辣土豆丝</a><a href="#" title="这里是产品名称">螃蟹炒年糕</a><a href="#" title="这里是产品名称">牛奶炖蛋</a><a href="#" title="这里是产品名称">芝麻酱凉面</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">蒜汁茄子</a></p>
+  </div>
+ </div>
+ <nav class="menu_bg">
+  <ul class="menu">
+      <li><a href="/index_user">首页</a></li>
+      <li><a href="/orderFood">订餐</a></li>
+      <li><a href="/pointShop">积分商城</a></li>
+      <li><a href="/aboutWe">关于我们</a></li>
+  </ul>
+ </nav>
+</header>
+<!--Start content-->
+<section class="Psection">
+ <section class="fslist_navtree">
+  <ul class="select">
+		<li class="select-list">
+			<dl id="select1">
+				<dt>分类：</dt>
+				<dd class="select-all selected dd"><a href="javascript:">全部</a></dd>
+                {{range $k, $d := .diskide}}
+                <dd class="dd"><a href="javascript:">{{$d.Type}}</a></dd>
+                {{end}}
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select3">
+				<dt>餐点：</dt>
+				<dd class="select-all selected dd"><a href="javascript:">全部</a></dd>
+				<dd><a href="javascript:">午餐</a></dd>
+			</dl>
+		</li>
+        <li class="select-list">
+			<dl id="select4">
+				<dt>价位区间：</dt>
+				<dd class="select-all selected dd"><a href="javascript:">全部</a></dd>
+				<dd class="dd"><a href="javascript:">20元以下</a></dd>
+                <dd class="dd"><a href="javascript:">20-40元</a></dd>
+                <dd class="dd"><a href="javascript:">40-60元</a></dd>
+                <dd class="dd"><a href="javascript:">60-80元</a></dd>
+                <dd class="dd"><a href="javascript:">80-100元</a></dd>
+                <dd class="dd"><a href="javascript:">100元以上</a></dd>
+			</dl>
+		</li>
+		<li class="select-result">
+			<dl>
+			 <dd class="select-no">已选择：</dd>
+			</dl>
+		</li>
+	</ul>
+ </section>
+<section class="Fslmenu">
+ <a  style="background-color: #f60;color: white" title="默认排序" ids="1" class="aa1 selected">
+  <span>
+  <span id="span1">默认排序</span>
+  <span></span>
+  </span>
+ </a>
+ <a  title="销量" ids="2" class="aa2">
+  <span>
+  <span class="span1">销量</span>
+  <span class="s-up"></span>
+  </span>
+ </a>
+ <a  title="价格排序" ids="3" class="aa3" id="jg">
+  <span>
+  <span class="span1" id="hxy">价格</span>
+  <span id="down" class="s-down"></span>
+  <span id="up" class="s-up hidden"></span>
+  </span>
+ </a>
+ <a  title="发布时间排序" ids="4" class="aa4">
+  <span>
+  <span class="span1">发布时间</span>
+  <span class="s-up"></span>
+  </span>
+ </a>
+</section>
+<section class="Fsl">
+ <ul id="dish_ul">
+     {{range $k, $dish := .dishList}}
+  <li>
+   <a href="#"  title=""><img src="../static/upload/03.jpg"></a>
+   <hgroup>
+   <h3>{{$dish.DishName}}</h3>
+   <h4></h4>
+   </hgroup>
+   <p>描述：{{$dish.Detail}}</p>
+   <p>销售量：{{$dish.OrderCount}}</p>
+   <p>价格：{{$dish.Price}}元</p>
+   <p>
+    <span class="Score-l">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-off.png">
+    <span class="Score-v">4.8</span>
+    </span>
+    <span class="DSBUTTON"><a  target="_blank" ids = "{{$dish.DishId}}" class="Fontfff shop">加入购物车</a></span>
+   </p>
+  </li>
+   {{end}}
+ </ul>
+ <aside>
+  <div class="title">热门商家</div>
+  <div class="C-list">
+   <a href="shop.html" target="_blank" title="店铺名称"><img src="../static/upload/cc.jpg"></a>
+   <p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>
+   <p>
+   <span>人均：20~50元</span>
+   <span style=" float:right">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-off.png">
+    <span class="ALscore">4.8</span>
+   </span>
+   </p>
+  </div>
+  <div class="C-list">
+   <a href="shop.html" target="_blank" title="店铺名称"><img src="../static/upload/cc.jpg"></a>
+   <p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>
+   <p>
+   <span>人均：20~50元</span>
+   <span style=" float:right">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-on.png">
+    <img src="../static/images/star-off.png">
+    <span class="ALscore">4.8</span>
+   </span>
+   </p>
+  </div>
+ </aside>
+ <div class="TurnPage">
+  <a href="#">
+  <span class="Prev"><i></i>首页</span>
+  </a>
+  <a href="#"><span class="PNumber">1</span></a>
+  <a href="#"><span class="PNumber">2</span></a>
+  <a href="#">
+  <span class="Next">最后一页<i></i></span>
+  </a>
+ </div>
+</section>
+</section>
+<!--End content-->
+<div class="F-link">
+  <span>友情链接：</span>
+  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
+  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
+  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
+  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
+ </div>
+<footer>
+ <section class="Otherlink">
+  <aside>
+   <div class="ewm-left">
+    <p>手机扫描二维码：</p>
+    <img src="../static/images/Android_ico_d.gif">
+    <img src="../static/images/iphone_ico_d.gif">
+   </div>
+   <div class="tips">
+    <p>客服热线</p>
+    <p><i>1830927**73</i></p>
+    <p>配送时间</p>
+    <p><time>09：00</time>~<time>22:00</time></p>
+    <p>网站公告</p>
+   </div>
+  </aside>
+  <section>
+    <div>
+    <span><i class="i1"></i>配送支付</span>
+    <ul>
+     <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
+    </ul>
+    </div>
+    <div>
+    <span><i class="i2"></i>关于我们</span>
+    <ul>
+     <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
+    </ul>
+    </div>
+    <div>
+    <span><i class="i3"></i>帮助中心</span>
+    <ul>
+     <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
+     <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
+    </ul>
+    </div>
+  </section>
+ </section>
+</footer>
+<script>
+    var uname= getCookie('name');
+    $("#msg").html(uname)
+    $("#msg1").html(uname)
+
+    //筛选条件
+    $(".Fslmenu a").click(function(){
+        $(this).addClass("selected").siblings().removeClass("selected");
+        //获取标签的值
+        var s = $(this).attr("ids");
+        var a = $(".Fslmenu a");
+        //获取分类条件
+        var type = $("#select1 .selected").text();
+        //获取价格区间
+        var price = $("#select4 .selected").text();
+        for(var i = 0;i<a.length;i++){
+            $(a[i]).css("background-color","white");
+            $(a[i]).css("color","black");
+        }
+        //设置样式
+        $(this).css("background-color","#f60");
+        $(this).css("color","white");
+        $.ajax({
+            url:'/orderFood',
+            type:'post',
+            dataType:'json',
+            data:{"s":s,"type":type,"price":price},
+            success:function (result) {
+                $("#dish_ul").empty()
+                var s = $("#dish_ul");
+                for(var i = 0 ;i<result.length;i++){
+                    var content = '<li>'+
+                            '<a href="#"  title=><img src="./static/upload/03.jpg"></a>'+
+                            '<hgroup>'+
+                            '<h3>'+result[i].DishName+'</h3>'+
+                            '<h4></h4>'+
+                            '</hgroup>'+
+                            '<p>描述：'+result[i].Detail+'</p>'+
+                            '<p>销售量：'+result[i].OrderCount+'</p>'+
+                            '<p>价格：'+result[i].Price+'元</p>'+
+                            '<p>'+
+                            '<span class="Score-l">'+
+                            '<img src="../static/images/star-on.png">'+
+                            '<img src="../static/images/star-on.png">'+
+                            '<img src="../static/images/star-on.png">'+
+                            '<img src="../static/images/star-on.png">'+
+                            '<img src="../static/images/star-off.png">'+
+                            '<span class="Score-v">4.8</span>'+
+                            '</span>'+
+                            '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+
+                            '</p>'+
+                            '</li>'
+                    s.append(content)
+                }
+                getshop()
+            },
+            error:function () {
+                alert("系统错误！！")
+            }
+        })
+    })
+    $("#jg").click(function(){
+        if($("#up").hasClass("hidden")){
+            $("#up").removeClass("hidden")
+            $("#down").addClass("hidden")
+            console.log()
+        }else{
+            $("#up").addClass("hidden")
+            $("#down").removeClass("hidden")
+        }
+    })
+
+</script>
+
+</body>
+</html>
