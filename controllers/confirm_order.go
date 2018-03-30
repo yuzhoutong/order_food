@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
+	"fmt"
 )
 
 type ConfirmOrder struct {
@@ -41,8 +42,9 @@ func (c *ConfirmOrder) AddShops(){
 	var name = c.GetStrings("name")
 	var price = c.GetStrings("price")
 	var count = c.GetStrings("count")
-	for i := 0;i<len(name);i++{
-		err := models.Addshops(uid, count[i], name[i], price[i])
+	var ids = c.GetStrings("ids")
+	for i := 0; i<len(name); i++{
+		err := models.Addshops(uid, count[i], name[i], price[i], ids[i])
 		if err != nil{
 			resultMap["msg"] = "结算购物车商品失败！"
 			return
@@ -73,4 +75,19 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase(){
 	}
 	resultMap["ret"] = 200
 	resultMap["msg"] = "添加订单成功"
+}
+
+//当单击付款时(支付成功)删除数据库中所选商品在购物车数据和add_order_car中的数据
+
+func (c *ConfirmOrder) DeleteshopsFromDatabase(){
+	resultMap := make(map[string]interface{})
+	resultMap["ret"] = 403
+	defer func() {
+		c.Data["json"] = resultMap
+		c.ServeJSON()
+	}()
+	//用户的uid
+	var id= c.Ctx.GetCookie("id")
+	uid,_ := strconv.Atoi(id)
+	fmt.Println(uid)
 }

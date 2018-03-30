@@ -199,21 +199,26 @@
         var ss = []
         var s = $(":checkbox:checked").parents("tr").find("td[class=tb2_td3]");
         //存价格
-        var price = []
+        var price = [];
         var p = $(":checkbox:checked").parents("tr").find("td[class=tb1_td6]");
         //存数量
-        var count = []
+        var count = [];
         var c = $(":checkbox:checked").parents("tr").find("td[class=tb1_td5]");
+        //id
+        var ids = [];
+        var j = $(":checkbox:checked").parents("tr").find("td[class=tb1_td7]");
         for(var i = 0;i<s.length;i++){
             ss[i] = $(s[i]).children().text();
             price[i] = $(p[i]).children().text();
             count[i] = $(c[i]).children("input.text_box1").val();
+            ids[i] = $(j[i]).children().attr("ids")
+
         }
         $.ajax({
             url:'/shopsClose',
             dataType:'json',
             type:'post',
-            data:{"name":ss,"price":price,"count":count},
+            data:{"name":ss,"price":price,"count":count,"ids":ids},
             traditional:true,
             success:function (result) {
                 if (result.ret == 200) {

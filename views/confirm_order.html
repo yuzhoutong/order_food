@@ -58,6 +58,10 @@
         })
     }
 
+    function arplay() {
+        alert("ssss")
+    }
+
 
 </script>
 </head>
@@ -233,7 +237,7 @@
   <p class="Font14 Lineheight35 FontW">恭喜你！订单提交成功！</p>
   <p class="Font14 Lineheight35 FontW cc">您的订单编号为：<span class="CorRed" id="cord"></span></p>
   <p class="Font14 Lineheight35 FontW">共计金额：<span id="price" class="CorRed">￥{{.all}}</span></p>
-  <p><button type="button" class="Lineheight35"><a href="#" target="_blank">支付宝立即支付</a></button><button type="button" class="Lineheight35"><a href="user_center.html">进入用户中心</button></p>
+  <p><button type="button" class="Lineheight35 but_a"><a id="alipay_now" onclick="arplay()" target="_blank">支付宝立即支付</a></button><button type="button" class="Lineheight35"><a href="user_center.html">进入用户中心</button></p>
 </section>
 <!--End content-->
 <div class="F-link">

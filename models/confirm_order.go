@@ -3,14 +3,16 @@ package models
 import (
 	"time"
 	"zcm_tools/orm"
+	"fmt"
 )
 
 //用户结算购物车中的商品
 type AddOrderCar struct {
 	Id         	int
 	Uid        	int   		 	//用户id
+	Ids			string				//购物车商品的id
 	Name		string			//菜名
-	Count		string			//点一道菜的数量‘
+	Count		string			//点一道菜的数量
 	Price		string			//菜的总价
 	CreateTime	time.Time		//创建时间
 }
@@ -25,9 +27,10 @@ type UserOrder struct{
 	IsBuy		int 			//是否付款:1:已支付:2未支付
 }
 //添加结算购物车商品
-func Addshops(uid int, count , name, price string) (err error){
-	sql := `INSERT INTO add_order_car(uid,name,count,price,create_time) VALUE(?, ?, ?, ?, NOW())`
-	_,err = orm.NewOrm().Raw(sql, uid, name, count, price).Exec()
+func Addshops(uid int, count , name, price, ids string) (err error){
+	sql := `INSERT INTO add_order_car(uid,name,count,price,create_time,ids) VALUE(?, ?, ?, ?, NOW(),?)`
+	_,err = orm.NewOrm().Raw(sql, uid, name, count, price, ids).Exec()
+	fmt.Println("sss",err)
 	return
 }
 //查询该用户的结算清单
