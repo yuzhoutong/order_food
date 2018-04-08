@@ -38,16 +38,33 @@
         var dateTime = year + month +  day + h + m + s;
         //获取用户uid
         var uid = getCookie("uid");
+        //获取选中地址的名字
+        var name = $(".checked").attr("xm");
         var code =  uid+dateTime;
          $("#cord").text(uid+dateTime);
         //获取订单价格
         var price = $("#price").text();
+        //获取菜品名字
+        dishName = [];
+        var n = $(".name1");
+        //获取菜品数量
+        dishCount = [];
+        var c = $(".count1");
+        //获取菜品单价
+        dishPrice = [];
+        var p = $(".price1");
+        for (var i = 0; i<n.length; i++){
+            dishName[i] = $(n[i]).text();
+            dishCount[i] = $(c[i]).text();
+            dishPrice[i] = $(p[i]).text();
+        }
         //提交订单存入订单数据库中
         $.ajax({
             url:'/addOrderTable',
             dataType:'json',
             type:'post',
-            data:{"code":code,"price":price},
+            data:{"code":code,"price":price,"name":name,"dishName":dishName,"dishCount":dishCount,"dishPrice":dishPrice},
+            traditional:true,
             success:function (result) {
                 alert(result.msg)
             },
@@ -59,7 +76,30 @@
     }
 
     function arplay() {
-        alert("ssss")
+        var orderId = $("#cord").text();
+       var ids = [];
+       var i = $(".tr11").find("td[id=tdIds]");
+       for (var j=0;j<i.length;j++){
+           ids[j] = $(i[j]).text()
+       }
+       $.ajax({
+           url:'/deleteShopTable',
+           dataType:'json',
+           type:'post',
+           data:{"ids":ids,"orderId":orderId},
+           traditional:true,
+           success:function (result) {
+                if (result.ret == 200){
+                    alert("支付成功！！！");
+                    window.location.href = "/userOrderList"
+                }else{
+                    alert(result.msg)
+                }
+           },
+           error:function () {
+               alert("系统错误！！")
+           }
+       })
     }
 
 
@@ -123,7 +163,7 @@
   <form action="#">
    <ul class="address">
        {{range $k,$a := .address}}
-    <li class="li">
+    <li class="li" xm="{{$a.Rname}}">
         <input type="radio" value="" id="{{$a.Id}}" class="ss" name="rdColor"/>
         <label for="{{$a.Id}}"> {{$a.Provice}} {{$a.City}} {{$a.District}} {{$a.Address}} ( {{$a.Rname}} ) <span class="fontcolor">{{$a.RePhone}}</span>
         </label>
@@ -208,10 +248,11 @@
     <th>数量</th>
     <th>价格</th>
        {{range $k, $o := .orderInf}}
-    <tr>
-     <td>{{$o.Name}}</td>
-     <td>{{$o.Count}}</td>
-     <td>{{$o.Price}}元</td>
+    <tr class="tr11">
+     <td hidden id="tdIds">{{$o.Ids}}</td>
+     <td class="name1">{{$o.Name}}</td>
+     <td class="count1">{{$o.Count}}</td>
+     <td class="price1">{{$o.Price}}元</td>
     </tr>
     {{end}}
    </table>

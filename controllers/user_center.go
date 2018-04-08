@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
-	"fmt"
 )
 
 type UserCenterController struct {
@@ -13,16 +12,58 @@ type UserCenterController struct {
 }
 //用户中心-我的订单
 func (c *UserCenterController) UserOrderList(){
+	id := c.Ctx.GetCookie("id")
+	uid,_:= strconv.Atoi(id)
+	orderList ,_:= models.GetUserOrder(uid)
+	c.Data["orderList"] = orderList
 	c.TplName = "user_orderlist.html"
 }
+//取消订单
+func (c *UserCenterController) DeleteOrder(){
+	resultMap := make(map[string]interface{})
+	resultMap["ret"] = 403
+	defer func() {
+		c.Data["json"] = resultMap
+		c.ServeJSON()
+	}()
+	//获取参数订单id
+	var orderId = c.GetString("orderId")
+	//获取用户uid
+	var id = c.Ctx.GetCookie("id")
+	uid, _ := strconv.Atoi(id)
+	err := models.DeleteOrder(uid,orderId)
+	if err != nil {
+		resultMap["msg"] = "删除订单失败！"
+		return
+	}
+	resultMap["ret"] = 200
+	resultMap["msg"] = "删除订单成功！！"
+}
+//点击订单号显示订单详情
 
+/*type Resp struct {
+	Ret int
+	Object interface{}
+}*/
+func (c *UserCenterController) GetOrderDetail(){
+	defer func() {
+		c.ServeJSON()
+	}()
+	orderId := c.GetString("orderId")
+	id := c.Ctx.GetCookie("id")
+	uid,_:= strconv.Atoi(id)
+	OrderDetail,err := models.GetOrderImanages(uid, orderId)
+	if err != nil {
+		return
+	}
+	c.Data["json"]= OrderDetail
+}
 //用户中心-收货地址
 func (c *UserCenterController) ShippingAddress(){
 	id := c.Ctx.GetCookie("id")
 	id1,_:= strconv.Atoi(id)
 	address,_ := models.GetUserAddress(id1)
 	c.Data["address"] = address
-	fmt.Println(address)
 	c.TplName = "user_address.html"
 
 }

@@ -8,6 +8,14 @@
 <script type="text/javascript" src="../static/js/jquery.js"></script>
 <script type="text/javascript" src="../static/js/jqpublic.js"></script>
 <script type="text/javascript" src="../static/js/getcookie.js"></script>
+    <style>
+        .a1:hover{
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+    </script>
 </head>
 <body>
 <header>
@@ -82,14 +90,24 @@
      <th class="Font14 FontW">订单总金额</th>
      <th class="Font14 FontW">订单状态</th>
      <th class="Font14 FontW">操作</th>
-     <tr>
-      <td class="FontW"><a href="user_order.html">201409225367</a></td>
-      <td>2014-09-22 19:21:38</td>
-      <td>DeathGhost</td>
-      <td>￥328.00</td>
-      <td>未付款,未发货</td>
-      <td><a href="#">取消订单</a> | <a href="#">付款</a></td>
+        {{range $k, $o := .orderList}}
+     <tr class="tr11">
+      <td class="FontW orderId">{{$o.OrderId}}</td>
+      <td>{{$o.OrderTime}}</td>
+      <td>{{$o.Name}}</td>
+      <td>{{$o.OrderPrice}}</td>
+      {{if eq $o.IsProcessed 1}}
+              <td>已处理</td>
+      {{else if eq $o.IsProcessed 2}}
+              <td>未处理</td>
+      {{end}}
+      {{if eq $o.IsBuy 1 }}
+      <td><a style="color: #888888">已付款</a></td>
+      {{else if eq $o.IsBuy 2 }}
+      <td><a class="a1 delorder quxiao"  style="color: #0066ff">取消订单</a> | <a class="a1 fukuan" style="color: #00a73e">未付款</a></td>
+     {{end}}
      </tr>
+      {{end}}
     </table>
     <div class="TurnPage">
          <a href="#">
@@ -102,6 +120,59 @@
         </a>
        </div>
   </section>
+     <div id="Order_inf" hidden>
+         <span class="Font14 FontW Lineheight35 Block">订单信息：</span>
+         <table class="U-order-D">
+             <th style="width: 181px">订单编号</th>
+             <th style="width: 181px">订单产品</th>
+             <th style="width: 181px">订购数量</th>
+             <th style="width: 181px">单价</th>
+             <th style="width: 181px">付款方式</th>
+         </table>
+         <table class="U-order-D" id="table_order">
+
+         </table>
+         <span class="Font14 FontW Lineheight35 Block">收件地址：</span>
+         <form action="#">
+             <table class="U-order-A">
+                 <tr>
+                     <td width="30%" align="right" class="FontW">收件地址：</td>
+                     <td>
+                         <select name="" class="select_ssq">
+                             <option>陕西省</option>
+                         </select>
+                         <select name="" class="select_ssq">
+                             <option>西安市</option>
+                         </select>
+                         <select name="" class="select_ssq">
+                             <option>雁塔区</option>
+                         </select>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td width="30%" align="right" class="FontW">街道地址：</td>
+                     <td><input type="text" name="" class="input_addr" value="丈八北路2000集" required></td>
+                 </tr>
+                 <tr>
+                     <td width="30%" align="right" class="FontW">收件人姓名：</td>
+                     <td><input type="text" name="" class="input_name" value="deathghost" required></td>
+                 </tr>
+                 <tr>
+                     <td width="30%" align="right" class="FontW">手机号码：</td>
+                     <td><input type="text" name="" class="input_tel" value="1582551819" required pattern="[0-9]{11}"></td>
+                 </tr>
+                 <tr>
+                     <td width="30%" align="right" class="FontW">订单备注：</td>
+                     <td><input type="text" name="" class="input_mark" value="...速度送货哦...谢谢~"></td>
+                 </tr>
+                 <tr>
+                     <td width="30%" align="right"></td>
+                     <!--未付款订单，可以修改地址！-->
+                     <td><input type="submit" name="" value="确认修改地址" class="Submit">（未付款订单，可以修改地址！）</td>
+                 </tr>
+             </table>
+         </form>
+     </div>
  </article>
 </section>
 <!--End content-->
@@ -164,6 +235,98 @@
     var uname= getCookie('name');
     $("#msg").html(uname)
     $("#msg1").html(uname)
+    $(function () {
+        //取消订单
+        $(".delorder").click(function () {
+           var orderId = $(this).parents("tr").children(".orderId").text();
+            $.ajax({
+                url:"/deleteOrder",
+                dataType:"json",
+                type:"post",
+                data:{"orderId":orderId},
+                success:function (result) {
+                    if(result.ret == 200){
+                        alert(result.msg);
+                        window.location.href = "/userOrderList"
+                    }else {
+                        alert(result.msg)
+                    }
+                },
+                error:function () {
+                    alert("系统错误！！")
+                }
+            })
+        });
+        //点击未付款
+        $(".fukuan").click(function () {
+            //获取订单id
+            var orderId = $(this).parents("tr").children(".orderId").text();
+            $.ajax({
+                url:"/updateIsBuy",
+                dataType:"json",
+                type:"post",
+                data:{"orderId":orderId},
+                success:function (result) {
+                    if(result.ret == 200){
+                        alert(result.msg)
+                        window.location.href = "/userOrderList"
+                    }else {
+                        alert(result.msg)
+                    }
+                },
+                error:function () {
+                    alert("系统错误！！")
+                }
+            })
+        });
+        //点击订单号显示点单详细信息
+        var count = 1;
+        var $this = null
+        $(".orderId").click(function () {
+            //获取订单id
+            var orderId = $(this).text()
+            $.ajax({
+                url:"/getDetailOrder",
+                dataType:"json",
+                type:"post",
+                data:{"orderId":orderId},
+                success:function (result) {
+                    $("#table_order").empty();
+                    var s = $("#table_order");
+                    for(var i = 0; i<result.length; i++){
+                        var content ='<tr class="tr1">'+
+                                        '<td style="width: 181px">'+result[i].OrderId+'</td>'+
+                                        '<td style="width: 181px">'+result[i].Name+'</td>'+
+                                        '<td style="width: 181px">'+result[i].Count+'</td>'+
+                                        '<td style="width: 181px">'+result[i].Price+'</td>'+
+                                        '<td style="width: 181px">支付宝</td>'+
+                                    '</tr>'
+                        s.append(content)
+                    }
+                },
+                error:function () {
+                    alert("系统错误！！")
+                }
+            });
+
+            if (count == 1){
+                $this = $(this)
+            }
+            if ($this[0] != $(this)[0]){
+                $("#Order_inf").hide();
+                $("#Order_inf").show();
+                $this = $(this)
+                return
+            }
+            if (count % 2 == 0){
+                $("#Order_inf").hide();
+                count ++
+            } else {
+                $("#Order_inf").show();
+                count ++
+            }
+        })
+    })
 </script>
 </body>
 </html>

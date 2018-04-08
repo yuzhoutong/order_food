@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
-	"fmt"
 )
 
 type ConfirmOrder struct {
@@ -69,16 +68,32 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase(){
 	var orderId = c.GetString("code")
 	//订单的总价
 	var price =  c.GetString("price")
-	err := models.AddOrderTable(uid,orderId,price)
+	//获取收件人姓名
+	var name  = c.GetString("name")
+	//获取菜名
+	var dishName = c.GetStrings("dishName")
+	//获取菜品数量
+	var dishCount = c.GetStrings("dishCount")
+	//获取菜品单价
+	var dishPrice = c.GetStrings("dishPrice")
+	for i := 0 ; i<len(dishName);i++{
+		//添加到订单详情表
+		err := models.AddOrderDetail(uid, orderId, dishName[i], dishCount[i], dishPrice[i])
+		if err != nil{
+			resultMap["msg"] = "添加数据失败！"
+		}
+	}
+	//添加到订单表
+	err := models.AddOrderTable(uid,orderId,price,name)
 	if err != nil{
-		resultMap["msg"] = "添加到订单失败"
+		resultMap["msg"] = "添加到订单失败！"
 	}
 	resultMap["ret"] = 200
-	resultMap["msg"] = "添加订单成功"
+	resultMap["msg"] = "添加订单成功!"
 }
 
 //当单击付款时(支付成功)删除数据库中所选商品在购物车数据和add_order_car中的数据
-
+//修改数据库中订单表中is_buy的状态2 - 1
 func (c *ConfirmOrder) DeleteshopsFromDatabase(){
 	resultMap := make(map[string]interface{})
 	resultMap["ret"] = 403
@@ -89,5 +104,46 @@ func (c *ConfirmOrder) DeleteshopsFromDatabase(){
 	//用户的uid
 	var id= c.Ctx.GetCookie("id")
 	uid,_ := strconv.Atoi(id)
-	fmt.Println(uid)
+	//获取订单id
+	var orderId = c.GetString("orderId")
+	//add_order_car表中的ids
+	var ids = c.GetStrings("ids")
+	//删除数据
+	for i := 0; i<len(ids); i++ {
+		idsInt, _  := strconv.Atoi(ids[i])
+		err := models.DelShops(uid, idsInt)
+		err1 := models.DELAddOrderCar(uid, idsInt)
+		if err != nil || err1 != nil{}
+			resultMap["msg"] = "删除数据库数据异常！"
+			return
+	}
+	//修改order_table 订单状态
+	 err := models.UpdateIsBuy(uid, orderId)
+	 if err != nil {
+	 	resultMap["msg"] = "修改用户的购买状态失败！"
+	 	return
+	 }
+	resultMap["ret"] = 200
+	resultMap["msg"] = "删除成功！！"
+}
+//点击未付款修改购买状态
+func (c *ConfirmOrder) UpdateIsBuy(){
+	resultMap := make(map[string]interface{})
+	resultMap["ret"] = 403
+	defer func() {
+		c.Data["json"] = resultMap
+		c.ServeJSON()
+	}()
+	//用户的uid
+	var id= c.Ctx.GetCookie("id")
+	uid,_ := strconv.Atoi(id)
+	//获取订单id
+	var orderId = c.GetString("orderId")
+	err := models.UpdateIsBuy(uid, orderId)
+	if err != nil {
+		resultMap["msg"] = "修改用户的购买状态失败！"
+		return
+	}
+	resultMap["ret"] = 200
+	resultMap["msg"] = "付款成功！！"
 }

@@ -29,6 +29,25 @@ type UserAddress struct {
 	District		string		//区
 	CreateTime		time.Time	//创建时间
 }
+type UserOders struct {
+	Id  			int
+	Uid  			int			//用户id
+	OrderId			string		//订单id
+	Name 			string		//收件人姓名
+	IsProcessed		int			//订单是否被处理 1:已处理，2:未处理
+	OrderTime		string		//订单时间
+	OrderPrice		string		//订单金额
+	IsBuy			int         //是否付款:1:已支付:2未支付
+}
+type OrderDetail struct {
+	Id  			int
+	Uid  			int			//用户id
+	OrderId			string		//订单id
+	Name 			string		//菜名
+	Count 			int 	    //数量
+	Price			string		//价格
+	CreateTime		time.Time	//创建时间
+}
 //修改收货地址
 func UpdateAddress(uid, id int,address, rename, phone, provice, city, distract string) (err error){
 	sql := `UPDATE detail_address da SET da.address = ? ,da.rname = ? ,da.re_phone = ?, da.provice = ?,
@@ -59,8 +78,26 @@ func DelAddress(uid, id int)(err error){
 	return
 }
 
+//获取该用户的订单
+func GetUserOrder(uid int) (Order []UserOders, err error){
+	sql := `SELECT * FROM order_table
+			WHERE uid = ?`
+	_,err = orm.NewOrm().Raw(sql, uid).QueryRows(&Order)
+	return
+}
 
-
+//(取消)删除用户订单
+func DeleteOrder(uid int, orderId string) (err error){
+	sql := `DELETE FROM order_table WHERE uid = ? AND order_id = ?`
+	_, err = orm.NewOrm().Raw(sql, uid, orderId).Exec()
+	return
+}
+//点击订单号显示订单信息
+func GetOrderImanages(uid int, orderId string) (list []OrderDetail, err error){
+	sql := `SELECT * FROM order_detail  WHERE uid = ? And order_id = ?`
+	_,err = orm.NewOrm().Raw(sql, uid, orderId).QueryRows(&list)
+	return
+}
 
 
 

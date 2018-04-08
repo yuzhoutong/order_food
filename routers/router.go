@@ -19,7 +19,10 @@ func init() {
 
     //----------------------------------------------用户中心操作----------------------------------------------------------
     beego.Router("/userOrderList",&controllers.UserCenterController{},"get:UserOrderList")//to我的订单
-    beego.Router("/userAddress",&controllers.UserCenterController{},"get:ShippingAddress;post:AddShippingAddress")//to我的地址:修改用户地址
+    beego.Router("/deleteOrder",&controllers.UserCenterController{},"post:DeleteOrder")//取消订单
+	beego.Router("/getDetailOrder",&controllers.UserCenterController{},"post:GetOrderDetail")//点击订单号获取订单详细信息
+
+	beego.Router("/userAddress",&controllers.UserCenterController{},"get:ShippingAddress;post:AddShippingAddress")//to我的地址:修改用户地址
     beego.Router("/deleteAddress",&controllers.UserCenterController{},"post:DeleteAddressInf")//删除用户地址
     beego.Router("/addAddress",&controllers.UserCenterController{},"post:AddAddress")//新增用户地址
 	beego.Router("/userLeaveWords",&controllers.UserCenterController{},"get:UserMessage")//to我的留言
@@ -37,7 +40,8 @@ func init() {
 	beego.Router("/toOrderConfirm",&controllers.ConfirmOrder{},"get:ToOrderConfirm")//跳转到订单结算页面
 	beego.Router("/shopsClose",&controllers.ConfirmOrder{},"post:AddShops")//购物车结算
 	beego.Router("/addOrderTable",&controllers.ConfirmOrder{},"post:SubmitOrderAddDatabase")//将订单添加到数据库中
-
+	beego.Router("/deleteShopTable",&controllers.ConfirmOrder{},"post:DeleteshopsFromDatabase")//当点击支付宝支付时将购物车表和暂存表删除
+	beego.Router("/updateIsBuy", &controllers.ConfirmOrder{},"post:UpdateIsBuy")//点击未付款修改购买状态
 	//------------------------------------------------积分商城-----------------------------------------------------------
 	beego.Router("/pointShop",&controllers.PointShopController{},"get:Shop")
 
