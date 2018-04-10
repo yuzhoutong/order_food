@@ -38,6 +38,7 @@ type UserOders struct {
 	OrderTime		string		//订单时间
 	OrderPrice		string		//订单金额
 	IsBuy			int         //是否付款:1:已支付:2未支付
+	AddressId		int			//地址id
 }
 type OrderDetail struct {
 	Id  			int
@@ -98,7 +99,18 @@ func GetOrderImanages(uid int, orderId string) (list []OrderDetail, err error){
 	_,err = orm.NewOrm().Raw(sql, uid, orderId).QueryRows(&list)
 	return
 }
-
+//根据订单号获取地址id
+func GetAddressIdByOrderId(orderId string) (list int , err error){
+	sql := `SELECT address_id FROM order_table  WHERE order_id = ?`
+	err = orm.NewOrm().Raw(sql, orderId).QueryRow(&list)
+	return
+}
+//根据地址id获取地址信息
+func GetAddressByAddressId(address int) (addr *UserAddress, err error){
+	sql := `SELECT *  FROM detail_address  WHERE id = ?`
+	err = orm.NewOrm().Raw(sql, address).QueryRow(&addr)
+	return
+}
 
 
 

@@ -23,6 +23,7 @@ func init() {
 	beego.Router("/getDetailOrder",&controllers.UserCenterController{},"post:GetOrderDetail")//点击订单号获取订单详细信息
 
 	beego.Router("/userAddress",&controllers.UserCenterController{},"get:ShippingAddress;post:AddShippingAddress")//to我的地址:修改用户地址
+	beego.Router("/updateAddress",&controllers.UserCenterController{},"post:UpdateAddress")//修改用户地址(1)
     beego.Router("/deleteAddress",&controllers.UserCenterController{},"post:DeleteAddressInf")//删除用户地址
     beego.Router("/addAddress",&controllers.UserCenterController{},"post:AddAddress")//新增用户地址
 	beego.Router("/userLeaveWords",&controllers.UserCenterController{},"get:UserMessage")//to我的留言

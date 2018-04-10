@@ -25,6 +25,7 @@ type UserOrder struct{
 	OrderTime	time.Time		//订单时间
 	OrderPrice	string			//订单总价
 	IsBuy		int 			//是否付款:1:已支付:2未支付
+	AddressId	int 			//收货地址id
 }
 //添加结算购物车商品
 func Addshops(uid int, count , name, price, ids string) (err error){
@@ -48,13 +49,13 @@ func SumCount(uid int)(a int, err error){
 }
 
 //点击提交订单添加用户订单信息到order_table表里
-func AddOrderTable(uid int, orderid, price, name string)(err error){
-	sql := `INSERT INTO order_table(uid, order_id, is_processed, order_time, order_price, is_buy, name)
-			VALUES(?,?,2,NOW(),?,2,?)`
-	_, err = orm.NewOrm().Raw(sql, uid, orderid, price, name).Exec()
+func AddOrderTable(uid, addressId int, orderid, price, name string)(err error){
+	sql := `INSERT INTO order_table(uid, order_id, is_processed, order_time, order_price, is_buy, name, address_id)
+			VALUES(?, ?, 2 , NOW(), ?, 2, ?, ?)`
+	_, err = orm.NewOrm().Raw(sql, uid, orderid, price, name, addressId).Exec()
 	return
 }
-//点击提交订单添加用户订单信息到order_detail表里
+//点击提交订单详细信息添加用户订单信息到order_detail表里
 func AddOrderDetail(uid int, orderid, dishName, dishCount, dishPrice string) (err error){
 	sql := `INSERT INTO order_detail(uid, order_id, name, count, price, create_time)
 			VALUES(?, ?, ?, ?, ?, now())`

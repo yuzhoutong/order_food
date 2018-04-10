@@ -76,6 +76,8 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase(){
 	var dishCount = c.GetStrings("dishCount")
 	//获取菜品单价
 	var dishPrice = c.GetStrings("dishPrice")
+	//获取地址的id
+	var addressId,_ = c.GetInt("addressId")
 	for i := 0 ; i<len(dishName);i++{
 		//添加到订单详情表
 		err := models.AddOrderDetail(uid, orderId, dishName[i], dishCount[i], dishPrice[i])
@@ -84,7 +86,7 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase(){
 		}
 	}
 	//添加到订单表
-	err := models.AddOrderTable(uid,orderId,price,name)
+	err := models.AddOrderTable(uid, addressId, orderId, price, name)
 	if err != nil{
 		resultMap["msg"] = "添加到订单失败！"
 	}
@@ -113,9 +115,10 @@ func (c *ConfirmOrder) DeleteshopsFromDatabase(){
 		idsInt, _  := strconv.Atoi(ids[i])
 		err := models.DelShops(uid, idsInt)
 		err1 := models.DELAddOrderCar(uid, idsInt)
-		if err != nil || err1 != nil{}
+		if err != nil || err1 != nil {
 			resultMap["msg"] = "删除数据库数据异常！"
 			return
+		}
 	}
 	//修改order_table 订单状态
 	 err := models.UpdateIsBuy(uid, orderId)

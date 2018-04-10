@@ -45,18 +45,28 @@ func (c *UserCenterController) DeleteOrder(){
 	Ret int
 	Object interface{}
 }*/
+type OrderList struct {
+	Address *models.UserAddress
+	OrderDetail []models.OrderDetail
+}
+//查询用户的订单详情
 func (c *UserCenterController) GetOrderDetail(){
+	var resp OrderList
 	defer func() {
+		c.Data["json"] = resp
 		c.ServeJSON()
 	}()
+	//订单号
 	orderId := c.GetString("orderId")
 	id := c.Ctx.GetCookie("id")
 	uid,_:= strconv.Atoi(id)
-	OrderDetail,err := models.GetOrderImanages(uid, orderId)
-	if err != nil {
-		return
-	}
-	c.Data["json"]= OrderDetail
+	//获取地址id
+	addressId, _ := models.GetAddressIdByOrderId(orderId)
+	//根据地址id获地址信息
+	address, _ := models.GetAddressByAddressId(addressId)
+	OrderDetail,_ := models.GetOrderImanages(uid, orderId)
+	resp.Address = address
+	resp.OrderDetail = OrderDetail
 }
 //用户中心-收货地址
 func (c *UserCenterController) ShippingAddress(){
@@ -101,6 +111,40 @@ func (c *UserCenterController) AddShippingAddress(){
 	}
 	resultMap["ret"] = 200
 	resultMap["user"] = user
+	resultMap["msg"] = "修改用户信息成功"
+	return
+}
+//修改用户的地址
+func (c *UserCenterController) UpdateAddress(){
+	resultMap := make(map[string]interface{})
+	resultMap["ret"] = 403
+	defer func() {
+		c.Data["json"] = resultMap
+		c.ServeJSON()
+	}()
+	//获取值
+	//省
+	var provice = c.GetString("provice")
+	//市
+	var city = c.GetString("city")
+	//区
+	var district = c.GetString("district")
+	//详细地址
+	var address = c.GetString("address")
+	//收件人名字
+	var rename = c.GetString("name")
+	//电话号码
+	var phone = c.GetString("phone")
+	//用户的id
+	var id1 = c.Ctx.GetCookie("id")
+	var uid, _ = strconv.Atoi(id1)
+	id,_:= c.GetInt("id")
+	err := models.UpdateAddress(uid, id, address, rename, phone, provice, city, district)
+	if err != nil {
+		resultMap["msg"] = "修改用户信息失败"
+		return
+	}
+	resultMap["ret"] = 200
 	resultMap["msg"] = "修改用户信息成功"
 	return
 }

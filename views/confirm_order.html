@@ -11,13 +11,13 @@
     <script type="text/javascript" src="../static/js/getcookie.js"></script>
 <script>
     function skip() {
-            $("#Cflow").hide()
-            $("#Aflow").show()
+        $("#Cflow").hide()
+        $("#Aflow").show()
         var now = new Date();
         var year = now.getFullYear();
-        var month =(now.getMonth() + 1).toString();
+        var month = (now.getMonth() + 1).toString();
         var day = (now.getDate()).toString();
-        var h  = (now.getHours().toString());
+        var h = (now.getHours().toString());
         var m = (now.getMinutes().toString());
         var s = (now.getSeconds().toString());
         if (month.length == 1) {
@@ -27,7 +27,7 @@
             day = "0" + day;
         }
         if (h.length == 1) {
-            h= "0" + h;
+            h = "0" + h;
         }
         if (m.length == 1) {
             m = "0" + m;
@@ -35,46 +35,61 @@
         if (s.length == 1) {
             s = "0" + s;
         }
-        var dateTime = year + month +  day + h + m + s;
+        var dateTime = year + month + day + h + m + s;
         //获取用户uid
         var uid = getCookie("uid");
         //获取选中地址的名字
         var name = $(".checked").attr("xm");
-        var code =  uid+dateTime;
-         $("#cord").text(uid+dateTime);
-        //获取订单价格
-        var price = $("#price").text();
-        //获取菜品名字
-        dishName = [];
-        var n = $(".name1");
-        //获取菜品数量
-        dishCount = [];
-        var c = $(".count1");
-        //获取菜品单价
-        dishPrice = [];
-        var p = $(".price1");
-        for (var i = 0; i<n.length; i++){
-            dishName[i] = $(n[i]).text();
-            dishCount[i] = $(c[i]).text();
-            dishPrice[i] = $(p[i]).text();
-        }
-        //提交订单存入订单数据库中
-        $.ajax({
-            url:'/addOrderTable',
-            dataType:'json',
-            type:'post',
-            data:{"code":code,"price":price,"name":name,"dishName":dishName,"dishCount":dishCount,"dishPrice":dishPrice},
-            traditional:true,
-            success:function (result) {
-                alert(result.msg)
-            },
-            error:function () {
-                alert("系统错误！！")
+        //获取地址的id
+        var addressId = $(".checked").children().attr("id");
+            var code = uid + dateTime;
+            $("#cord").text(uid + dateTime);
+            //获取订单价格
+            var price = $("#price").text();
+            //获取菜品名字
+            dishName = [];
+            var n = $(".name1");
+            //获取菜品数量
+            dishCount = [];
+            var c = $(".count1");
+            //获取菜品单价
+            dishPrice = [];
+            var p = $(".price1");
+            for (var i = 0; i < n.length; i++) {
+                dishName[i] = $(n[i]).text();
+                dishCount[i] = $(c[i]).text();
+                dishPrice[i] = $(p[i]).text();
             }
+        if (addressId == undefined) {
+            alert("请选择收货地址！！！")
+            window.location.reload()
+             } else {
+            //提交订单存入订单数据库中
+            $.ajax({
+                url: '/addOrderTable',
+                dataType: 'json',
+                type: 'post',
+                data: {
+                    "code": code,
+                    "price": price,
+                    "name": name,
+                    "dishName": dishName,
+                    "dishCount": dishCount,
+                    "dishPrice": dishPrice,
+                    "addressId": addressId
+                },
+                traditional: true,
+                success: function (result) {
+                    alert(result.msg)
+                },
+                error: function () {
+                    alert("系统错误！！")
+                }
 
-        })
+            })
+        }
     }
-
+    //点击支付
     function arplay() {
         var orderId = $("#cord").text();
        var ids = [];
@@ -236,7 +251,7 @@
   <span class="flow_title">在线支付方式：</span>
    <form action="#">
     <ul>
-    <li><input type="radio" name="pay" id="alipay" value="alipay" /><label for="alipay"><i class="alipay"></i></label></li>
+    <li><input type="radio" name="pay" id="alipay" checked="checked" value="alipay" /><label for="alipay"><i class="alipay"></i></label></li>
     </ul>
    </form>
   </div>

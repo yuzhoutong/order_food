@@ -15,6 +15,7 @@
         }
     </style>
     <script>
+
     </script>
 </head>
 <body>
@@ -130,46 +131,12 @@
              <th style="width: 181px">付款方式</th>
          </table>
          <table class="U-order-D" id="table_order">
-
+             <!-- ajax渲染-->
          </table>
          <span class="Font14 FontW Lineheight35 Block">收件地址：</span>
-         <form action="#">
-             <table class="U-order-A">
-                 <tr>
-                     <td width="30%" align="right" class="FontW">收件地址：</td>
-                     <td>
-                         <select name="" class="select_ssq">
-                             <option>陕西省</option>
-                         </select>
-                         <select name="" class="select_ssq">
-                             <option>西安市</option>
-                         </select>
-                         <select name="" class="select_ssq">
-                             <option>雁塔区</option>
-                         </select>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td width="30%" align="right" class="FontW">街道地址：</td>
-                     <td><input type="text" name="" class="input_addr" value="丈八北路2000集" required></td>
-                 </tr>
-                 <tr>
-                     <td width="30%" align="right" class="FontW">收件人姓名：</td>
-                     <td><input type="text" name="" class="input_name" value="deathghost" required></td>
-                 </tr>
-                 <tr>
-                     <td width="30%" align="right" class="FontW">手机号码：</td>
-                     <td><input type="text" name="" class="input_tel" value="1582551819" required pattern="[0-9]{11}"></td>
-                 </tr>
-                 <tr>
-                     <td width="30%" align="right" class="FontW">订单备注：</td>
-                     <td><input type="text" name="" class="input_mark" value="...速度送货哦...谢谢~"></td>
-                 </tr>
-                 <tr>
-                     <td width="30%" align="right"></td>
-                     <!--未付款订单，可以修改地址！-->
-                     <td><input type="submit" name="" value="确认修改地址" class="Submit">（未付款订单，可以修改地址！）</td>
-                 </tr>
+         <form>
+             <table class="U-order-A address_list">
+                 <!-- ajax渲染-->
              </table>
          </form>
      </div>
@@ -292,17 +259,70 @@
                 data:{"orderId":orderId},
                 success:function (result) {
                     $("#table_order").empty();
+                    $(".address_list").empty()
                     var s = $("#table_order");
-                    for(var i = 0; i<result.length; i++){
+                    var a  = $(".address_list")
+                    for(var i = 0; i<result.OrderDetail.length; i++){
                         var content ='<tr class="tr1">'+
-                                        '<td style="width: 181px">'+result[i].OrderId+'</td>'+
-                                        '<td style="width: 181px">'+result[i].Name+'</td>'+
-                                        '<td style="width: 181px">'+result[i].Count+'</td>'+
-                                        '<td style="width: 181px">'+result[i].Price+'</td>'+
+                                        '<td style="width: 181px">'+result.OrderDetail[i].OrderId+'</td>'+
+                                        '<td style="width: 181px">'+result.OrderDetail[i].Name+'</td>'+
+                                        '<td style="width: 181px">'+result.OrderDetail[i].Count+'</td>'+
+                                        '<td style="width: 181px">'+result.OrderDetail[i].Price+'</td>'+
                                         '<td style="width: 181px">支付宝</td>'+
                                     '</tr>'
                         s.append(content)
                     }
+                    var cc =  '<tr>'+
+                                 '<td width="30%" align="right" class="FontW">收件地址：</td>'+
+                                 '<td>'+
+                                    '<select name="" class="select_ssq" id="ap">'+
+                                        '<option>'+result.Address.Provice+'</option>'+
+                                    '</select>'+
+                                    '<select name="" class="select_ssq" id="ac">'+
+                                        '<option>'+result.Address.City+'</option>'+
+                                    '</select>'+
+                                    '<select name="" class="select_ssq" id="ad">';
+                                    var text = "";
+                                           if (result.Address.District == "花山区"){
+                                                text = '<option>'+result.Address.District+'</option>'+
+                                                        '<option>雨山区</option>'+
+                                                        '<option>博望区</option>'
+                                           } else if (result.Address.District == "雨山区") {
+                                               text =  '<option>'+result.Address.District+'</option>'+
+                                                       '<option>花山区</option>'+
+                                                       '<option>博望区</option>'
+                                           } else if (result.Address.District == "博望区") {
+                                               text =   '<option>'+result.Address.District+'</option>'+
+                                                        '<option>花山区</option>'+
+                                                        '<option>雨山区</option>'
+                                                }
+                                         cc += text
+                                    +'</select>'+
+                                '</td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<td width="30%" align="right" class="FontW">详细地址：</td>'+
+                                '<td><input type="text" name="" class="input_addr" value="'+result.Address.Address+'" required></td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<td width="30%" align="right" class="FontW">收件人姓名：</td>'+
+                                '<td><input type="text" name="" class="input_name" value="'+result.Address.Rname+'" required></td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<td width="30%" align="right" class="FontW">手机号码：</td>'+
+                                '<td><input type="text" name="" class="input_tel" value="'+result.Address.RePhone+'" required pattern="[0-9]{11}"></td>'+
+                            '</tr>'+
+                            /*'<tr>'+
+                                '<td width="30%" align="right" class="FontW">订单备注：</td>'+
+                                '<td><input type="text" name="" class="input_mark" value="...速度送货哦...谢谢~"></td>'+
+                            '</tr>'+*/
+                           '<tr>'+
+                                '<td width="30%" align="right"></td>'+
+                            '<!--未付款订单，可以修改地址！-->'+
+                                '<td id="abc"><input type="button" name="" ids="'+result.Address.Id+'" value="确认修改地址" class="Submit abc">（未付款订单，可以修改地址！）</td>'+
+                            '</tr>'
+                        a.append(cc)
+                    add()
                 },
                 error:function () {
                     alert("系统错误！！")
@@ -325,8 +345,55 @@
                 $("#Order_inf").show();
                 count ++
             }
-        })
-    })
+        });
+           function add() {
+               $(".abc").click(function () {
+                   //获取参数
+                   var provice = $("#ap option:selected").text();
+                   var city = $("#ac option:selected").text();
+                   var district = $("#ad option:selected").text();
+                   var address = $(".input_addr").val();
+                   var rename  = $(".input_name").val();
+                   var phone = $(".input_tel").val();
+                   var id  = $(this).attr("ids");
+                   if (address == ""){
+                       alert("详细地址不能为空！")
+                   }else if (rename == ""){
+                       alert.html("收件人不能为空！")
+                   }else if (phone == ""){
+                       alert.html("联系电话不能为空！")
+                   }else if (phone.length !=11 ) {
+                       alert.html("电话格式错误")
+                   } else {
+                       $.ajax({
+                           url: '/updateAddress',
+                           type: 'post',
+                           dataType:'json',
+                           data: {
+                               "provice": provice,
+                               "city": city,
+                               "district": district,
+                               "address": address,
+                               "name": rename,
+                               "phone": phone,
+                               "id":id
+                           },
+                           success: function (result) {
+                               if (result.ret == 200){
+                                   alert(result.msg);
+                               }else {
+                                   alert(result.msg)
+                               }
+                           },
+                           error: function () {
+                               alert("系统错误！！！")
+                           }
+                       })
+                   }
+               })
+           }
+    });
+
 </script>
 </body>
 </html>
