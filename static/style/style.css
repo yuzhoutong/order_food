@@ -224,10 +224,10 @@ code::selection {background:#dddddd;}
 .Fsl li hgroup h3{font-size:16px;font-weight:bold;}
 .Fsl li hgroup h4{font-size:13px;font-weight:normal;}
 .Fsl li p{width:428px;height:25px;line-height:25px;margin:5px;}
-.Fsl li p .Score-l{width:268px;height:auto; display:inline-block;}
+.Fsl li p .Score-l{width:131px;height:auto; display:inline-block;}
 .Fsl li p img{width:15px;height:15px; vertical-align:central;margin:0;padding:0;}
 .Fsl li p .Score-v{font-size:24px;font-weight:bold;color:#f95f1f;display:inline-block;}
-.Fsl li p .DSBUTTON{background:#f76220;font-weight:bold;font-size:16px;color:#fff;display:inline-block;width:156px;height:40px;position: relative;top:-10px;right:-6px;text-align:center;line-height:40px;}
+.Fsl li p .DSBUTTON{background:#f76220;font-weight:bold;font-size:16px;color:#fff;display:inline-block;width:140px;height:40px;position: relative;top:-10px;right:-6px;text-align:center;line-height:40px;}
 .Fsl aside{width:300px;height:auto;overflow:hidden;float:right;}
 .Fsl aside .title{height:45px;line-height:45px;font-weight:bold;text-indent:1em;border:1px #dddddd solid;font-size:15px;}
 .Fsl aside .C-list{border:1px #dddddd solid; border-top:none;padding:5px;}

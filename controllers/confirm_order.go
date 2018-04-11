@@ -53,7 +53,7 @@ func (c *ConfirmOrder) AddShops(){
 	resultMap["msg"] = "结算购物车商品成功"
 	return
 }
-//点击提交订单将该用户的订单号存在数据库中
+//点击提交订单将该用户的订单号存在数据库中 删除add_order_car数据
 func (c *ConfirmOrder) SubmitOrderAddDatabase(){
 	resultMap := make(map[string]interface{})
 	resultMap["ret"] = 403
@@ -90,11 +90,23 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase(){
 	if err != nil{
 		resultMap["msg"] = "添加到订单失败！"
 	}
+	//add_order_car表中的ids
+	var ids = c.GetStrings("ids")
+	//删除数据
+	for i := 0; i<len(ids); i++ {
+		idsInt, _  := strconv.Atoi(ids[i])
+		//err := models.DelShops(uid, idsInt)
+		err1 := models.DELAddOrderCar(uid, idsInt)
+		if err != nil || err1 != nil {
+			resultMap["msg"] = "删除数据库数据异常！"
+			return
+		}
+	}
 	resultMap["ret"] = 200
 	resultMap["msg"] = "添加订单成功!"
 }
 
-//当单击付款时(支付成功)删除数据库中所选商品在购物车数据和add_order_car中的数据
+//当单击付款时(支付成功)删除数据库中所选商品在购物车car数据
 //修改数据库中订单表中is_buy的状态2 - 1
 func (c *ConfirmOrder) DeleteshopsFromDatabase(){
 	resultMap := make(map[string]interface{})
@@ -114,8 +126,8 @@ func (c *ConfirmOrder) DeleteshopsFromDatabase(){
 	for i := 0; i<len(ids); i++ {
 		idsInt, _  := strconv.Atoi(ids[i])
 		err := models.DelShops(uid, idsInt)
-		err1 := models.DELAddOrderCar(uid, idsInt)
-		if err != nil || err1 != nil {
+		//err1 := models.DELAddOrderCar(uid, idsInt)
+		if err != nil {
 			resultMap["msg"] = "删除数据库数据异常！"
 			return
 		}

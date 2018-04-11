@@ -12,10 +12,11 @@ type DishCart struct {
 	PicPath		string		//菜品图片的路径
 	Price		float64		//菜的价格
 	Type		string		//菜品的种类
+
 }
 //加入购物车
 func AddCar(uid, DishId int) (err error){
-	sql := `INSERT INTO my_car(uid,dish_id) values(?,?)`
+	sql := `INSERT INTO my_car(uid,dish_id,create_time) values(?,?,now())`
 	_,err = orm.NewOrm().Raw(sql, uid, DishId).Exec()
 	return
 }
@@ -40,3 +41,8 @@ func DeleteCartShop(uid,Id int) (err error){
 	_,err = orm.NewOrm().Raw(sql, uid, Id).Exec()
 	return
 }
+/*
+//点击订餐页面的结算将数据存入add_order_car表
+func AddToAddOrderCar(uid int, ids, name, price, count string) (err error){
+	sql := `INSERT`
+}*/

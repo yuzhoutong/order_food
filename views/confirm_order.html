@@ -60,6 +60,12 @@
                 dishCount[i] = $(c[i]).text();
                 dishPrice[i] = $(p[i]).text();
             }
+            var ids = [];
+            var i = $(".tr11").find("td[id=tdIds]");
+            for (var j=0;j<i.length;j++){
+                ids[j] = $(i[j]).text()
+            }
+            console.log(ids);
         if (addressId == undefined) {
             alert("请选择收货地址！！！")
             window.location.reload()
@@ -76,7 +82,8 @@
                     "dishName": dishName,
                     "dishCount": dishCount,
                     "dishPrice": dishPrice,
-                    "addressId": addressId
+                    "addressId": addressId,
+                    "ids":ids
                 },
                 traditional: true,
                 success: function (result) {

@@ -30,13 +30,14 @@ func init() {
 	beego.Router("/userCoupon",&controllers.UserCenterController{},"get:UserCoupon")//to我的优惠券
 	beego.Router("/userCollect",&controllers.UserCenterController{},"get:UserCollect")//to我的收藏
 
-	//-----------------------------------------------购物车--------------------------------------------------------------
+	//-----------------------------------------------购物车 下单--------------------------------------------------------------
 	beego.Router("/shoppingCart",&controllers.ShopCartCtroller{},"get:INShopCart;post:AddShopCart")//to购物车
 	beego.Router("/deleteCart",&controllers.ShopCartCtroller{},"post:DeleteShop")//删除购物车商品
+	beego.Router("/placeAnOrder",&controllers.ShopCartCtroller{},"post:AddOrderDataToAddOrderCar")//订餐页面点击下单加入数据库中
+
 
 	//------------------------------------------------点餐---------------------------------------------------------------
 	beego.Router("/orderFood",&controllers.OrderFoodController{},"get:OrderFoodList;post:OrderFoodListJson")//根据条件展现不同的列
-
 	//------------------------------------------------订单结算-----------------------------------------------------------
 	beego.Router("/toOrderConfirm",&controllers.ConfirmOrder{},"get:ToOrderConfirm")//跳转到订单结算页面
 	beego.Router("/shopsClose",&controllers.ConfirmOrder{},"post:AddShops")//购物车结算

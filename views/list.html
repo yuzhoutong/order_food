@@ -19,6 +19,7 @@
     </style>
     <script>
         $(function () {
+            //点餐页面加入购物车
             shop = $(".shop")
             $(".select dd").click(function () {
                 var type = $("#select1 .selected").text();
@@ -37,11 +38,10 @@
                         '<a href="#"  title=><img src="./static/upload/03.jpg"></a>'+
                         '<hgroup>'+
                         '<h3>'+result[i].DishName+'</h3>'+
-                        '<h4></h4>'+
                         '</hgroup>'+
-                        '<p>描述：'+result[i].Detail+'</p>'+
-                        '<p>销售量：'+result[i].OrderCount+'</p>'+
-                        '<p>价格：'+result[i].Price+'元</p>'+
+                        '<p id="ms">描述：'+result[i].Detail+'</p>'+
+                        '<p id="xsl" xsl="'+result[i].OrderCount+'">销售量：'+result[i].OrderCount+'</p>'+
+                        '<p id="jg" jg="'+result[i].Price+'">价格：'+result[i].Price+'元</p>'+
                         '<p>'+
                         '<span class="Score-l">'+
                         '<img src="../static/images/star-on.png">'+
@@ -51,12 +51,14 @@
                         '<img src="../static/images/star-off.png">'+
                         '<span class="Score-v">4.8</span>'+
                         '</span>'+
-                        '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+
+                         '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff order">下单</a></span>'+
+                        '<span class="DSBUTTON" style="margin-left: 6px;"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+
                         '</p>'+
                         '</li>'
                             s.append(content)
                         }
                         getshop()
+                        getOrder()
                     },
                     error:function () {
                         alert("系统错误！！")
@@ -66,8 +68,14 @@
             })
 
             getshop()
+            getOrder()
+
+            //订单页面结算
+            $("#money").click(function () {
+                window.location.href = "/toOrderConfirm"
+            })
         })
-        
+        //ajax加入购物车
         function getshop() {
             var s = $(".shop");
             s.click(function () {
@@ -92,6 +100,61 @@
             });
             return s
         }
+        //ajax用户下单
+        function getOrder() {
+            var s = $(".order");
+            s.click(function () {
+                //获取参数
+                var dish_id = $(this).attr("ids");
+                var name = $(this).parents("li").find("h3").text();
+                var price = $(this).parents("li").find("p[id = jg]").attr("jg");
+                var count  = $(this).parents("li").find("p[id = xsl]").attr("xsl");
+                $.ajax({
+                    url:'/placeAnOrder',
+                    dataType:'json',
+                    type:'post',
+                    data:{"dishId":dish_id,"name":name,"price":price,"count":count},
+                    success:function (result) {
+                        $("#table_ta").empty();
+                        var t = $("#table_ta");
+                        var hea = '<tr id="" style="border:1px solid #dddddd;">'+
+                                    '<th style="font-weight: bold;width: 30px">序号</th>'+
+                                    '<th style="font-weight: bold;padding-left: 37px">菜名</th>'+
+                                    '<th style="font-weight: bold;padding-left: 31px">数量</th>'+
+                                    '<th style="font-weight: bold;padding-left: 32px">价格</th>'+
+                                '</tr>'
+                                t.append(hea)
+                        for(var i=0; i<result.data.length; i++){
+                            var content =
+                                            '<tr id="tryu" style="margin-top: 10px">'+
+                                                '<td>1</td>'+
+                                                '<td style="padding-left: 18px;width: 106px">'+result.data[i].Name+'</td>'+
+                                                '<td style="padding-left: 38px;width: 26px">'+result.data[i].Count+'</td>'+
+                                                 '<td style="padding-left: 45px">'+result.data[i].Price+'</td>'+
+                                             '</tr>'
+                            t.append(content)
+                        }
+                        var cou =
+                                '<tr style="cursor:pointer;">'+
+                                    '<td id="money" style="width:100px; cursor: pointer; height:38px;color: white; line-height:38px;text-align:center; font-size:15px;font-weight:bold; background-color: #d43f3a">结算</td>'+
+                                '</tr>'
+                        t.append(cou)
+                        finishMoney()
+                    },
+                    error:function () {
+                        alert("系统错误！！")
+                    }
+                })
+
+            })
+        }
+        //ajax页面下单
+        function finishMoney() {
+            $("#money").click(function () {
+                window.location.href = "/toOrderConfirm"
+            })
+        }
+
 
     </script>
 </head>
@@ -213,15 +276,15 @@
 <section class="Fsl">
  <ul id="dish_ul">
      {{range $k, $dish := .dishList}}
-  <li>
-   <a href="#"  title=""><img src="../static/upload/03.jpg"></a>
+  <li id="li_order">
+   <a href="#"  title=""><img src="{{$dish.PicPath}}"></a>
    <hgroup>
    <h3>{{$dish.DishName}}</h3>
    <h4></h4>
    </hgroup>
-   <p>描述：{{$dish.Detail}}</p>
-   <p>销售量：{{$dish.OrderCount}}</p>
-   <p>价格：{{$dish.Price}}元</p>
+   <p id="ms" ms="{{$dish.Detail}}">描述：{{$dish.Detail}}</p>
+   <p id="xsl" xsl="{{$dish.OrderCount}}">销售量：{{$dish.OrderCount}}</p>
+   <p id="jg" jg = "{{$dish.Price}}">价格：{{$dish.Price}}元</p>
    <p>
     <span class="Score-l">
     <img src="../static/images/star-on.png">
@@ -231,7 +294,8 @@
     <img src="../static/images/star-off.png">
     <span class="Score-v">4.8</span>
     </span>
-    <span class="DSBUTTON"><a  target="_blank" ids = "{{$dish.DishId}}" class="Fontfff shop">加入购物车</a></span>
+    <span class="DSBUTTON"><a ids = "{{$dish.DishId}}" class="Fontfff order">下单</a></span>
+    <span class="DSBUTTON"><a ids = "{{$dish.DishId}}" class="Fontfff shop">加入购物车</a></span>
    </p>
   </li>
    {{end}}
@@ -268,6 +332,23 @@
    </span>
    </p>
   </div>
+         <table style="margin-top: 10px;border-collapse:separate; border-spacing:5px 10px;" id="table_ta">
+             <tr id="" style="border:1px solid #dddddd;">
+                 <th style="font-weight: bold;width: 30px">序号</th>
+                 <th style="font-weight: bold;padding-left: 45px">菜名</th>
+                 <th style="font-weight: bold;padding-left: 34px">数量</th>
+                 <th style="font-weight: bold;padding-left: 32px">价格</th>
+             </tr>
+             {{range $k, $v := .orderList}}
+             <tr>
+                 <td style="">100</td>
+                 <td style="padding-left: 18px;width: 106px">{{$v.Name}}</td>
+                 <td style="padding-left: 38px;width: 26px">{{$v.Count}}</td>
+                 <td style="padding-left: 45px">{{$v.Price}}</td>
+             </tr>
+                     {{end}}
+             <td id="money" style="width:100px; cursor: pointer; height:38px;color: white; line-height:38px;text-align:center; font-size:15px;font-weight:bold; background-color: #d43f3a">结算</td>
+         </table>
  </aside>
  <div class="TurnPage">
   <a href="#">
@@ -368,14 +449,14 @@
                 var s = $("#dish_ul");
                 for(var i = 0 ;i<result.length;i++){
                     var content = '<li>'+
-                            '<a href="#"  title=><img src="./static/upload/03.jpg"></a>'+
+                            '<a href="#"  title=><img src="../static/upload/03.jpg"></a>'+
                             '<hgroup>'+
                             '<h3>'+result[i].DishName+'</h3>'+
                             '<h4></h4>'+
                             '</hgroup>'+
-                            '<p>描述：'+result[i].Detail+'</p>'+
-                            '<p>销售量：'+result[i].OrderCount+'</p>'+
-                            '<p>价格：'+result[i].Price+'元</p>'+
+                            '<p id="ms">描述：'+result[i].Detail+'</p>'+
+                            '<p id="xsl" xsl ="'+result[i].OrderCount+'">销售量：'+result[i].OrderCount+'</p>'+
+                            '<p id="jg" jg="'+result[i].Price+'">价格：'+result[i].Price+'元</p>'+
                             '<p>'+
                             '<span class="Score-l">'+
                             '<img src="../static/images/star-on.png">'+
@@ -385,12 +466,14 @@
                             '<img src="../static/images/star-off.png">'+
                             '<span class="Score-v">4.8</span>'+
                             '</span>'+
+                            '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff order">下单</a></span>'+
                             '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+
                             '</p>'+
                             '</li>'
                     s.append(content)
                 }
                 getshop()
+                getOrder()
             },
             error:function () {
                 alert("系统错误！！")

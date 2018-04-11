@@ -3,6 +3,8 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"order_food/models"
+	"strconv"
+	"fmt"
 )
 
 type OrderFoodController struct {
@@ -17,8 +19,14 @@ func (c *OrderFoodController) OrderFoodList(){
 	dishList, _ := models.DishList(condition, params)
 	//获取菜品种类
 	dishkides,_:= models.DishKide()
+	//获取用户id
+	var id = c.Ctx.GetCookie("id")
+	uid,_ := strconv.Atoi(id)
+	orderlist, _:= models.GetUserCloseOrder(uid)
 	c.Data["diskide"] = dishkides
 	c.Data["dishList"] = dishList
+	c.Data["orderList"] = orderlist
+	fmt.Println(orderlist)
 	c.TplName = "list.html"
 }
 
