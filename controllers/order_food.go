@@ -89,4 +89,25 @@ func (c *OrderFoodController) OrderFoodListJson(){
 	dishList, _ := models.DishList(condition, params)
 	c.Data["json"] = dishList
 }
-
+//删除点餐页面用户所选的food
+func (c *OrderFoodController) DeleteUserChooseFood() {
+	resultMap := make(map[string]interface{})
+	resultMap["ret"] = 403
+	defer func() {
+		c.Data["json"] = resultMap
+		c.ServeJSON()
+	}()
+	//获取用户id
+	var id = c.Ctx.GetCookie("id")
+	uid,_ := strconv.Atoi(id)
+	//获取id 表add_order_car 的 id
+	id1, _ := c.GetInt("id")
+	err := models.DelUserChooseFood(uid, id1)
+	if err != nil {
+		resultMap["msg"] = "删除错误！！"
+		return
+	}
+	resultMap["ret"] = 200
+	resultMap["msg"] = "删除成功！！"
+	return
+}

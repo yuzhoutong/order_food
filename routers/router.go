@@ -38,6 +38,7 @@ func init() {
 
 	//------------------------------------------------点餐---------------------------------------------------------------
 	beego.Router("/orderFood",&controllers.OrderFoodController{},"get:OrderFoodList;post:OrderFoodListJson")//根据条件展现不同的列
+	beego.Router("/deleteUserOrderFood",&controllers.OrderFoodController{},"post:DeleteUserChooseFood")//删除点餐页面用户所选的food(点击X)
 	//------------------------------------------------订单结算-----------------------------------------------------------
 	beego.Router("/toOrderConfirm",&controllers.ConfirmOrder{},"get:ToOrderConfirm")//跳转到订单结算页面
 	beego.Router("/shopsClose",&controllers.ConfirmOrder{},"post:AddShops")//购物车结算

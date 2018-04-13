@@ -82,7 +82,8 @@ func (c ShopCartCtroller) AddOrderDataToAddOrderCar(){
 	//获取菜品信息
 	var name = c.GetString("name")
 	var price = c.GetString("price")
-	var count = c.GetString("count")
+	/*var count = c.GetString("count")*/
+	var count = "1"
 	var ids = c.GetString("dishId")
 	err := models.Addshops(uid, count, name, price, ids)
 	if err != nil {

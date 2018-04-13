@@ -77,8 +77,24 @@
 
             //删除用户所下的单
             $(".del_order").click(function () {
+                //获取id
                 var id = $(this).attr("ids")
-                alert(id)
+                $.ajax({
+                    url:"/deleteUserOrderFood",
+                    dataType:"json",
+                    type:"post",
+                    data:{"id":id},
+                    success:function (result) {
+                        if(result.ret == 200){
+                            window.location.href = "/orderFood"
+                        } else {
+                            alert(result.msg)
+                        }
+                    },
+                    error:function () {
+                        alert("系统错误！！")
+                    }
+                })
             })
 
         })
@@ -139,7 +155,7 @@
                                                 '<td style="padding-left: 18px;width: 106px">'+result.data[i].Name+'</td>'+
                                                 '<td style="padding-left: 38px;width: 26px">'+result.data[i].Count+'</td>'+
                                                 '<td style="padding-left: 45px">'+result.data[i].Price+'</td>'+
-                                                '<td style="padding-left: 45px"><a>删除</a></td>'+
+                                                '<td class="del_order" style="padding-left: 45px"><img src="../static/images/del.jpg"></td>'+
                                              '</tr>'
                             t.append(content)
                         }
@@ -149,6 +165,7 @@
                                 '</tr>'
                         t.append(cou)
                         finishMoney()
+                        delUserChoose()
                     },
                     error:function () {
                         alert("系统错误！！")
@@ -163,7 +180,12 @@
                 window.location.href = "/toOrderConfirm"
             })
         }
-
+        //ajax删除用户所选菜单
+        function delUserChoose() {
+            $(".del_order").click(function () {
+                alert("sssss")
+            })
+        }
     </script>
 </head>
 <body>

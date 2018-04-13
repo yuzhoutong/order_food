@@ -32,3 +32,9 @@ func DishKide()(list []List, err error){
 	_,err = orm.NewOrm().Raw(sql).QueryRows(&list)
 	return
 }
+//删除用户所选事物数据
+func DelUserChooseFood(uid, id int )(err error){
+	sql := `DELETE FROM add_order_car WHERE uid = ? AND id = ?`
+	_,err = orm.NewOrm().Raw(sql ,uid, id).Exec()
+	return
+}
