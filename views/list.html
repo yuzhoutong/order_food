@@ -74,6 +74,13 @@
             $("#money").click(function () {
                 window.location.href = "/toOrderConfirm"
             })
+
+            //删除用户所下的单
+            $(".del_order").click(function () {
+                var id = $(this).attr("ids")
+                alert(id)
+            })
+
         })
         //ajax加入购物车
         function getshop() {
@@ -119,9 +126,10 @@
                         var t = $("#table_ta");
                         var hea = '<tr id="" style="border:1px solid #dddddd;">'+
                                     '<th style="font-weight: bold;width: 30px">序号</th>'+
-                                    '<th style="font-weight: bold;padding-left: 37px">菜名</th>'+
-                                    '<th style="font-weight: bold;padding-left: 31px">数量</th>'+
+                                    '<th style="font-weight: bold;padding-left: 23px">菜名</th>'+
+                                    '<th style="font-weight: bold;padding-left: 25px">数量</th>'+
                                     '<th style="font-weight: bold;padding-left: 32px">价格</th>'+
+                                    '<th style="font-weight: bold;padding-left: 32px">操作</th>'+
                                 '</tr>'
                                 t.append(hea)
                         for(var i=0; i<result.data.length; i++){
@@ -130,7 +138,8 @@
                                                 '<td>1</td>'+
                                                 '<td style="padding-left: 18px;width: 106px">'+result.data[i].Name+'</td>'+
                                                 '<td style="padding-left: 38px;width: 26px">'+result.data[i].Count+'</td>'+
-                                                 '<td style="padding-left: 45px">'+result.data[i].Price+'</td>'+
+                                                '<td style="padding-left: 45px">'+result.data[i].Price+'</td>'+
+                                                '<td style="padding-left: 45px"><a>删除</a></td>'+
                                              '</tr>'
                             t.append(content)
                         }
@@ -154,7 +163,6 @@
                 window.location.href = "/toOrderConfirm"
             })
         }
-
 
     </script>
 </head>
@@ -335,9 +343,10 @@
          <table style="margin-top: 10px;border-collapse:separate; border-spacing:5px 10px;" id="table_ta">
              <tr id="" style="border:1px solid #dddddd;">
                  <th style="font-weight: bold;width: 30px">序号</th>
-                 <th style="font-weight: bold;padding-left: 45px">菜名</th>
-                 <th style="font-weight: bold;padding-left: 34px">数量</th>
+                 <th style="font-weight: bold;padding-left: 23px">菜名</th>
+                 <th style="font-weight: bold;padding-left: 25px">数量</th>
                  <th style="font-weight: bold;padding-left: 32px">价格</th>
+                 <th style="font-weight: bold;padding-left: 32px">操作</th>
              </tr>
              {{range $k, $v := .orderList}}
              <tr>
@@ -345,6 +354,7 @@
                  <td style="padding-left: 18px;width: 106px">{{$v.Name}}</td>
                  <td style="padding-left: 38px;width: 26px">{{$v.Count}}</td>
                  <td style="padding-left: 45px">{{$v.Price}}</td>
+                 <td class="del_order" ids="{{$v.Id}}" style="padding-left: 34px;cursor: pointer"><img src="../static/images/del.jpg"></td>
              </tr>
                      {{end}}
              <td id="money" style="width:100px; cursor: pointer; height:38px;color: white; line-height:38px;text-align:center; font-size:15px;font-weight:bold; background-color: #d43f3a">结算</td>
