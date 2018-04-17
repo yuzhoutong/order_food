@@ -86,7 +86,8 @@
                     data:{"id":id},
                     success:function (result) {
                         if(result.ret == 200){
-                            window.location.href = "/orderFood"
+                            //window.location.href = "/orderFood"
+                            window.location.reload()
                         } else {
                             alert(result.msg)
                         }
@@ -151,11 +152,11 @@
                         for(var i=0; i<result.data.length; i++){
                             var content =
                                             '<tr id="tryu" style="margin-top: 10px">'+
-                                                '<td>1</td>'+
+                                                '<td>'+i+'</td>'+
                                                 '<td style="padding-left: 18px;width: 106px">'+result.data[i].Name+'</td>'+
                                                 '<td style="padding-left: 38px;width: 26px">'+result.data[i].Count+'</td>'+
                                                 '<td style="padding-left: 45px">'+result.data[i].Price+'</td>'+
-                                                '<td class="del_order" style="padding-left: 45px"><img src="../static/images/del.jpg"></td>'+
+                                                '<td class="del_order" ids='+result.data[i].Id+' style="padding-left: 45px"><img src="../static/images/del.jpg"></td>'+
                                              '</tr>'
                             t.append(content)
                         }
@@ -183,7 +184,24 @@
         //ajax删除用户所选菜单
         function delUserChoose() {
             $(".del_order").click(function () {
-                alert("sssss")
+                var id = $(this).attr("ids");
+                $.ajax({
+                    url:"/deleteUserOrderFood",
+                    dataType:"json",
+                    type:"post",
+                    data:{"id":id},
+                    success:function (result) {
+                        if(result.ret == 200){
+                            //window.location.href = "/orderFood"
+                            window.location.reload()
+                        } else {
+                            alert(result.msg)
+                        }
+                    },
+                    error:function () {
+                        alert("系统错误！！")
+                    }
+                })
             })
         }
     </script>
@@ -372,7 +390,7 @@
              </tr>
              {{range $k, $v := .orderList}}
              <tr>
-                 <td style="">100</td>
+                 <td style="">{{$k}}</td>
                  <td style="padding-left: 18px;width: 106px">{{$v.Name}}</td>
                  <td style="padding-left: 38px;width: 26px">{{$v.Count}}</td>
                  <td style="padding-left: 45px">{{$v.Price}}</td>
