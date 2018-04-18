@@ -40,6 +40,12 @@ func (c *AccountController) CheckPassword(){
 	c.Ctx.SetCookie("name",users.Name)
 	c.Ctx.SetCookie("id",strconv.Itoa(users.OrderUsersId))
 	c.Ctx.SetCookie("uid",strconv.Itoa(users.OrderUsersId))
+	uid := users.OrderUsersId
+	err := models.InsertLoginRecord(uid)
+	if err != nil {
+		resultMap["msg"] = "添加登录历史错误"
+		return
+	}
 	resultMap["ret"] = 200
 	resultMap["msg"] = "登录成功"
 	resultMap["users"] = users
@@ -121,6 +127,11 @@ func (c AccountController) ModifyUser(){
 
 //用户中心
 func (c *AccountController) UserInformation(){
+	//获取参数
+	var id = c.Ctx.GetCookie("id")
+	uid, _ := strconv.Atoi(id)
+	time, _ := models.GetUploginTime(uid)
+	c.Data["time"] = time
 	c.TplName = "user_center.html"
 }
 

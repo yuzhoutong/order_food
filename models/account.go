@@ -23,6 +23,11 @@ type OrderUser struct {
 	Accountstatus	int			//用户状态
 	CreateTime		time.Time	//创建时间
 }
+type LoginRecord struct {
+	Id 			int
+	Uid			int 	//用户id
+	LoginTime	string	//登录时间
+}
 //用户登录 账号，密码验证
 func Login(username, password string) (u *OrderUser, err error){
 	o := orm.NewOrm()
@@ -58,7 +63,18 @@ func ModifyUserPwd(name, password string)(err error){
 	_,err = orm.NewOrm().Raw(sql,password, name).Exec()
 	return
 }
-
+//添加登录记录
+func InsertLoginRecord (uid int) (err error) {
+	sql := `INSERT INTO login_record(uid, login_time) VALUES( ?, NOW())`
+	_,err = orm.NewOrm().Raw(sql, uid).Exec()
+	return
+}
+//获取上一次登录时间
+func GetUploginTime (uid int) (time string, err error) {
+	sql := `SELECT  login_time FROM login_record where uid = ? ORDER BY login_time DESC LIMIT 1, 1 `
+	err = orm.NewOrm().Raw(sql,uid).QueryRow(&time)
+	return
+}
 
 
 
