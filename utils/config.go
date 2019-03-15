@@ -8,10 +8,8 @@ import (
 
 // MYSQL
 var (
-	RunMode         string // 运行模式
-	MYSQL_URL       string // 微融主库
-	//MYSQL_LOG_URL   string // log库
-	//MYSQL_HEZUO_URL string // 微融合作平台库
+	RunMode   string // 运行模式
+	MYSQL_URL string // 微融主库
 )
 
 // Redis
@@ -34,19 +32,12 @@ func init() {
 		panic("配置文件读取错误 " + err.Error())
 	}
 	beego.Info("access")
-	//Enablexsrf = beego.AppConfig.String("enablexsrf")
-	//H5Encoded = beego.AppConfig.String("h5_encoded")
 	// mysql
 	MYSQL_URL = config["mysql_url"]
-	//MYSQL_LOG_URL = config["mysql_log_url"]
-	//MYSQL_HEZUO_URL = config["mysql_hezuo_url"]
 	// redis
-	//BEEGO_CACHE = config["beego_cache"]
-	//Rc, Re = cache.NewCache(BEEGO_CACHE)
 	// show
 	beego.Info("┌───────────────────")
 	beego.Info("│模式:" + RunMode)
 	beego.Info("│XSRF校验:" + Enablexsrf)
-	//beego.Info("│H5接口编码:" + H5Encoded)
 	beego.Info("└───────────────────")
 }

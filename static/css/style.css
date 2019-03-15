@@ -8,8 +8,8 @@
     font-family: Arial ;
 }
 /**login**/
-.login_body{background: transparent; background: url(../img/bg1.jpg);background-attachment:fixed;background-repeat:no-repeat;background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;}
-.login_div{width:500px;height:500px; top: 50%; left: 50%; color: black; margin-top: -250px; margin-left: -250px; position:fixed;border-radius:10px; z-index: 9999; background: #FFFFFF; opacity: 0.7; box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);}
+.login_body{background: transparent; background: url(../img/dl2.jpg);background-attachment:fixed;background-repeat:no-repeat;background-size: 100% 100%;;}
+.login_div{width:500px;height:500px; top: 50%; left: 50%; color: black; margin-top: -250px; margin-left: -250px; position:fixed;border-radius:10px; z-index: 9999; background: #efefef; opacity: 0.7; box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);}
 .login_div .login_title{text-align: center; font-size: 35px; margin-top: 30px; letter-spacing: 5px; font-weight: bold;}
 .login_nav{margin-top: 140px;}
 .login_username{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
@@ -25,7 +25,7 @@
 #login{outline: 0px; border: 0px; width: 200px; height: 40px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px;}
 .barter_btnDiv{text-align: center; position: absolute; bottom: 0; margin-bottom: 10px;}
 .barter_btn{border: 0px; background: transparent; outline: 0px;}
-.register_body{width:500px;height:500px; top: 50%; left: 50%; color: black; margin-top: -250px; margin-left: -250px; position:fixed;border-radius:10px; display: none; background: #FFFFFF; opacity: 0.7; box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);}
+.register_body{width:500px;height:500px; top: 50%; left: 50%; color: black; margin-top: -250px; margin-left: -250px; position:fixed;border-radius:10px; display: none; background:#efefef; opacity: 0.7; box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);}
 .register_title{text-align: center; font-size: 35px; margin-top: 30px; letter-spacing: 5px; font-weight: bold;}
 .register_nav{margin-top: 140px;}
 .register_nav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
@@ -35,6 +35,7 @@
 .register_psdnav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
 .register_psdnav .col-xs-6{height: 40px; padding: 0px;}
 #psd_r{height: 40px; font-size: 12px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
+#phone_r{height: 40px; font-size: 12px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
 .register_affirm{margin-top: 30px;}
 .register_affirm .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold; }
 .register_affirm .col-xs-6{height: 40px; padding: 0px;}

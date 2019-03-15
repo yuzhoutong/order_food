@@ -6,8 +6,51 @@
 <link href="../static/style/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../static/js/public.js"></script>
 <script type="text/javascript" src="../static/js/jquery.js"></script>
-<script type="text/javascript" src="../static/js/jqpublic.js"></script>
+{{/*<script type="text/javascript" src="../static/js/jqpublic.js"></script>*/}}
 <script type="text/javascript" src="../static/js/getcookie.js"></script>
+    <link  rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/sinaFaceAndEffec.css" />
+
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <style>
+        .stars{ overflow: hidden; clear: both; margin: 10px; padding: 10px;}
+        .stars span{     float: left;
+            height: 30px;
+            line-height: 30px;
+            cursor: default;
+            font-weight: bold;
+            color: #99cc66;}
+        .stars i{width: 30px; height: 30px; line-height: 30px; float: left; margin-right: 30px; color: #ddd; text-align: center; cursor:default; font-style: normal; font-size: 30px}
+        .stars .on{ color: red;}
+    </style>
+    <script>
+        $(function () {
+            $('.del_span').click(function () {
+                if (confirm("亲! 确定要删除吗???")) {
+                    var orderId = $(this).attr("orider");
+                    var time = $(this).parent().find("p[class=comment-footer]").text();
+                    $.ajax({
+                        url: '/delUserEvaluate',
+                        dataType: 'json',
+                        type: 'post',
+                        data: {"orderId": orderId, "time": time},
+                        success: function (result) {
+                            if (result.ret == 200) {
+                                alert(result.msg);
+                                window.location.reload()
+                            } else {
+                                alert(result.msg)
+                            }
+                        },
+                        error: function () {
+                            alert("系统错误！！！")
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 <header>
@@ -25,35 +68,28 @@
                 </div>
             </div>
             <div class="RightNav">
-                <a href="/userInformation">用户中心</a> <a href="/userOrderList"  title="我的订单">我的订单</a> <a href="/shoppingCart">购物车（0）</a> <a href="/userCollect" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+                <a href="/userOrderList"  title="我的订单"><img style="width: 40px" src="../static/images/dd.png"/></a> <a href="/shoppingCart"><img src="../static/images/car1.png"/></a>
             </div>
         </div>
     </section>
- <div class="Logo_search">
-  <div class="Logo">
-   <img src="../static/images/logo.jpg" title="DeathGhost" alt="模板">
-   <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
-  </div>
-  <div class="Search"> 
-   <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
-   <div class="Search_nav" id="selectsearch">
-    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
-    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
-   </div>
-   <div class="Search_area"> 
-   <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
-   <input type="submit" class="searchbutton" value="搜 索" />
-   </div>
-   </form>
-   <p class="hotkeywords"><a href="#" title="酸辣土豆丝">酸辣土豆丝</a><a href="#" title="这里是产品名称">螃蟹炒年糕</a><a href="#" title="这里是产品名称">牛奶炖蛋</a><a href="#" title="这里是产品名称">芝麻酱凉面</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">蒜汁茄子</a></p>
-  </div>
- </div>
+    <div class="Logo_search">
+        <div class="Logo">
+            <img src="../static/images/wangshangdingcan1.jpg">
+            <i></i>
+            <span style="color: #d43f3a;font-weight: bold;font-size: 16px">十年一品</span>
+        </div>
+        <div class="Search">
+            <div style="border: 1px white solid;border-radius:6px; height: 45px;margin-top: 25px;height: 45px;background-color: black">
+                <tt style="color:#d43f3a;font-size: 15px;font-weight: bold;">公告</tt> <marquee direction="left"  align="bottom" height="25" width="100%" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="6" scrolldelay="5">
+                <t style="color: red;font-size: 19px;font-weight: bold;">{{.notice}}</t></marquee>
+            </div>
+        </div>
+    </div>
  <nav class="menu_bg">
   <ul class="menu">
       <li><a href="/index_user">首页</a></li>
       <li><a href="/orderFood">订餐</a></li>
-      <li><a href="/pointShop">积分商城</a></li>
+      <li style="background-color:#fd5411;"><a style="color: white" href="/userInformation">用户中心</a></li>
       <li><a href="/aboutWe">关于我们</a></li>
   </ul>
  </nav>
@@ -65,9 +101,9 @@
       <li><i></i><a href="/userInformation">用户中心首页</a></li>
       <li><i></i><a href="/userOrderList">我的订单</a></li>
       <li><i></i><a href="/userAddress">收货地址</a></li>
-      <li><i></i><a href="/userLeaveWords">我的留言</a></li>
-      <li><i></i><a href="/userCoupon">我的优惠券</a></li>
-      <li><i></i><a href="/userCollect">我的收藏</a></li>
+      <li><i></i><a style="color: #00670c" href="/userLeaveWords">我的留言</a></li>
+      {{/*<li><i></i><a href="/userCoupon">我的优惠券</a></li>
+      <li><i></i><a href="/userCollect">我的收藏</a></li>*/}}
       <li><i></i><a href="/modifyUser">账户管理</a></li>
       <li><i></i><a href="/logout">安全退出</a></li>
   </ul>
@@ -76,80 +112,261 @@
   <!--user message-->
   <section class="Mymessage Overflow">
    <span class="Mmtitle Block Font14 FontW Lineheight35">我的留言</span>
-   <p class="FontW"><time>2014-09-22 11:09</time>这是一个提问，网站是什么？</p>
-   <p class="CorRed"><time>2014-09-22 13:09</time><span>重庆川菜馆回复：</span>这这里回答，详情登录 http://www.deathghost.cn！</p>
-   <div class="TurnPage">
-         <a href="#">
-          <span class="Prev"><i></i>首页</span>
-         </a>
-         <a href="#"><span class="PNumber">1</span></a>
-         <a href="#"><span class="PNumber">2</span></a>
-         <a href="#">
-         <span class="Next">最后一页<i></i></span>
-        </a>
-       </div>
+      <div id="content" style="width: 700px; height: auto;margin-top:-32px;margin-left: 100px">
+          <div>
+          <div id="info-show">
+              <ul>
+                  {{range $k, $v := .evaList}}
+                  <li>
+                      <div class="head-face">
+                          <img src="../static/images/1.jpg"/>
+                      </div>
+                      <div class="reply-cont">
+                          <span class="del_span" title="删除" orider="{{$v.OrderId}}" style="margin-left: 590px;color:red;font-weight: bold;font-size: large;cursor: pointer"><img style="width: 17px" src="../static/images/sc.png"></span>
+                          <p class="username">{{$v.Uid}}</p>
+                          <p class="username">{{$v.Name}}</p>
+                          <p class="comment-body">{{$v.Remark}}</p>
+                          <br>
+                          <span style="color:#999;margin-left: 245px">服务态度:</span>
+                          {{if eq $v.Server 1}}
+                          <span title="差" style="color:red;font-weight: bold">差</span>
+                          {{else if eq $v.Server 2  3 }}
+                              <span title="一般" style="color:red;font-weight: bold">一般</span>
+                          {{else if eq $v.Server 4}}
+                              <span title="好" style="color:#99cc66;font-weight: bold">好</span>
+                          {{else if eq $v.Server 5}}
+                              <span title="非常好" style="color:#99cc66;font-weight: bold">非常好</span>
+                            {{end}}
+                          <span style="color:#999;margin-left: 30px">菜品口味:</span>
+                          {{if eq $v.DishesTaste 1}}
+                              <span title="差" style="color:red;font-weight: bold">差</span>
+                          {{else if eq $v.DishesTaste 2  3 }}
+                              <span title="一般" style="color:red;font-weight: bold">一般</span>
+                          {{else if eq $v.DishesTaste 4}}
+                              <span title="好" style="color:#99cc66;font-weight: bold">好</span>
+                          {{else if eq $v.DishesTaste 5}}
+                              <span title="非常好" style="color:#99cc66;font-weight: bold">非常好</span>
+                          {{end}}
+                          <span style="color:#999;margin-left: 30px">配送速度:</span>
+                          {{if eq $v.Speed 1}}
+                              <span title="差" style="color:red;font-weight: bold">差</span>
+                          {{else if eq $v.Speed 2  3 }}
+                              <span title="一般" style="color:red;font-weight: bold">一般</span>
+                          {{else if eq $v.Speed 4}}
+                              <span title="好" style="color:#99cc66;font-weight: bold">好</span>
+                          {{else if eq $v.Speed 5}}
+                              <span title="非常好" style="color:#99cc66;font-weight: bold">非常好</span>
+                          {{end}}
+                              <p class="comment-footer" style="margin-left: 480px">{{$v.CreateTime}}</p>
+                      </div>
+                  </li>
+                  {{end}}
+              </ul>
+          </div>
+          </div>
+          <div>
+              <div class="stars">
+                  <span style="font-size: 14px">服务态度:</span>
+                  <i title="差">☻</i>
+                  <i title="一般">☻</i>
+                  <i title="一般">☻</i>
+                  <i title="好">☻</i>
+                  <i title="非常好">☻</i>
+                  <input hidden class="manner" type="text"/>
+              </div>
+              <div class="stars">
+                  <span style="font-size: 14px">菜品口味:</span>
+                  <i title="差" class="" score="1">♥</i>
+                  <i title="一般" class="" score="2">♥</i>
+                  <i title="一般" class="" score="3">♥</i>
+                  <i title="好" class="" score="4">♥</i>
+                  <i title="非常好" class="" score="5">♥</i>
+                  <input hidden class="taste" type="text"/>
+              </div>
+              <div class="stars">
+                  <span style="font-size: 14px">配送速度:</span>
+                  <i title="差">★</i>
+                  <i title="一般">★</i>
+                  <i title="一般">★</i>
+                  <i title="好">★</i>
+                  <i title="非常好">★</i>
+                  <input hidden class="speed" type="text"/>
+              </div>
+
+              <div class="wrap">
+                  <div class="comment">
+                      <div class="head-face">
+                          <img src="../static/images/1.jpg"/>
+                          <p>我是鸟</p>
+                      </div>
+                      <div class="content">
+                          <div class="cont-box">
+                              <textarea class="text" placeholder="请输入..."></textarea>
+                          </div>
+                          <div class="tools-box">
+                              <div class="operator-box-btn"><span class="face-icon"  >☺</span><span class="img-icon">▧</span></div>
+                              <div class="submit-btn"><input id="submit" type="button" onClick="out()"value="提交评论" /></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </section>
  </article>
 </section>
 <!--End content-->
 <div class="F-link">
-  <span>友情链接：</span>
-  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
-  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
-  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
-  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
- </div>
+    <span>合作商家-友情链接：</span>
+    <a style="color: #80b188" href="http://hlnme.canyinfood.com/nc2/?utm_source=baiduppc&utm_medium=ppc&utm_term=%E5%8D%A1%E6%97%BA%E5%8D%A1&utm_content=%3C%E5%8D%A1%E6%97%BA%E5%8D%A1%E5%A5%B6%E8%8C%B6%3E&utm_campaign=HLNME_%5B%E7%AB%9E%E5%93%81%5D%28%E5%A5%B6%E8%8C%B6%29&semk=67916069841&semc=17606887199&semm=1&semp=cl5&sema=bj&semd=pc" target="_blank" title="卡旺卡">卡旺卡</a>
+    <a style="color: #80b188" href="http://www.southbeauty.com/" target="_blank" title="俏江南">俏江南</a>
+    <a style="color: #80b188" href="http://www.waipojia.com/WCMS/Index.aspx" target="_blank" title="外婆家">外婆家</a>
+    <a style="color: #80b188" href="http://www.weijialiangpi.com/home.aspx" target="_blank" title="魏家凉皮">魏家凉皮</a>
+    <a style="color: #80b188" href="http://www.swgg100.com/bd/kyp/pc/1dd.html?e_keywordid=82461111989" target="_blank" title="一点点">一点点</a>
+</div>
 <footer>
- <section class="Otherlink">
-  <aside>
-   <div class="ewm-left">
-    <p>手机扫描二维码：</p>
-    <img src="../static/images/Android_ico_d.gif">
-    <img src="../static/images/iphone_ico_d.gif">
-   </div>
-   <div class="tips">
-    <p>客服热线</p>
-    <p><i>1830927**73</i></p>
-    <p>配送时间</p>
-    <p><time>09：00</time>~<time>22:00</time></p>
-    <p>网站公告</p>
-   </div>
-  </aside>
-  <section>
-    <div>
-    <span><i class="i1"></i>配送支付</span>
-    <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
-    </ul>
-    </div>
-    <div>
-    <span><i class="i2"></i>关于我们</span>
-    <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
-    </ul>
-    </div>
-    <div>
-    <span><i class="i3"></i>帮助中心</span>
-    <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
-    </ul>
-    </div>
-  </section>
- </section>
-<div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
+    <section class="Otherlink">
+        <aside>
+            <div class="ewm-left">
+                <p>手机扫描二维码：</p>
+                <img style="width: 95px;height: 119px" src="../static/images/二维码.png">
+                <img style="width: 95px;height: 119px" src="../static/images/微信.jpg">
+            </div>
+            <div class="tips">
+                <p>客服热线</p>
+                <p><i>17730185585</i></p>
+                <p>配送时间</p>
+                <p><time>09：00</time>~<time>22:00</time></p>
+                <p>网站公告</p>
+            </div>
+        </aside>
+        <section>
+            <div>
+                <span><i class="i1"></i>配送支付</span>
+                <ul>
+                    <li><a href="/aboutWe" target="_blank" title="标题">支付方式</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">配送方式</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">配送效率</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">服务费用</a></li>
+                </ul>
+            </div>
+            <div>
+                <span><i class="i2"></i>关于我们</span>
+                <ul>
+                    <li><a href="/aboutWe" target="_blank" title="标题">招贤纳士</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">网站介绍</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">配送效率</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">商家加盟</a></li>
+                </ul>
+            </div>
+            <div>
+                <span><i class="i3"></i>帮助中心</span>
+                <ul>
+                    <li><a href="/aboutWe" target="_blank" title="标题">服务内容</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">服务介绍</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">常见问题</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">网站地图</a></li>
+                </ul>
+            </div>
+        </section>
+    </section>
 </footer>
 <script>
     var uname= getCookie('name');
     $("#msg").html(uname)
+    $("#msg1").html(uname)
+</script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/sinaFaceAndEffec.js"></script>
+<script type="text/javascript">
+    // 绑定表情
+    $('.face-icon').SinaEmotion($('.text'));
+    // 测试本地解析
+    function out() {
+        var inputText = $('.text').val();
+        //获取口味的心值
+        var taste = $('.taste').val();
+        //获取服务态度的心值
+        var manner = $('.manner').val();
+        //获取配送速度心值
+        var speed = $('.speed').val();
+        var orderId = {{.orderId}}
+        $.ajax({
+            url:'/addUserEvaluate',
+            dataType:'json',
+            type:'post',
+            data:{"inputText":inputText, "taste":taste, "manner":manner, "speed":speed, "orderId":orderId},
+            success:function (result) {
+                if (result.ret==200){
+                    window.location.reload()
+                }else {
+                    alert(result.msg)
+                }
+            },
+            error:function () {
+                alert("系统错误！！")
+            }
+
+        })
+        $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
+    }
+
+    /*var html;
+    function reply(content){
+        html  = '<li>';
+        html += '<div class="head-face">';
+        html += '<img src="../static/images/1.jpg" />';
+        html += '</div>';
+        html += '<div class="reply-cont">';
+        html += '<p class="username">小小红色飞机</p>';
+        html += '<p class="comment-body">'+content+'</p>';
+        html += '<p class="comment-footer">2016年10月5日　回复　点赞54　转发12</p>';
+        html += '</div>';
+        html += '</li>';
+        return html;
+    }*/
+</script>
+<script>
+    $(function(){
+        /*
+        * 鼠标点击，该元素包括该元素之前的元素获得样式,并给隐藏域input赋值
+        * 鼠标移入，样式随鼠标移动
+        * 鼠标移出，样式移除但被鼠标点击的该元素和之前的元素样式不变
+        * 每次触发事件，移除所有样式，并重新获得样式
+        * */
+        var stars = $('.stars');
+        var Len = stars.length;
+        //遍历每个评分的容器
+        for(i=0;i<Len;i++){
+            //每次触发事件，清除该项父容器下所有子元素的样式所有样式
+            function clearAll(obj){
+                obj.parent().children('i').removeClass('on');
+            }
+            stars.eq(i).find('i').click(function(){
+                var num = $(this).index();
+                clearAll($(this));
+                //当前包括前面的元素都加上样式
+                $(this).addClass('on').prevAll('i').addClass('on');
+                //给隐藏域input赋值
+                $(this).siblings('input').val(num);
+
+            });
+            stars.eq(i).find('i').mouseover(function(){
+                var num = $(this).index();
+                clearAll($(this));
+                //当前包括前面的元素都加上样式
+                $(this).addClass('on').prevAll('i').addClass('on');
+            });
+            stars.eq(i).find('i').mouseout(function(){
+                clearAll($(this));
+                //触发点击事件后input有值
+                var score = $(this).siblings('input').val();
+                for(i=0;i<score;i++){
+                    $(this).parent().find('i').eq(i).addClass('on');
+                }
+            });
+        }
+    })
 </script>
 </body>
 </html>

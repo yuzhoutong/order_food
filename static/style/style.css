@@ -1,13 +1,4 @@
 @charset "utf-8";
-/*
-Template Name: xingfudadao TEMPLATE
-Template URI: http://www.xingfudadao.com/
-Description: The default xingfudadao template.
-Version: 1.0
-Author: DeathGhost
-Author URI: http://www.xianhuachneg.com/
-*/
-/* CSS PUBLIK*/
 body{margin:0 auto;padding:0;color:#333333;font-family:"Microsoft YaHei";font-size:12px;overflow-x:hidden;position:relative;}
 a,input{ text-decoration:none;color:#333333;outline: none;border:none;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;} 
@@ -55,7 +46,7 @@ code::selection {background:#dddddd;}
 .Topmenubg .Topnav a{margin:0 8px;display:inline-block;}
 .Topmenubg .Topnav .LeftNav{widht:600px;float:left;}
 .Topmenubg .Topnav .RightNav{widht:600px;float:right;}
-.Logo_search{width:1200px;height:115px;line-height:115px;margin:0 auto;overflow:hidden;}
+.Logo_search{width:1200px;height:115px;margin:0 auto;overflow:hidden;}
 .Logo_search .Logo{width:50%;float:left;}
 .Logo_search .Logo i{height:45px;width:1px;background:#d6d6d6; display:inline-block;vertical-align:middle;}
 .Logo_search .Logo span{font-size:14px;vertical-align:middle;margin:0 10px;color:#999;}
@@ -69,7 +60,7 @@ code::selection {background:#dddddd;}
 .Logo_search .Search .Search_nav a.choose{font-weight:bold;padding:5px 15px;position:relative; bottom:-2px;border-radius:5px 5px 0 0; background-color:#00661c; color:#fff;  }
 
 .Logo_search .Search .Search_area{width:100%;height:35px; overflow:hidden;}
-.Logo_search .Search .Search_area .searchbox{border:2px #00661c solid; float:left;height:35px;padding:5px 8px 5px 15px;width:450px;background:url(../images/search_ico.png) no-repeat 2px 50%;}
+.Logo_search .Search .Search_area .searchbox{border:2px #00661c solid; float:left;height:35px;padding:5px 8px 5px 15px;width:594px;}
 .Logo_search .Search .Search_area .searchbutton{background:#00661c;color:#fff;font-weight:bold;font-size:14px;padding:10px 15px;float:left;}
 
 /*menu*/
@@ -93,10 +84,10 @@ code::selection {background:#dddddd;}
 .Cfn .F-middle .rslides_tabs a{ width:12px; height:12px; background:#8e9f1d;text-indent:-5em; overflow:hidden; display:block; float:left; margin-left:6px;border-radius:6px;}
 .Cfn .F-middle .rslides_tabs .rslides_here a{ background:#D968C0;}
 .Cfn .N-right{width:293px;height:403px;float:right;border:1px #dddddd solid;}
-.Cfn .N-right .N-title{height:47px;line-height:47px;box-shadow:0 5px 5px #d3d3d3;padding:0px 15px;color:#272322;font-size:15px;font-weight:bold;}
-.Cfn .N-right .N-title i{font-size:12px;color:#949494; font-style: normal;}
+.Cfn .N-right .N-title{height:47px;line-height:47px;box-shadow:0 5px 5px #d3d3d3;padding:0px 15px;color:#f60;font-size:10px;font-weight:bold;}
+.Cfn .N-right .N-title i{font-size:12px;color:#d4d4d4; font-style: normal;}
 .Cfn .N-right .Newslist{height:auto;overflow:hidden;padding:10px 5px 0px 5px;border-bottom:1px #dbdbdb solid;display:block;}
-.Cfn .N-right .Newslist li{border-bottom:1px #dddddd dotted;height:32px;line-height:32px; overflow:hidden;}
+.Cfn .N-right .Newslist li{border-bottom:1px #dddddd dotted;line-height:32px; overflow:hidden;}
 .Cfn .N-right .Newslist li i{border-top:5px solid #FFFFFF;border-left:5px solid #d8d8d8;border-bottom:5px solid #FFFFFF;display:inline-block;margin-right:5px;}
 .Cfn .N-right .Orderlist{height: auto;padding:10px 5px 0px 5px; color:#00a73e;display:block;}
 .Cfn .N-right .Orderlist li{height:84px;border-bottom:1px #dedede dotted;}
@@ -160,11 +151,11 @@ code::selection {background:#dddddd;}
 .Sfainfor .A-infor{width:293px;float:left;height:auto;margin-left:5px;}
 .Sfainfor .A-infor .usercomment{width:auto;height:226px;border:1px #cccccc solid;}
 .Sfainfor .A-infor .usercomment span{height:35px;line-height:35px;background:#ececec;font-size:14px;font-weight:bold;padding-left:10px;display:block;border-bottom:1px #cccccc solid;color:#026320;}
-.Sfainfor .A-infor .usercomment li{padding:5px;height:84px;border-bottom:1px #cccccc dotted;line-height:25px;}
+.Sfainfor .A-infor .usercomment li{padding:5px;border-bottom:1px #cccccc dotted;line-height:25px;}
 .Sfainfor .A-infor .usercomment li img{width:75px;height:75px;padding:2px;border:1px #cccccc solid; border-radius:50%; float:left;margin-right:5px;}
 /*friend link*/
 .F-link{width:1200px;margin:0 auto;overflow:hidden;height:35px;line-height:35px;font-size:14px;}
-.F-link a{margin:0 8px;}
+.F-link a{margin:0 52px;}
 .F-link span{font-size:15px;font-weight:bold;color:#006811;}
 /*FSlist page*/
 .fslist_navtree{width:1198px; margin:20px auto 0;border:1px #dddddd solid;overflow:hidden;}

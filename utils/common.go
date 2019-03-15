@@ -17,7 +17,10 @@ import (
 	"time"
 
 	"github.com/tealeg/xlsx"
+	"io"
+	"mime/multipart"
 	"net/http"
+	"os"
 )
 
 // 随机数种子
@@ -292,4 +295,48 @@ func ExportToExcel(filename string, data [][]string) (fileName string, err error
 func GetCookieHandler(w http.ResponseWriter, r *http.Request) {
 	h := r.Header["Cookie"]
 	fmt.Fprintln(w, h)
+}
+
+func PageIndex(page int, pageSize int) int {
+	if page <= 1 {
+		page = 1
+		return page
+	}
+	page = (page - 1) * pageSize
+	return page
+}
+
+func NextPrev(page, pages int) (next, prev int) {
+	if page <= 1 && page+1 < pages {
+		next = page + 1
+		return
+	}
+	if page == pages {
+		prev = page - 1
+		return
+	}
+	next = page + 1
+	prev = page - 1
+	return
+}
+
+//上传图片方法
+func InputImages(s multipart.File, f *multipart.FileHeader, id int) (name string, err error) {
+	mode := strings.Split(f.Filename, ".")
+	//时间+.后缀名 = 新的名字
+	newname := strconv.Itoa(id) + "." + mode[len(mode)-1]
+	os.Remove("")
+	//新建图片文件存入项目文件里
+	f1, err := os.Create("./static/tupian/" + newname)
+	if err != nil {
+		return "", err
+	}
+	//将图片复制到文件夹里
+	_, err = io.Copy(f1, s)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	f1.Close()
+	name = newname
+	return name, err
 }

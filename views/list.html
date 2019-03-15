@@ -4,11 +4,10 @@
 <meta charset="utf-8" />
     <title>十年一品-点餐</title>
     <link href="../static/style/style.css" rel="stylesheet" type="text/css" />
-
+    <script type="text/javascript" src="../static/js/public.js"></script>
     <script type="text/javascript" src="../static/js/jquery.js"></script>
     <script type="text/javascript" src="../static/js/jqpublic.js"></script>
     <script type="text/javascript" src="../static/js/getcookie.js"></script>
-    <script type="text/javascript" src="../static/js/public.js"></script>
     <style>
         a {
             cursor:pointer
@@ -35,7 +34,7 @@
                         var s = $("#dish_ul");
                         for(var i = 0 ;i<result.length;i++){
                         var content = '<li>'+
-                        '<a href="#"  title=><img src="./static/upload/03.jpg"></a>'+
+                        '<a href="#"  title=><img src='+result[i].PicPath+'></a>'+
                         '<hgroup>'+
                         '<h3>'+result[i].DishName+'</h3>'+
                         '</hgroup>'+
@@ -48,8 +47,7 @@
                         '<img src="../static/images/star-on.png">'+
                         '<img src="../static/images/star-on.png">'+
                         '<img src="../static/images/star-on.png">'+
-                        '<img src="../static/images/star-off.png">'+
-                        '<span class="Score-v">4.8</span>'+
+                        '<img src="../static/images/star-on.png">'+
                         '</span>'+
                          '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff order">下单</a></span>'+
                         '<span class="DSBUTTON" style="margin-left: 6px;"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+
@@ -149,14 +147,16 @@
                                     '<th style="font-weight: bold;padding-left: 32px">操作</th>'+
                                 '</tr>'
                                 t.append(hea)
+                        var j = 0;
                         for(var i=0; i<result.data.length; i++){
+                            j+=1;
                             var content =
                                             '<tr id="tryu" style="margin-top: 10px">'+
-                                                '<td>'+i+'</td>'+
+                                                '<td>'+j+'</td>'+
                                                 '<td style="padding-left: 18px;width: 106px">'+result.data[i].Name+'</td>'+
                                                 '<td style="padding-left: 38px;width: 26px">'+result.data[i].Count+'</td>'+
                                                 '<td style="padding-left: 45px">'+result.data[i].Price+'</td>'+
-                                                '<td class="del_order" ids='+result.data[i].Id+' style="padding-left: 45px"><img src="../static/images/del.jpg"></td>'+
+                                                '<td class="del_order" ids='+result.data[i].Id+' style="padding-left: 45px"><img src=../static/images/del.jpg></td>'+
                                              '</tr>'
                             t.append(content)
                         }
@@ -222,35 +222,28 @@
                 </div>
             </div>
             <div class="RightNav">
-                <a href="/userInformation">用户中心</a> <a href="/userOrderList"  title="我的订单">我的订单</a> <a href="/shoppingCart">购物车（0）</a> <a href="/userCollect" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+                <a href="/userOrderList"  title="我的订单"><img style="width: 40px" src="../static/images/dd.png"/></a> <a href="/shoppingCart"><img src="../static/images/car1.png"/></a>
             </div>
         </div>
     </section>
- <div class="Logo_search">
-  <div class="Logo">
-   <img src="../static/images/logo.jpg" title="DeathGhost" alt="模板">
-   <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
-  </div>
-  <div class="Search"> 
-   <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
-   <div class="Search_nav" id="selectsearch">
-    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
-    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
-   </div>
-   <div class="Search_area"> 
-   <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
-   <input type="submit" class="searchbutton" value="搜 索" />
-   </div>
-   </form>
-   <p class="hotkeywords"><a href="#" title="酸辣土豆丝">酸辣土豆丝</a><a href="#" title="这里是产品名称">螃蟹炒年糕</a><a href="#" title="这里是产品名称">牛奶炖蛋</a><a href="#" title="这里是产品名称">芝麻酱凉面</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">蒜汁茄子</a></p>
-  </div>
- </div>
+    <div class="Logo_search">
+        <div class="Logo">
+            <img src="../static/images/wangshangdingcan1.jpg">
+            <i></i>
+            <span style="color: #d43f3a;font-weight: bold;font-size: 16px">十年一品</span>
+        </div>
+        <div class="Search">
+            <div style="border: 1px white solid;border-radius:6px; height: 45px;margin-top: 25px;height: 45px;background-color: black">
+                <tt style="color:#d43f3a;font-size: 15px;font-weight: bold;">公告</tt> <marquee direction="left"  align="bottom" height="25" width="100%" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="6" scrolldelay="5">
+                <t style="color: red;font-size: 19px;font-weight: bold;">{{.notice}}</t></marquee>
+            </div>
+        </div>
+    </div>
  <nav class="menu_bg">
   <ul class="menu">
       <li><a href="/index_user">首页</a></li>
-      <li><a href="/orderFood">订餐</a></li>
-      <li><a href="/pointShop">积分商城</a></li>
+      <li style="background-color:#fd5411;"><a href="/orderFood" style="color:#fff">订餐</a></li>
+      <li><a href="/userInformation">用户中心</a></li>
       <li><a href="/aboutWe">关于我们</a></li>
   </ul>
  </nav>
@@ -295,7 +288,7 @@
 	</ul>
  </section>
 <section class="Fslmenu">
- <a  style="background-color: #f60;color: white" title="默认排序" ids="1" class="aa1 selected">
+ <a style="background-color: #f60;color: white" title="默认排序" ids="1" class="aa1 selected">
   <span>
   <span id="span1">默认排序</span>
   <span></span>
@@ -321,6 +314,7 @@
   </span>
  </a>
 </section>
+    <div >
 <section class="Fsl">
  <ul id="dish_ul">
      {{range $k, $dish := .dishList}}
@@ -339,8 +333,8 @@
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
-    <img src="../static/images/star-off.png">
-    <span class="Score-v">4.8</span>
+    <img src="../static/images/star-on.png">
+    {{/*<span class="Score-v">4.8</span>*/}}
     </span>
     <span class="DSBUTTON"><a ids = "{{$dish.DishId}}" class="Fontfff order">下单</a></span>
     <span class="DSBUTTON"><a ids = "{{$dish.DishId}}" class="Fontfff shop">加入购物车</a></span>
@@ -349,34 +343,32 @@
    {{end}}
  </ul>
  <aside>
-  <div class="title">热门商家</div>
+  <div class="title">十年一品</div>
   <div class="C-list">
-   <a href="shop.html" target="_blank" title="店铺名称"><img src="../static/upload/cc.jpg"></a>
-   <p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>
+   <a href="/aboutWe"  title="店铺名称"><img style="width: 100%" src="../static/upload/yzt2.jpg"></a>
+   <p><a href="/aboutWe" >吃一碗饭  品一座城</a></p>
    <p>
-   <span>人均：20~50元</span>
+   <span>品一碗菜  识一类人</span>
    <span style=" float:right">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
-    <img src="../static/images/star-off.png">
-    <span class="ALscore">4.8</span>
+    <img src="../static/images/star-on.png">
    </span>
    </p>
   </div>
   <div class="C-list">
-   <a href="shop.html" target="_blank" title="店铺名称"><img src="../static/upload/cc.jpg"></a>
-   <p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>
+   <a href="shop.html" target="_blank" title="店铺名称"><img style="width: 100%" src="../static/upload/yzt1.jpg"></a>
+   <p><a href="shop.html" target="_blank">一品知味  百品知心</a></p>
    <p>
-   <span>人均：20~50元</span>
+   <span>印象小楼  十年一品</span>
    <span style=" float:right">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
     <img src="../static/images/star-on.png">
-    <img src="../static/images/star-off.png">
-    <span class="ALscore">4.8</span>
+    <img src="../static/images/star-on.png">
    </span>
    </p>
   </div>
@@ -398,74 +390,66 @@
              </tr>
                      {{end}}
              <td id="money" style="width:100px; cursor: pointer; height:38px;color: white; line-height:38px;text-align:center; font-size:15px;font-weight:bold; background-color: #d43f3a">结算</td>
-         </table>
+         </table>`
  </aside>
- <div class="TurnPage">
-  <a href="#">
-  <span class="Prev"><i></i>首页</span>
-  </a>
-  <a href="#"><span class="PNumber">1</span></a>
-  <a href="#"><span class="PNumber">2</span></a>
-  <a href="#">
-  <span class="Next">最后一页<i></i></span>
-  </a>
- </div>
 </section>
+        </div>
 </section>
 <!--End content-->
 <div class="F-link">
-  <span>友情链接：</span>
-  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
-  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
-  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
-  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
- </div>
+    <span>合作商家-友情链接：</span>
+    <a style="color: #80b188" href="http://hlnme.canyinfood.com/nc2/?utm_source=baiduppc&utm_medium=ppc&utm_term=%E5%8D%A1%E6%97%BA%E5%8D%A1&utm_content=%3C%E5%8D%A1%E6%97%BA%E5%8D%A1%E5%A5%B6%E8%8C%B6%3E&utm_campaign=HLNME_%5B%E7%AB%9E%E5%93%81%5D%28%E5%A5%B6%E8%8C%B6%29&semk=67916069841&semc=17606887199&semm=1&semp=cl5&sema=bj&semd=pc" target="_blank" title="卡旺卡">卡旺卡</a>
+    <a style="color: #80b188" href="http://www.southbeauty.com/" target="_blank" title="俏江南">俏江南</a>
+    <a style="color: #80b188" href="http://www.waipojia.com/WCMS/Index.aspx" target="_blank" title="外婆家">外婆家</a>
+    <a style="color: #80b188" href="http://www.weijialiangpi.com/home.aspx" target="_blank" title="魏家凉皮">魏家凉皮</a>
+    <a style="color: #80b188" href="http://www.swgg100.com/bd/kyp/pc/1dd.html?e_keywordid=82461111989" target="_blank" title="一点点">一点点</a>
+</div>
 <footer>
- <section class="Otherlink">
-  <aside>
-   <div class="ewm-left">
-    <p>手机扫描二维码：</p>
-    <img src="../static/images/Android_ico_d.gif">
-    <img src="../static/images/iphone_ico_d.gif">
-   </div>
-   <div class="tips">
-    <p>客服热线</p>
-    <p><i>1830927**73</i></p>
-    <p>配送时间</p>
-    <p><time>09：00</time>~<time>22:00</time></p>
-    <p>网站公告</p>
-   </div>
-  </aside>
-  <section>
-    <div>
-    <span><i class="i1"></i>配送支付</span>
-    <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
-    </ul>
-    </div>
-    <div>
-    <span><i class="i2"></i>关于我们</span>
-    <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
-    </ul>
-    </div>
-    <div>
-    <span><i class="i3"></i>帮助中心</span>
-    <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
-    </ul>
-    </div>
-  </section>
- </section>
+    <section class="Otherlink">
+        <aside>
+            <div class="ewm-left">
+                <p>手机扫描二维码：</p>
+                <img style="width: 95px;height: 119px" src="../static/images/二维码.png">
+                <img style="width: 95px;height: 119px" src="../static/images/微信.jpg">
+            </div>
+            <div class="tips">
+                <p>客服热线</p>
+                <p><i>17730185585</i></p>
+                <p>配送时间</p>
+                <p><time>09：00</time>~<time>22:00</time></p>
+                <p>网站公告</p>
+            </div>
+        </aside>
+        <section>
+            <div>
+                <span><i class="i1"></i>配送支付</span>
+                <ul>
+                    <li><a href="/aboutWe" target="_blank" title="标题">支付方式</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">配送方式</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">配送效率</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">服务费用</a></li>
+                </ul>
+            </div>
+            <div>
+                <span><i class="i2"></i>关于我们</span>
+                <ul>
+                    <li><a href="/aboutWe" target="_blank" title="标题">招贤纳士</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">网站介绍</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">配送效率</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">商家加盟</a></li>
+                </ul>
+            </div>
+            <div>
+                <span><i class="i3"></i>帮助中心</span>
+                <ul>
+                    <li><a href="/aboutWe" target="_blank" title="标题">服务内容</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">服务介绍</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">常见问题</a></li>
+                    <li><a href="/aboutWe" target="_blank" title="标题">网站地图</a></li>
+                </ul>
+            </div>
+        </section>
+    </section>
 </footer>
 <script>
     var uname= getCookie('name');
@@ -499,7 +483,7 @@
                 var s = $("#dish_ul");
                 for(var i = 0 ;i<result.length;i++){
                     var content = '<li>'+
-                            '<a href="#"  title=><img src="../static/upload/03.jpg"></a>'+
+                            '<a href="#"  title=><img src='+result[i].PicPath+'></a>'+
                             '<hgroup>'+
                             '<h3>'+result[i].DishName+'</h3>'+
                             '<h4></h4>'+
@@ -513,8 +497,7 @@
                             '<img src="../static/images/star-on.png">'+
                             '<img src="../static/images/star-on.png">'+
                             '<img src="../static/images/star-on.png">'+
-                            '<img src="../static/images/star-off.png">'+
-                            '<span class="Score-v">4.8</span>'+
+                            '<img src="../static/images/star-on.png">'+
                             '</span>'+
                             '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff order">下单</a></span>'+
                             '<span class="DSBUTTON"><a ids = "'+result[i].DishId+'" class="Fontfff shop">加入购物车</a></span>'+

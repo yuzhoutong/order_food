@@ -1,0 +1,168 @@
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">菜品管理</h3>
+        <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control pull-right name" placeholder="请输入菜名">
+
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default search_name"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding "style="overflow-y:auto; overflow-x:auto; width:100%; height:336px;">
+        <table class="table table-hover">
+            <tbody><tr>
+                <th>菜名</th>
+                <th>描述</th>
+                <th>创建时间</th>
+                <th>图片路径</th>
+                <th>价格</th>
+                <th>类型</th>
+                <th>操作</th>
+            </tr>
+            {{range $k, $v := .FoodList}}
+            <tr>
+                <td>{{$v.DishName}}</td>
+                <td><span class="label label-success">{{$v.Detail}}</span></td>
+                <td>{{$v.CreateTime}}</td>
+                <td>{{$v.PicPath}}</td>
+                <td>{{$v.Price}}</td>
+                <td>{{$v.Type}}</td>
+                <td><a id="{{$v.DishId}}" class="fa fa-trash delete_dish"></a> </td>
+            </tr>
+            {{end}}
+            </tbody></table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<div class="col-md-6" style="width: 98%">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">添加菜品</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">菜名</label>
+                    <input type="text" class="form-control ss dishname" id="exampleInputEmail1" placeholder="输入菜名">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">描述</label>
+                    <input type="text" class="form-control ss detail" id="exampleInputPassword1" placeholder="输入菜品描述">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">价格</label>
+                    <input type="number" class="form-control ss price" id="exampleInputEmail1" placeholder="输入价格">
+                </div>
+                <div class="form-group">
+                    <label>类型：</label>
+                    <select class="form-control type ss" style=" width:100%;overflow:scroll">
+                        <option value = "">请选择</option>
+                        <option value = "炒菜">炒菜</option>
+                        <option value = "汤">汤</option>
+                        <option value = "主食">主食</option>
+                        <option value = "酒水">酒水</option>
+                        <option value = "干锅">干锅</option>
+                        <option value = "火锅">火锅</option>
+                        <option value = "凉拌">凉拌</option>
+                        <option value = "卤味">卤味</option>
+                        <option value = "甜品">酒水</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">上传图片</label>
+                    <input type="file" id="img" accept="image/*">
+
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="button" class="btn btn-primary add">添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(".search_name").click(function () {
+            var name = $('.name').val();
+            window.location.href = "/admin_footmanagement?name="+name
+
+        });
+        $(".add").click(function () {
+           //获取参数
+            var dishname = $(".dishname").val();
+            var detail = $(".detail").val();
+            var price = $(".price").val();
+            var type = $(".type").val();
+            var formdate = new FormData();
+            formdate.append('images',$("#img")[0].files[0]);
+            formdate.append("dishname",dishname)
+            formdate.append("detail",detail)
+            formdate.append("price",price)
+            formdate.append("type",type)
+            if (dishname==""||detail==""||price==""||type==""){
+                alert("请完善信息！！")
+            } else {
+                $.ajax({
+                    url: '/updateimg',
+                    type: 'post',
+                    dataType: 'json',
+                    data: formdate,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        if (result.ret == 200) {
+                            alert(result.msg);
+                            window.location.reload()
+                        } else {
+                            alert(result.msg)
+                        }
+                    },
+                    error: function () {
+                        alert("系统错误！！")
+                    }
+                })
+            }
+        });
+
+        $(".ss").blur(function () {
+            if($(this).val() == ""){
+                $(this).addClass("ishave")
+                return
+            }
+            $(this).removeClass("ishave")
+        })
+
+        $(".delete_dish").click(function () {
+           var dishId = $(this).attr("id")
+            if(confirm("确定要删除吗？")){
+               $.ajax({
+                   url:'/deletedish',
+                   dataType:'json',
+                   type:'post',
+                   data:{"id":dishId},
+                   success:function (result) {
+                       if (result.ret == 200) {
+                           alert(result.msg);
+                           window.location.reload();
+                       } else {
+                           alert(result.msg)
+                       }
+                   },
+                   error:function () {
+                       alert("系统错误")
+                   }
+               })
+            }
+        })
+    })
+
+</script>

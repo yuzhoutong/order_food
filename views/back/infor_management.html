@@ -1,0 +1,137 @@
+<div class="row">
+    <div class="col-md-6" style="width: 99%">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <i class="fa fa-bullhorn"></i>
+
+                <h3 class="box-title">公告</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="overflow-y:auto; overflow-x:auto; width:100%; height:626px;">
+                {{range $k, $v := .notice}}
+                    {{if eq $v.IsUser 1}}
+                    <a id="{{$v.Id}}" user="{{$v.IsUser}}" style="color: #00a73e;cursor: pointer" title="点击禁用" class=" us fa  fa-check-square-o"></a>
+                     {{else}}
+                    <a id="{{$v.Id}}" user="{{$v.IsUser}}" style="color: red;cursor: pointer" title="点击启用" class="us fa  fa-ban"></a>
+                    {{end}}
+                        <div style="background-color: #3c8dbc; color: white;height: auto"  class="alert  alert-dismissible">
+                    <a style="color: red;margin-right: 10px " type="button" id="{{$v.Id}}" class="delete close fa  fa-times"  aria-hidden="true" style="background-color: red"></a>
+                    <h4><i class="icon fa fa-paperclip"></i> {{$v.Name}}</h4>
+                    <span>内容：</span>{{$v.Context}}
+                    <span style="float: right">{{$v.CreateTime}}</span>
+                </div>
+                        {{end}}
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <h3 class="box-title">Add  Notice</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <form role="form">
+            <div class="form-group">
+                <label>Operator</label>
+                <input id="name" type="text" class="form-control" value="admin" placeholder="admin" disabled="">
+            </div>
+            <!-- textarea -->
+            <div class="form-group">
+                <label>Context</label>
+                <textarea id="context" class="form-control" rows="3" placeholder="请输入公告内容..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>IsUsing</label>
+                <select id="using" class="form-control">
+                    <option value="1">启用</option>
+                    <option value="2">禁用</option>
+                </select>
+            </div>
+            <div><button style="width: 98%" type="button" id="submit" class="btn bg-purple btn-flat margin">submit</button></div>
+
+        </form>
+    </div>
+    <!-- /.box-body -->
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $(".delete").click(function() {
+            var id = $(this).attr("id");
+            if(confirm("确定要删除此公告吗")){
+                $.ajax({
+                    url: '/delete_notice',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {'id':id},
+                    success:function (result) {
+                        if(result.ret==200) {
+                            alert(result.msg);
+                            window.location.reload()
+                        } else {
+                            alert(result.msg)
+                        }
+                    },
+                    error:function() {
+                        alert("系统错误！！")
+                    }
+                })
+            }
+        });
+        //添加公告
+        $("#submit").click(function () {
+            //获取参数
+            var name = $("#name").val();
+            var context = $("#context").val();
+            if (context == ""){
+                alert("请输入公告内容")
+                return false
+            }
+            var using = $("#using").val()
+            $.ajax({
+                url: '/add_notice',
+                type: 'post',
+                dataType: 'json',
+                data: {'name':name,"context":context,"using":using},
+                success:function (result) {
+                    if(result.ret==200) {
+                        alert(result.msg);
+                        window.location.reload()
+                    } else {
+                        alert(result.msg)
+                    }
+                },
+                error:function() {
+                    alert("系统错误！！")
+                }
+            })
+        })
+        $(".us").click(function () {
+            var id = $(this).attr("id");
+            var user = $(this).attr("user");
+            $.ajax({
+                url: '/update_notice',
+                type: 'post',
+                dataType: 'json',
+                data: {'id':id,"user":user},
+                success:function (result) {
+                    if(result.ret==200) {
+                        alert(result.msg);
+                        window.location.reload()
+                    } else {
+                        alert(result.msg)
+                    }
+                },
+                error:function() {
+                    alert("系统错误！！")
+                }
+            })
+        })
+    })
+</script>
+
+
+

@@ -3,17 +3,36 @@
 <head>
 <meta charset="utf-8" />
 <title>十年一品</title>
-<meta name="keywords" content="DeathGhost,DeathGhost.cn,web前端设,移动WebApp开发" />
-<meta name="description" content="DeathGhost.cn::H5 WEB前端设计开发!" />
-<meta name="author" content="DeathGhost"/>
 <link href="../static/style/style.css" rel="stylesheet" type="text/css" />
+<link href="../static/style/style1.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../static/css/calendar.css">
 <script type="text/javascript" src="../static/js/public.js"></script>
 <script type="text/javascript" src="../static/js/jquery.js"></script>
 <script type="text/javascript" src="../static/js/jqpublic.js"></script>
 <script type="text/javascript" src="../static/js/getcookie.js"></script>
+<script src="../static/js/calendar.js"></script>
+<script src="../static/js/jQuery-jcMarquee.js" type="text/javascript"></script>
 <script>
     var uname= getCookie('name');
 </script>
+    <script>
+        $(function () {
+           var count = 2;
+            $('.new_li').click(function () {
+                if (count%2==0){
+                    $(".new_content").show();
+                    count++
+                } else if (count%2==0){
+                    $(".new_content").hide();
+                    count++
+                    alert(count)
+                }
+
+            })
+            $('#Marquee_x').jcMarquee({ 'marquee':'x','margin_right':'10px','speed':30 });
+            // DIVCSS5提示：10px代表间距，第二个20代表滚动速度
+        })
+    </script>
 </head>
 <body>
 <header>
@@ -31,35 +50,28 @@
           </div>
       </div>
    <div class="RightNav">
-    <a href="/userInformation">用户中心</a> <a href="/userOrderList"  title="我的订单">我的订单</a> <a href="/shoppingCart">购物车（0）</a> <a href="/userCollect" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+    <a href="/userOrderList"  title="我的订单"><img style="width: 40px" src="../static/images/dd.png"/></a> <a href="/shoppingCart"><img src="../static/images/car1.png"/></a>
    </div>
   </div>
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="../static/images/logo.jpg" title="DeathGhost" alt="模板">
+   <img src="../static/images/wangshangdingcan1.jpg">
    <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
+ <span style="color: #d43f3a;font-weight: bold;font-size: 16px">十年一品</span>
   </div>
-  <div class="Search"> 
-   <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
-   <div class="Search_nav" id="selectsearch">
-    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
-    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
-   </div>
-   <div class="Search_area"> 
-   <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
-   <input type="submit" class="searchbutton" value="搜 索" />
-   </div>
-   </form>
-   <p class="hotkeywords"><a href="#" title="酸辣土豆丝">酸辣土豆丝</a><a href="#" title="这里是产品名称">螃蟹炒年糕</a><a href="#" title="这里是产品名称">牛奶炖蛋</a><a href="#" title="这里是产品名称">芝麻酱凉面</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">蒜汁茄子</a></p>
+  <div class="Search">
+      <div style="border: 1px white solid;border-radius:6px; height: 45px;margin-top: 25px;height: 45px;background-color: black">
+          <tt style="color:#d43f3a;font-size: 15px;font-weight: bold;">公告</tt> <marquee direction="left"  align="bottom" height="25" width="100%" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="6" scrolldelay="5">
+          <t style="color: red;font-size: 19px;font-weight: bold;">{{.notice}}</t></marquee>
+      </div>
   </div>
  </div>
  <nav class="menu_bg">
   <ul class="menu">
-   <li><a href="/index_user">首页</a></li>
+   <li style="background-color:#fd5411;"><a href="/index_user" style="color: white">首页</a></li>
    <li><a href="/orderFood">订餐</a></li>
-   <li><a href="/pointShop">积分商城</a></li>
+   <li><a href="/userInformation">用户中心</a></li>
    <li><a href="/aboutWe">关于我们</a></li>
   </ul>
  </nav>
@@ -71,39 +83,34 @@
   <div class="C-time">
    <img src="../static/upload/dc.jpg"/>
   </div>
-  <a href="list.html" target="_blank"><img src="../static/images/by_button.png"></a>
-  <a href="list.html" target="_blank"><img src="../static/images/dc_button.png"></a>
+  <a href="/orderFood"><img src="../static/images/by_button.png"></a>
+  <a href="/orderFood"><img src="../static/images/dc_button.png"></a>
  </aside>
  <div class="F-middle">
  <ul class="rslides f426x240">
-        <li><a href="javascript:"><img src="../static/upload/01.jpg"/></a></li>
-        <li><a href="javascript:"><img src="../static/upload/02.jpg" /></a></li>
-        <li><a href="javascript:"><img src="../static/upload/03.jpg"/></a></li>
-    </ul>
+        <li><a href="/orderFood"><img src="../static/upload/江小白.jpg"/></a></li>
+        <li><a href="/orderFood"><img style="width:600px;height: 403px " src="../static/upload/水煮肉片.jpg" /></a></li>
+        <li><a href="/orderFood"><img style="width:600px;height: 403px " src="../static/upload/莲藕排骨汤.jpg"/></a></li>
+        <li><a href="/orderFood"><img style="width:600px;height: 403px " src="../static/upload/鸭脖.jpg"/></a></li>
+        <li><a href="/orderFood"><img style="width:600px;height: 403px " src="../static/upload/rio.jpg"/></a></li>
+ </ul>
  </div>
  <aside class="N-right">
-  <div class="N-title">公司新闻 <i>COMPANY NEWS</i></div>
-  <ul class="Newslist">
-   <li><i></i><a href="article_read.html" target="_blank" title="这里调用新闻标题...">欢迎访问DeathGhost博客站...</a></li>
-   <li><i></i><a href="article_read.html" target="_blank" title="这里调用新闻标题...">H5WEB前端开发 移动WEB模板设计...</a></li>
-  </ul>
-  <ul class="Orderlist" id="UpRoll">
-   <li>
-   <p>订单编号：2014090912973</p>
-   <p>收件人：王先生</p>
-   <p>订单状态：<i class="State01">已发货</i></p>
-   </li>
-   <li>
-   <p>订单编号：2014090912978</p>
-   <p>收件人：张小姐</p>
-   <p>订单状态：<i class="State02">已签收</i><i class="State03">已点评</i></p>
-   </li>
-   <li>
-   <p>订单编号：2014090912988</p>
-   <p>收件人：龚先生</p>
-   <p>订单状态：<i class="State02">已签收</i><i class="State03">已点评</i></p>
-   </li>
-  </ul>
+  <div style="word-break: break-all; word-wrap:break-word;" class="N-title">十年一品-品质生活<i>TEN YEARS QUALITY LIFE</i></div>
+     <div id="calendar" class="calendar"></div>
+     <div style="overflow-y:auto; overflow-x:auto; width:293px; height:190px;">
+     <ul class="Orderlist" id="UpRoll">
+              {{range $k, $v := .list}}
+           <li>
+           <p>订单编号：{{$v.OrderId}}</p>
+           <p>收件人：{{$v.Name}}</p>
+           <p>订单状态：{{if eq $v.IsBuy 1}}<i class="State01">已付款</i> {{end}}
+              {{if eq $v.IsEvaluate 1}} <i class="State03">已点评</i> {{else if eq $v.IsEvaluate 2}}<i class="State03">未点评</i>{{end}}
+           </p>
+           </li>
+          {{end}}
+          </ul>
+     </div>
   <script>
    var UpRoll = document.getElementById('UpRoll');
    var lis = UpRoll.getElementsByTagName('li');
@@ -127,170 +134,55 @@
  <article class="Sflist">
   <div id="Indexouter">
    <ul id="Indextab">
-    <li class="current">点菜</li>
-    <li>餐馆</li>
-    <p class="class_B">
-    <a href="#">中餐</a>
-    <a href="#">西餐</a>
-    <a href="#">甜点</a>
-    <a href="#">日韩料理</a>
-    <span><a href="#" target="_blank">more ></a></span>
-    </p>
+    <li class="current">十年一品-特色佳肴</li>
    </ul>
   <div id="Indexcontent">
    <ul style="display:block;">
     <li>
-     <p class="seekarea">
-     <a href="#">碑林区</a>
-     <a href="#">新城区</a>
-     <a href="#">未央区</a>
-     <a href="#">雁塔区</a>
-     <a href="#">莲湖区</a>
-     <a href="#">高新区</a>
-     <a href="#">灞桥区</a>
-     <a href="#">高陵区</a>
-     <a href="#">阎良区</a>
-     <a href="#">临潼区</a>
-     <a href="#">长安区</a>
-     <a href="#">周至县</a>
-     <a href="#">蓝田县 </a>
-     </p>
      <div class="SCcontent">
-     <a href="detailsp.html" target="_blank" title="菜品名称">
-      <figure>
-       <img src="../static/upload/05.jpg">
-       <figcaption>
-       <span class="title">老李家的糖醋鲤鱼</span>
-       <span class="price"><i>￥</i>169.00</span>
-       </figcaption>
-      </figure>
-      </a>
-     <a href="detailsp.html" target="_blank" title="菜品名称">
-      <figure>
-       <img src="../static/upload/04.jpg">
-       <figcaption>
-       <span class="title">老李家的糖醋鲤鱼</span>
-       <span class="price"><i>￥</i>169.00</span>
-       </figcaption>
-      </figure>
-      </a>
-     <a href="detailsp.html" target="_blank" title="菜品名称">
-      <figure>
-       <img src="../static/upload/06.jpg">
-       <figcaption>
-       <span class="title">老李家的糖醋鲤鱼</span>
-       <span class="price"><i>￥</i>169.00</span>
-       </figcaption>
-      </figure>
-      </a>
-     </div>
+             <div id="mrq">
+                 <div id="Marquee_x">
+                     <ul style="display: block">
+
+                         <li>
+                                {{range $k,$v := .OrderList}}
+                             <div><a href="/orderFood"><img src="{{$v.PicPath}}"/><span>{{$v.DishName}}</span></a></div>
+                               {{end}}
+                         </li>
+                     </ul>
+
+                 </div>
+             </div>
+      </div>
      <div class="bestshop">
-      <a href="shop.html" target="_blank" title="店铺名称">
+      <a href="http://hlnme.canyinfood.com/nc2/?utm_source=baiduppc&utm_medium=ppc&utm_term=%E5%8D%A1%E6%97%BA%E5%8D%A1&utm_content=%3C%E5%8D%A1%E6%97%BA%E5%8D%A1%E5%A5%B6%E8%8C%B6%3E&utm_campaign=HLNME_%5B%E7%AB%9E%E5%93%81%5D%28%E5%A5%B6%E8%8C%B6%29&semk=67916069841&semc=17606887199&semm=1&semp=cl5&sema=bj&semd=pc" target="_blank" title="卡旺卡">
+      <figure>
+       <img src="../static/upload/kawangka.jpg">
+      </figure>
+      </a>
+      <a href="http://www.southbeauty.com/" target="_blank" title="俏江南">
+      <figure>
+       <img src="../static/upload/qiaojiangnan.jpg">
+      </figure>
+      </a>
+      <a href="http://www.waipojia.com/WCMS/Index.aspx" target="_blank" title="外婆家">
       <figure>
        <img src="../static/upload/wpjnewlogo.jpg">
       </figure>
       </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
+      <a href="http://www.weijialiangpi.com/home.aspx" target="_blank" title="魏家凉皮">
       <figure>
        <img src="../static/upload/weijia.jpg">
       </figure>
       </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
+      <a href="http://www.swgg100.com/bd/kyp/pc/1dd.html?e_keywordid=82461111989" target="_blank" title="一点点">
       <figure>
-       <img src="../static/upload/wpjnewlogo.jpg">
-      </figure>
-      </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="../static/upload/weijia.jpg">
-      </figure>
-      </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="../static/upload/wpjnewlogo.jpg">
+       <img src="../static/upload/yidiandian.jpg">
       </figure>
       </a>
      </div>
     </li>
    </ul>
-   <ul>
-  <li>
-     <p class="seekarea">
-     <a href="#">碑林区</a>
-     <a href="#">新城区</a>
-     <a href="#">未央区</a>
-     <a href="#">雁塔区</a>
-     <a href="#">莲湖区</a>
-     <a href="#">高新区</a>
-     <a href="#">灞桥区</a>
-     <a href="#">高陵区</a>
-     <a href="#">阎良区</a>
-     <a href="#">临潼区</a>
-     <a href="#">长安区</a>
-     <a href="#">周至县</a>
-     <a href="#">蓝田县 </a>
-     </p>
-     <div class="DCcontent">
-       <a href="shop.html" target="_blank" title="TITLE:店名">
-       <figure>
-       <img src="../static/upload/cc.jpg">
-       <figcaption>
-       <span class="title">老重庆川菜馆</span>
-       <span class="price">预定折扣：<i>8.9折</i></span>
-       </figcaption>
-       <p class="p1"><q>仅售169元！价值289元的4-5人餐，提供免费WiFi。</q></p>
-       <p class="p2">
-       店铺评分：
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-off.png">
-       </p>
-       <p class="p3">店铺地址：西安市雁塔区丈八路***老重庆川菜馆...</p>
-       </figure>
-      </a>
-       <a href="shop.html" target="_blank" title="TITLE:店名">
-       <figure>
-       <img src="../static/upload/cc.jpg">
-       <figcaption>
-       <span class="title">老重庆川菜馆</span>
-       <span class="price">预定折扣：<i>8.9折</i></span>
-       </figcaption>
-       <p class="p1"><q>仅售169元！价值289元的4-5人餐，提供免费WiFi。</q></p>
-       <p class="p2">
-       店铺评分：
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-off.png">
-       </p>
-       <p class="p3">店铺地址：西安市雁塔区丈八路***老重庆川菜馆...</p>
-       </figure>
-      </a>
-       <a href="shop.html" target="_blank" title="TITLE:店名">
-       <figure>
-       <img src="../static/upload/cc.jpg">
-       <figcaption>
-       <span class="title">老重庆川菜馆</span>
-       <span class="price">预定折扣：<i>8.9折</i></span>
-       </figcaption>
-       <p class="p1"><q>仅售169元！价值289元的4-5人餐，提供免费WiFi。</q></p>
-       <p class="p2">
-       店铺评分：
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-on.png">
-       <img src="../static/images/star-off.png">
-       </p>
-       <p class="p3">店铺地址：西安市雁塔区丈八路***老重庆川菜馆...</p>
-       </figure>
-      </a>
-     </div>
-  </li>
-  </ul>
  </div>
  </div>
  </article>
@@ -298,38 +190,50 @@
   <img src="../static/upload/2014911.jpg">
   <div class="usercomment">
    <span>用户菜品点评</span>
-   <ul>
-    <li>
-     <img src="../static/upload/01.jpg">
-     用户“DeathGhost”对[ 老李川菜馆 ]“酸辣土豆丝”评说：味道挺不错，送餐速度挺快...
-    </li>
-    <li>
-     <img src="../static/upload/02.jpg">
-     用户“DeathGhost”对[ 魏家凉皮 ]“酸辣土豆丝”评说：味道挺不错，送餐速度挺快...
-    </li>
-   </ul>
+      <div style="overflow-y:auto; overflow-x:auto; width:293px; height:190px;word-wrap: break-word;">
+
+       <ul style="word-break: break-all; word-wrap:break-word;" id="UpRoll">
+             {{range $k, $v := .allEvaluate}}
+        <li style="">
+            <img src="../static/upload/02.jpg">
+            用户“<h style="color: #d43f3a;font-weight: bold">{{$v.Name}}</h>”对<h style="color:#08ae48;font-weight: bold">[ 十年一品 ]</h> “菜品”评说：
+           <h>{{$v.Remark}}</h><br>
+            &nbsp;
+            服务态度:{{if eq $v.Server 1}} <t style="color: #d43f3a">差</t> {{else if eq $v.Server 2 3}} <t style="color: #d43f3a">一般</t>{{else if eq $v.Server 4}} <t style="color: #08ae48"> 好</t> {{else if eq $v.Server 5}} <t style="color: #08ae48"> 非常好 </t> {{end}}
+            &nbsp;
+            菜品口味:{{if eq $v.DishesTaste 1}}<t style="color: #d43f3a"> 差 </t>{{else if eq $v.DishesTaste 2 3}}<t style="color: #d43f3a"> 一般 </t>{{else if eq $v.DishesTaste 4}} <t style="color: #08ae48"> 好 </t> {{else if eq $v.DishesTaste 5}}  <t style="color: #08ae48"> 非常好 </t>{{end}}
+            &nbsp;
+            配送态度:{{if eq $v.Speed 1}}<t style="color: #d43f3a"> 差 </t>{{else if eq $v.Speed 2 3}} <t style="color: #d43f3a">一般</t>{{else if eq $v.Speed 4}}  <t style="color: #08ae48">好 </t> {{else if eq $v.Speed 5}} <t style="color: #08ae48"> 非常好 </t> {{end}}
+        </li>
+       {{end}}
+       </ul>
+      </div>
   </div>
  </aside>
 </section>
 <!--End content-->
 <div class="F-link">
-  <span>友情链接：</span>
-  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
-  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
-  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
-  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
- </div>
+  <span>合作商家-友情链接：</span>
+  <a href="http://hlnme.canyinfood.com/nc2/?utm_source=baiduppc&utm_medium=ppc&utm_term=%E5%8D%A1%E6%97%BA%E5%8D%A1&utm_content=%3C%E5%8D%A1%E6%97%BA%E5%8D%A1%E5%A5%B6%E8%8C%B6%3E&utm_campaign=HLNME_%5B%E7%AB%9E%E5%93%81%5D%28%E5%A5%B6%E8%8C%B6%29&semk=67916069841&semc=17606887199&semm=1&semp=cl5&sema=bj&semd=pc" target="_blank" title="卡旺卡">卡旺卡</a>
+  <a href="http://www.southbeauty.com/" target="_blank" title="俏江南">俏江南</a>
+  <a href="http://www.waipojia.com/WCMS/Index.aspx" target="_blank" title="外婆家">外婆家</a>
+  <a href="http://www.weijialiangpi.com/home.aspx" target="_blank" title="魏家凉皮">魏家凉皮</a>
+  <a href="http://www.swgg100.com/bd/kyp/pc/1dd.html?e_keywordid=82461111989" target="_blank" title="一点点">一点点</a>
+</div>
+<div style="width: 100%;text-align: center;border-bottom-top: 1px solid red">
+    <img src="../static/images/liuchendiancan.jpg">
+</div>
 <footer>
  <section class="Otherlink">
   <aside>
    <div class="ewm-left">
     <p>手机扫描二维码：</p>
-    <img src="../static/images/Android_ico_d.gif">
-    <img src="../static/images/iphone_ico_d.gif">
+    <img style="width: 95px;height: 119px" src="../static/images/二维码.png">
+    <img style="width: 95px;height: 119px" src="../static/images/微信.jpg">
    </div>
    <div class="tips">
     <p>客服热线</p>
-    <p><i>1830927**73</i></p>
+    <p><i>17730185585</i></p>
     <p>配送时间</p>
     <p><time>09：00</time>~<time>22:00</time></p>
     <p>网站公告</p>
@@ -339,33 +243,32 @@
     <div>
     <span><i class="i1"></i>配送支付</span>
     <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">支付方式</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">配送方式</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">服务费用</a></li>
     </ul>
     </div>
     <div>
     <span><i class="i2"></i>关于我们</span>
     <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">招贤纳士</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">网站介绍</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">商家加盟</a></li>
     </ul>
     </div>
     <div>
     <span><i class="i3"></i>帮助中心</span>
     <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">服务内容</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">服务介绍</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">常见问题</a></li>
+     <li><a href="/aboutWe" target="_blank" title="标题">网站地图</a></li>
     </ul>
     </div>
   </section>
  </section>
-<div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script>
     $(".msg").html(uname)

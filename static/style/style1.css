@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* DIVCSS5-CSS初始化模板-www.divcss5.com */
+ol, ul ,li{list-style:none}
+img {border: 0; vertical-align:middle}
+body{color:#000000;background:#FFF}
+.clear{clear:both;height:1px;width:100%; overflow:hidden; margin-top:-1px}
+a{color:#000000;text-decoration:none} 
+a:hover{color:#BA2636;text-decoration:underline}
+
+#mrq{width:873px;border:1px solid #f3f3f3; height: 243px; padding:10px}
+#Marquee_x { overflow:hidden; width: 873px }
+#Marquee_x ul li ,#Marquee_x ul li div{ float:left;line-height:25px;overflow:hidden} /* 横向滚动必须让所有li左浮动 */
+#Marquee_x ul li div{ float:left;line-height:48px;height:248px; width:248px; overflow:hidden}
+#Marquee_x ul li div img{ border:1px solid #DADADA; width:248px; height:200px; display:block}
+#Marquee_x ul li div span{ display:block;width: 250px;background-color: #f3f3f3;text-align: center}
+
+
+
+#n{margin:10px auto; width:920px; border:1px solid #CCC;font-size:12px; line-height:30px;}
+#n a{ padding:0 4px; color:#333}
+
+

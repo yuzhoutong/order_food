@@ -22,7 +22,6 @@ $(function() {
 			psd_state.parent().next().next().css("display", "block");
 			return false;
 		} else {
-
 			name_state.parent().next().next().css("display", "none");
 			psd_state.parent().next().next().css("display", "none");
             $.ajax({
@@ -33,7 +32,7 @@ $(function() {
                 data:{"password":psd,"username":name},
                 success:function (result) {
                     if (result.ret ==200 && result.displayname =='管理员')
-                    	window.location.href = '/index_admin' ;
+                    	window.location.href = '/admin_index' ;
                     else if(result.ret ==200 && result.displayname =='用户'){
                         window.location.href = '/index_user'
 					}
@@ -55,6 +54,8 @@ $(function() {
 		var name_r = $('#name_r').val();
 		var psd_r = $('#psd_r').val();
 		var affirm_psd = $('#affirm_psd').val();
+        var phone_r_state = $("#phone_r");
+		var phone_r = $("#phone_r").val();
 		if (name_r == '') {
 			name_r_state.parent().next().next().css("display", "block");
 			return false;
@@ -65,13 +66,23 @@ $(function() {
 			affirm_psd_state.parent().next().next().css("display", "block");
 			return false;
 		} else if (psd_r != affirm_psd) {
-			return false;
-		} else {
+            return false;
+        } else if (phone_r == '') {
+            phone_r_state.parent().next().css("display", "none");
+            phone_r_state.parent().next().next().css("display", "block");
+            return false;
+        }else if (phone_r.length !=11) {
+            phone_r_state.parent().next().css("display", "none");
+            phone_r_state.parent().next().next().css("display", "block");
+            return false;
+        } else {
+            phone_r_state.parent().next().next().css("display", "none");
+            phone_r_state.parent().next().css("display", "block");
 			$.ajax({
 				url:'/register',
 				type:'post',
 				dataType:'json',
-				data:{"username":name_r,"password":psd_r},
+				data:{"username":name_r,"password":psd_r,"phone_r":phone_r},
 				success:function (data) {
 					alert(data.msg)
                     window.location.href = '/login'
@@ -97,13 +108,16 @@ function ok_or_errorByRegister(r) {
 	var psd_r = $("#psd_r");
 	var affirm_psd_v = $("#affirm_psd").val();
 	var psd_r_v = $("#psd_r").val();
+	var phone_r = $("#phone_r");
+	var phone_r_v = $("#phone_r").val();
 	var content = $(r).val();
 	if (content == "") {
+        $(r).parent().next().css("display", "none");
 		$(r).parent().next().next().css("display", "block");
 		return false;
 	} else {
-		$(r).parent().next().css("display", "block");
-		$(r).parent().next().next().css("display", "none");
+        $(r).parent().next().next().css("display", "none");
+        $(r).parent().next().css("display", "block");
 		if (psd_r_v == "") {
 			$(psd_r).parent().next().css("display", "none");
 			$(psd_r).parent().next().next().css("display", "none");
@@ -132,6 +146,16 @@ function ok_or_errorByRegister(r) {
 			$(affirm_psd).parent().next().next().css("display", "block");
 			return false;
 		}
+        if (phone_r_v==""||phone_r_v.length!=11){
+            $(phone_r).parent().next().css("display", "none");
+            $(phone_r).parent().next().next().css("display", "none");
+            $(phone_r).parent().next().next().css("display", "block");
+            return false;
+        } else {
+            $(phone_r).parent().next().css("display", "none");
+            $(phone_r).parent().next().next().css("display", "none");
+            $(phone_r).parent().next().css("display", "block");
+        }
 	}
 }
 
@@ -183,7 +207,7 @@ function barter_btn(bb) {
 	</form>
 	<div id="yu"><p id="message"></p></div>
 	<div class="col-xs-12 barter_btnDiv">
-		<button class="barter_btn" onClick="javascript:barter_btn(this)">没有账号?前往注册</button>
+		<button class="barter_btn" onClick="javascript:barter_btn(this)" style="color: red;">没有账号?前往注册</button>
 	</div>
 </div>
 
@@ -233,13 +257,27 @@ function barter_btn(bb) {
 					×
 				</div>
 			</div>
+            <div class="nav register_psdnav">
+                <div class="col-xs-4">
+                    手机号:
+                </div>
+                <div class="col-xs-6">
+                    <input style="height: 40px; font-size: 12px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;" type="text" name="" id="phone_r" value="" placeholder="&nbsp;&nbsp;手机号" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v()" onBlur="javascript:ok_or_errorByRegister(this)"/>
+                </div>
+                <div class="col-xs-1 ok_gou">
+                    √
+                </div>
+                <div class="col-xs-1 error_cuo">
+                    ×
+                </div>
+            </div>
 			<div class="col-xs-12 register_btn_div">
 				<input type="button" class="sub_btn" value="注册" id="register" />
 			</div>
 		</div>
 	</form>
 	<div class="col-xs-12 barter_register">
-		<button class="barter_registerBtn" onClick="javascript:barter_btn(this)" style="">已有秘籍?返回登录</button>
+		<button class="barter_registerBtn" onClick="javascript:barter_btn(this)" style="color: #66afe9;">已有账号?返回登录</button>
 	</div>
 </div>
 <div style="text-align:center;">

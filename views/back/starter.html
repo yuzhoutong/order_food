@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>十年一品 | 后台管理</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../static/dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- jQuery 3 -->
+    <script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../static/dist/js/adminlte.min.js"></script>
+    <style>
+        .ishave{
+            border-color: red;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    <a href="index2.html" class="logo">
+      <span  class="logo-mini"><b>十</b>年 </span>
+      <span class="logo-lg"><b> 十年</b>一品</span>
+    </a>
+    <!-- 导航条 -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+
+      <!-- 右侧导航条 -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="../static/img/tt.png" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="user-header">
+                <img style="width: 104px;height: 96px;" src="../static/img/tt.png" class="img-circle" alt="User Image">
+                  <p>{{.name}}</p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                    <a href="/adminSet" class="btn btn-default fa fa-cogs"></a>
+                </div>
+                <div class="pull-right">
+                  <a href="/logout" class="btn btn-default fa fa-power-off "></a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><span class="overlay">
+            <i style="color:white;" class="fa  fa-spinner fa-spin"></i>
+        </span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../static/img/shinian.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p style="color:white;font-weight: bold;font-size: 15px;  font-family:'KaiTi',Georgia,Serif;">十年一品 &nbsp 后台管理</p>
+        </div>
+      </div>
+      <ul class="sidebar-menu" data-widget="tree">
+        <!-- 左侧导航内容 -->
+          <li class="active"><a href="/admin_index"><i class="fa fa-link"></i> <span>首页</span></a></li>
+          <li><a href="/admin_footmanagement"><i class="fa fa-link"></i> <span>菜品管理</span></a></li>
+          <li><a href="/admin_ordermanagement"><i class="fa fa-link"></i> <span>订单管理</span></a></li>
+        <li class="treeview">
+            <a href="#"><i class="fa fa-link"></i> <span>信息管理</span>
+               <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+              </span>
+           </a>
+            <ul class="treeview-menu"> <!-- 下拉菜单 -->
+                <li><a href="/admin_imagesmanagement">评价管理</a></li>
+                <li><a href="/admin_infotmanagement">公告管理</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>系统管理</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu"> <!-- 下拉菜单 -->
+            <li><a href="/admin_usermanagement">登录记录</a></li>
+            <li><a href="/adminSet">管理员设置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content container-fluid">
+        <!-- 引入内容-->
+          {{.LayoutContent}}
+    </section>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      品质生活
+    </div>
+    <!-- Default to the left -->
+    <strong>十年一品 &copy; 2018 <a>小鱼</a></strong>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+      <div style="text-align: center;padding-top: 333px;font-weight: bold;font-size: 16px">
+          <p>十</p>
+          <p>年</p>
+          <p>一</p>
+          <p>品</p>
+            <br>
+          &nbsp<p>品</p>
+          &nbsp<p>质</p>
+          &nbsp<p>生</p>
+          &nbsp<p>活</p>
+
+      </div>
+  </aside>
+  <div class="control-sidebar-bg"></div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,11 +1,11 @@
 package models
 
 import (
-	"zcm_tools/orm"
-	"order_food/utils"
 	_ "github.com/go-sql-driver/mysql"
+	"order_food/utils"
+	"zcm_tools/orm"
 )
 
-func init(){
-	orm.RegisterDataBase("default","mysql",utils.MYSQL_URL)
+func init() {
+	orm.RegisterDataBase("default", "mysql", utils.MYSQL_URL)
 }

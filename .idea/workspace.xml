@@ -2,11 +2,115 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eb3e392-7837-483c-b17a-0eef69521a5b" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/admin_dish.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/admin_images.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/admin_order.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/admin_user.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/admin_dish.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/admin_images.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/admin_order.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/admin_user.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/base.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/calendar.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/main.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/css/sinaFaceAndEffec.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/car.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/car1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/car2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/dd.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/dingdan.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/liuchendiancan.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/sc.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/wangshangdingcan.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/wangshangdingcan1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/二维码.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/images/微信.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/img/dl.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/img/dl1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/img/dl2.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/img/shinian.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/img/tt.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/calendar.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/fy/myPage.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/jQuery-jcMarquee.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/jquery-1.8.3.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/main.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/sinaFaceAndEffec.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/style/style1.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/tupian/夫妻肺片.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/tupian/西红柿炒蛋.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/tupian/青椒肉丝.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/kawangka.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/qiaojiangnan.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/rio.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/yidiandian.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/yzt1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/yzt2.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/yzt3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/yzt4.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/干锅土豆片.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/水煮肉片.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/江小白.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/莲藕排骨汤.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/酸菜鱼.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/upload/鸭脖.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/back/admin_set.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/back/images_management.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/back/infor_management.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/back/order_management.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/back/starter.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/back/user_management.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/controllers/aboutWe.go" afterPath="$PROJECT_DIR$/controllers/aboutWe.go" />
       <change beforePath="$PROJECT_DIR$/controllers/account.go" afterPath="$PROJECT_DIR$/controllers/account.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/base.go" afterPath="$PROJECT_DIR$/controllers/base.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/confirm_order.go" afterPath="$PROJECT_DIR$/controllers/confirm_order.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/default.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/controllers/order_food.go" afterPath="$PROJECT_DIR$/controllers/order_food.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/point_shop.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/controllers/shopping_cart.go" afterPath="$PROJECT_DIR$/controllers/shopping_cart.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/user_center.go" afterPath="$PROJECT_DIR$/controllers/user_center.go" />
+      <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
       <change beforePath="$PROJECT_DIR$/models/account.go" afterPath="$PROJECT_DIR$/models/account.go" />
-      <change beforePath="$PROJECT_DIR$/order_food.exe" afterPath="$PROJECT_DIR$/order_food.exe" />
+      <change beforePath="$PROJECT_DIR$/models/confirm_order.go" afterPath="$PROJECT_DIR$/models/confirm_order.go" />
+      <change beforePath="$PROJECT_DIR$/models/db.go" afterPath="$PROJECT_DIR$/models/db.go" />
+      <change beforePath="$PROJECT_DIR$/models/order_food.go" afterPath="$PROJECT_DIR$/models/order_food.go" />
+      <change beforePath="$PROJECT_DIR$/models/shop_cart.go" afterPath="$PROJECT_DIR$/models/shop_cart.go" />
+      <change beforePath="$PROJECT_DIR$/models/user_center.go" afterPath="$PROJECT_DIR$/models/user_center.go" />
+      <change beforePath="$PROJECT_DIR$/order_food.exe" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" afterPath="$PROJECT_DIR$/routers/router.go" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
+      <change beforePath="$PROJECT_DIR$/static/style/style.css" afterPath="$PROJECT_DIR$/static/style/style.css" />
+      <change beforePath="$PROJECT_DIR$/tests/default_test.go" afterPath="$PROJECT_DIR$/tests/default_test.go" />
+      <change beforePath="$PROJECT_DIR$/utils/common.go" afterPath="$PROJECT_DIR$/utils/common.go" />
+      <change beforePath="$PROJECT_DIR$/utils/config.go" afterPath="$PROJECT_DIR$/utils/config.go" />
+      <change beforePath="$PROJECT_DIR$/utils/constants.go" afterPath="$PROJECT_DIR$/utils/constants.go" />
+      <change beforePath="$PROJECT_DIR$/utils/uuid.go" afterPath="$PROJECT_DIR$/utils/uuid.go" />
+      <change beforePath="$PROJECT_DIR$/views/article_list.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/article_read.html" afterPath="$PROJECT_DIR$/views/article_read.html" />
+      <change beforePath="$PROJECT_DIR$/views/cart.html" afterPath="$PROJECT_DIR$/views/cart.html" />
+      <change beforePath="$PROJECT_DIR$/views/category.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/confirm_order.html" afterPath="$PROJECT_DIR$/views/confirm_order.html" />
+      <change beforePath="$PROJECT_DIR$/views/detailsp.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
+      <change beforePath="$PROJECT_DIR$/views/index_admin.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/index_user.html" afterPath="$PROJECT_DIR$/views/back/Food_management.html" />
+      <change beforePath="$PROJECT_DIR$/views/list.html" afterPath="$PROJECT_DIR$/views/list.html" />
+      <change beforePath="$PROJECT_DIR$/views/login.html" afterPath="$PROJECT_DIR$/views/login.html" />
+      <change beforePath="$PROJECT_DIR$/views/reserve.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/respond.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/search_p.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/search_s.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/shop.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/user_account.html" afterPath="$PROJECT_DIR$/views/user_account.html" />
+      <change beforePath="$PROJECT_DIR$/views/user_address.html" afterPath="$PROJECT_DIR$/views/user_address.html" />
       <change beforePath="$PROJECT_DIR$/views/user_center.html" afterPath="$PROJECT_DIR$/views/user_center.html" />
+      <change beforePath="$PROJECT_DIR$/views/user_coupon.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/user_favorites.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/user_message.html" afterPath="$PROJECT_DIR$/views/user_message.html" />
+      <change beforePath="$PROJECT_DIR$/views/user_order.html" afterPath="$PROJECT_DIR$/views/user_order.html" />
+      <change beforePath="$PROJECT_DIR$/views/user_orderlist.html" afterPath="$PROJECT_DIR$/views/user_orderlist.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,105 +119,53 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="order_food" />
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="account.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/account.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="115" column="14" lean-forward="false" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
-              <folding>
-                <element signature="e#21#91#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_center.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/user_center.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="80" column="44" lean-forward="false" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="confirm_order.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/confirm_order.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
-              <folding>
-                <element signature="n#!!block;n#UpdateIsBuy#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="account.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/account.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="72" column="11" lean-forward="false" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_center.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/user_center.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3425">
-              <caret line="141" column="22" lean-forward="false" selection-start-line="141" selection-start-column="22" selection-end-line="141" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="Go File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tbody</find>
-      <find>address_list</find>
-      <find>Submit</find>
+      <find>confir</find>
+      <find>text</find>
+      <find>face-icon</find>
+      <find>State02</find>
+      <find>new_content</find>
+      <find>UpRoll</find>
+      <find>best</find>
+      <find>http://hlnme.canyinfood.com/nc2/?utm_source=baiduppc&amp;utm_medium=ppc&amp;utm_term=%E5%8D%A1%E6%97%BA%E5%8D%A1&amp;utm_content=%3C%E5%8D%A1%E6%97%BA%E5%8D%A1%E5%A5%B6%E8%8C%B6%3E&amp;utm_campaign=HLNME_%5B%E7%AB%9E%E5%93%81%5D%28%E5%A5%B6%E8%8C%B6%29&amp;semk=67916069841&amp;semc=17606887199&amp;semm=1&amp;semp=cl5&amp;sema=bj&amp;semd=pc&quot;</find>
+      <find>http://www.southbeauty.com/</find>
+      <find>&lt;a href=&quot;/userCollect&quot; target=&quot;_blank&quot; title=&quot;我的收藏&quot;&gt;我的收藏&lt;/a&gt;</find>
+      <find>关</find>
+      <find>购物车（0）</find>
+      <find>img</find>
+      <find>drop</find>
+      <find>h1</find>
+      <find>loginr</find>
+      <find>dish</find>
+      <find>ale</find>
+      <find>consol</find>
+      <find>any</find>
+      <find>user_ce</find>
+      <find>pic</find>
+      <find>upload</find>
+      <find>index.html</find>
+      <find>login</find>
+      <find>fmt</find>
+      <find>rslid</find>
+      <find>rsl</find>
+      <find>&lt;span&gt;十年一品</find>
       <find>update</find>
-      <find>updates</find>
-      <find>abc</find>
-      <find>addprovince</find>
-      <find>tt1</find>
-      <find>ids</find>
-      <find>结算</find>
-      <find>js</find>
-      <find>就在</find>
-      <find>fsl</find>
-      <find>order</find>
-      <find>下单</find>
-      <find>getshop()</find>
-      <find>tr11</find>
-      <find>parents</find>
-      <find>li</find>
-      <find>li_</find>
-      <find>find</find>
-      <find>菜</find>
-      <find>ta</find>
-      <find>1</find>
-      <find>orderlist</find>
-      <find>shop</find>
-      <find>数量</find>
-      <find>xsl</find>
-      <find>del_order</find>
-      <find>money</find>
     </findStrings>
     <replaceStrings>
       <replace>0</replace>
@@ -126,51 +178,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.go" />
-        <option value="$PROJECT_DIR$/models/db.go" />
-        <option value="$PROJECT_DIR$/conf/app.conf" />
-        <option value="$PROJECT_DIR$/utils/config.go" />
-        <option value="$PROJECT_DIR$/static/css/style.css" />
-        <option value="$PROJECT_DIR$/views/index_user.html" />
         <option value="$PROJECT_DIR$/views/index_admin.html" />
-        <option value="$PROJECT_DIR$/views/login.html" />
-        <option value="$PROJECT_DIR$/views/layout.html" />
-        <option value="$PROJECT_DIR$/views/article_list.html" />
-        <option value="$PROJECT_DIR$/views/login1.html" />
-        <option value="$PROJECT_DIR$/controllers/base.go" />
-        <option value="$PROJECT_DIR$/static/js/getcookie.js" />
-        <option value="$PROJECT_DIR$/controllers/point_shop.go" />
-        <option value="$PROJECT_DIR$/views/index.html" />
-        <option value="$PROJECT_DIR$/views/user_account.html" />
-        <option value="$PROJECT_DIR$/views/user_coupon.html" />
-        <option value="$PROJECT_DIR$/views/user_favorites.html" />
-        <option value="$PROJECT_DIR$/views/user_message.html" />
-        <option value="$PROJECT_DIR$/views/user_order.html" />
-        <option value="$PROJECT_DIR$/views/article_read.html" />
-        <option value="$PROJECT_DIR$/views/shop.html" />
-        <option value="$PROJECT_DIR$/views/category.html" />
-        <option value="$PROJECT_DIR$/controllers/aboutWe.go" />
-        <option value="$PROJECT_DIR$/utils/common.go" />
-        <option value="$PROJECT_DIR$/static/js/cart.js" />
-        <option value="$PROJECT_DIR$/views/user_address.html" />
-        <option value="$PROJECT_DIR$/static/js/public.js" />
-        <option value="$PROJECT_DIR$/views/cart.html" />
-        <option value="$PROJECT_DIR$/models/confirm_order.go" />
+        <option value="$PROJECT_DIR$/views/back/images_management.go" />
+        <option value="$PROJECT_DIR$/models/admin_order.go" />
+        <option value="$PROJECT_DIR$/controllers/admin_order.go" />
+        <option value="$PROJECT_DIR$/controllers/service.go" />
+        <option value="$PROJECT_DIR$/models/admin_images.go" />
+        <option value="$PROJECT_DIR$/controllers/admin_images.go" />
+        <option value="$PROJECT_DIR$/models/admin_user.go" />
+        <option value="$PROJECT_DIR$/controllers/admin_user.go" />
+        <option value="$PROJECT_DIR$/static/bower_components/bootstrap/dist/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/views/back/order_management.html" />
+        <option value="$PROJECT_DIR$/views/back/infor_management.html" />
+        <option value="$PROJECT_DIR$/views/back/user_management.html" />
+        <option value="$PROJECT_DIR$/views/back/admin_set.html" />
+        <option value="$PROJECT_DIR$/views/back/index.html" />
         <option value="$PROJECT_DIR$/views/user_orderlist.html" />
-        <option value="$PROJECT_DIR$/controllers/user_center.go" />
-        <option value="$PROJECT_DIR$/models/user_center.go" />
-        <option value="$PROJECT_DIR$/views/confirm_order.html" />
-        <option value="$PROJECT_DIR$/controllers/confirm_order.go" />
-        <option value="$PROJECT_DIR$/static/style/style.css" />
-        <option value="$PROJECT_DIR$/models/shop_cart.go" />
-        <option value="$PROJECT_DIR$/controllers/order_food.go" />
-        <option value="$PROJECT_DIR$/models/order_food.go" />
-        <option value="$PROJECT_DIR$/routers/router.go" />
-        <option value="$PROJECT_DIR$/controllers/shopping_cart.go" />
-        <option value="$PROJECT_DIR$/views/list.html" />
-        <option value="$PROJECT_DIR$/models/account.go" />
+        <option value="$PROJECT_DIR$/views/cart.html" />
+        <option value="$PROJECT_DIR$/views/user_order.html" />
         <option value="$PROJECT_DIR$/views/user_center.html" />
+        <option value="$PROJECT_DIR$/views/user_address.html" />
+        <option value="$PROJECT_DIR$/views/user_account.html" />
+        <option value="$PROJECT_DIR$/views/confirm_order.html" />
+        <option value="$PROJECT_DIR$/controllers/shopping_cart.go" />
+        <option value="$PROJECT_DIR$/controllers/order_food.go" />
+        <option value="$PROJECT_DIR$/controllers/user_center.go" />
+        <option value="$PROJECT_DIR$/controllers/aboutWe.go" />
+        <option value="$PROJECT_DIR$/models/base.go" />
+        <option value="$PROJECT_DIR$/utils/config.go" />
+        <option value="$PROJECT_DIR$/utils/constants.go" />
+        <option value="$PROJECT_DIR$/utils/uuid.go" />
+        <option value="$PROJECT_DIR$/controllers/base.go" />
+        <option value="$PROJECT_DIR$/views/user_message.html" />
+        <option value="$PROJECT_DIR$/models/account.go" />
+        <option value="$PROJECT_DIR$/static/style/style.css" />
+        <option value="$PROJECT_DIR$/static/css/style.css" />
+        <option value="$PROJECT_DIR$/models/admin_dish.go" />
+        <option value="$PROJECT_DIR$/controllers/confirm_order.go" />
+        <option value="$PROJECT_DIR$/static/js/jqpublic.js" />
+        <option value="$PROJECT_DIR$/views/index.html" />
+        <option value="$PROJECT_DIR$/models/confirm_order.go" />
+        <option value="$PROJECT_DIR$/models/user_center.go" />
+        <option value="$PROJECT_DIR$/views/back/Food_management.html" />
+        <option value="$PROJECT_DIR$/views/back/images_management.html" />
+        <option value="$PROJECT_DIR$/views/back/starter.html" />
+        <option value="$PROJECT_DIR$/views/login.html" />
+        <option value="$PROJECT_DIR$/views/list.html" />
+        <option value="$PROJECT_DIR$/views/article_read.html" />
         <option value="$PROJECT_DIR$/controllers/account.go" />
+        <option value="$PROJECT_DIR$/routers/router.go" />
+        <option value="$PROJECT_DIR$/controllers/admin_dish.go" />
+        <option value="$PROJECT_DIR$/utils/common.go" />
       </list>
     </option>
   </component>
@@ -180,7 +238,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1040" />
   </component>
@@ -199,38 +258,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
               <item name="order_food" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
-              <item name="order_food" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
-              <item name="order_food" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
-              <item name="order_food" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
-              <item name="order_food" type="462c0819:PsiDirectoryNode" />
-              <item name="routers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
-              <item name="order_food" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="order_food" type="b2602c69:ProjectViewProjectNode" />
@@ -245,28 +279,33 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\yzl\go\go_work\src\order_food\static\upload" />
+      <recent name="D:\yzl\go\go_work\src\order_food\static\tupian" />
+      <recent name="D:\yzl\go\go_work\src\order_food\static\img" />
+      <recent name="D:\yzl\go\go_work\src\order_food\utils" />
+      <recent name="D:\yzl\go\go_work\src\order_food\static\js\fy" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\yzl\go\go_work\src\order_food" />
       <recent name="D:\yzl\go\go_work\src\order_food\static\css" />
       <recent name="D:\yzl\go\go_work\src\order_food\static\js" />
       <recent name="D:\yzl\go\go_work\src\order_food\static\img" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\yzl\go\go_work\src\order_food\static\images" />
-      <recent name="D:\yzl\go\go_work\src\order_food\static\tupian" />
-      <recent name="D:\yzl\go\go_work\src\order_food\views" />
-      <recent name="D:\yzl\go\go_work\src\order_food\static\js" />
-      <recent name="D:\yzl\go\go_work\src\order_food" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -281,44 +320,38 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="order_food" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <package value="order_food" />
-      <directory value="$PROJECT_DIR$/" />
-    </configuration>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Go Build.go build main.go" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15724947" sideWeight="0.4961998" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2457627" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1743941" sideWeight="0.48939642" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24553572" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2228261" sideWeight="0.16257995" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11615044" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16071428" sideWeight="0.83742005" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32997763" sideWeight="0.83742005" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15618336" sideWeight="0.5106036" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39955357" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19722815" sideWeight="0.5038002" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -330,387 +363,393 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/js/DataAlgorithm.js" />
-    <entry file="file://$PROJECT_DIR$/static/js/layout.js" />
-    <entry file="file://$PROJECT_DIR$/views/layout.html" />
-    <entry file="file://$PROJECT_DIR$/views/article_list.html">
+    <entry file="file://$PROJECT_DIR$/controllers/default.go" />
+    <entry file="file://$PROJECT_DIR$/controllers/aboutWe.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2375">
-          <caret line="95" column="51" lean-forward="false" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/login1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index_user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/base.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
+        <state relative-caret-position="50">
           <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/getcookie.js">
+    <entry file="file://$PROJECT_DIR$/models/shop_cart.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/article_read.html">
+    <entry file="file://$PROJECT_DIR$/views/back/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="157" column="9" lean-forward="false" selection-start-line="157" selection-start-column="9" selection-end-line="157" selection-end-column="9" />
+        <state relative-caret-position="589">
+          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/category.html">
+    <entry file="file://$PROJECT_DIR$/../zcm_tools/orm/db_alias.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="300" column="9" lean-forward="false" selection-start-line="300" selection-start-column="9" selection-end-line="300" selection-end-column="9" />
+        <state relative-caret-position="227">
+          <caret line="202" column="5" lean-forward="false" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/aboutWe.go">
+    <entry file="file://$PROJECT_DIR$/utils/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="925">
+          <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.html">
+    <entry file="file://$PROJECT_DIR$/models/db.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1250">
-          <caret line="56" column="7" lean-forward="true" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-525">
-          <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+        <state relative-caret-position="125">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/constants.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="250">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_account.html">
+    <entry file="file://$PROJECT_DIR$/utils/uuid.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="225">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Go/src/net/http/server.go">
+    <entry file="file://$PROJECT_DIR$/views/user_message.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="89" column="16" lean-forward="false" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+        <state relative-caret-position="2875">
+          <caret line="115" column="14" lean-forward="false" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/common.go">
+    <entry file="file://$PROJECT_DIR$/static/bower_components/jquery/src/effects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="698">
-          <caret line="291" column="21" lean-forward="false" selection-start-line="291" selection-start-column="5" selection-end-line="291" selection-end-column="21" />
+        <state relative-caret-position="249">
+          <caret line="642" column="4" lean-forward="false" selection-start-line="642" selection-start-column="4" selection-end-line="642" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/detailsp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/static/upload/莲藕排骨汤.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/bootstrap.min.css">
+    <entry file="file://$PROJECT_DIR$/static/upload/江小白.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-11100">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/jqpublic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1388">
-          <caret line="47" column="72" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="72" />
-          <folding />
+        <state relative-caret-position="275">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/uuid.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="379" column="21" lean-forward="false" selection-start-line="379" selection-start-column="21" selection-end-line="379" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/goland.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/public.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="32" column="2" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="45" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/cart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2075">
-          <caret line="109" column="21" lean-forward="false" selection-start-line="109" selection-start-column="10" selection-end-line="109" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_message.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="56" column="42" lean-forward="false" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_coupon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="60" column="42" lean-forward="false" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/shop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8975">
-          <caret line="383" column="9" lean-forward="false" selection-start-line="383" selection-start-column="9" selection-end-line="383" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_favorites.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1734">
-          <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_address.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8200">
-          <caret line="328" column="85" lean-forward="false" selection-start-line="328" selection-start-column="82" selection-end-line="328" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/user_center.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/static/upload/01.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/style/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="226" column="26" lean-forward="true" selection-start-line="226" selection-start-column="26" selection-end-line="226" selection-end-column="26" />
+        <state relative-caret-position="25">
+          <caret line="81" column="105" lean-forward="false" selection-start-line="81" selection-start-column="105" selection-end-line="81" selection-end-column="105" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/jquery.js">
+    <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="2065" column="4" lean-forward="false" selection-start-line="2065" selection-start-column="4" selection-end-line="2065" selection-end-column="4" />
-          <folding>
-            <marker date="1399863420000" expanded="true" signature="10418:10451" ph="..." />
-            <marker date="1399863420000" expanded="true" signature="78371:78464" ph="..." />
-            <marker date="1399863420000" expanded="true" signature="78497:78590" ph="..." />
-          </folding>
+        <state relative-caret-position="50">
+          <caret line="47" column="44" lean-forward="true" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/cart.html">
+    <entry file="file://$PROJECT_DIR$/models/admin_user.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4875">
-          <caret line="195" column="59" lean-forward="false" selection-start-line="195" selection-start-column="55" selection-end-line="195" selection-end-column="59" />
+        <state relative-caret-position="242">
+          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/order_food.go">
+    <entry file="file://$PROJECT_DIR$/controllers/base.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/shop_cart.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="23" column="51" lean-forward="false" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/shopping_cart.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="87" column="21" lean-forward="true" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
+        <state relative-caret-position="-200">
+          <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/confirm_order.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/point_shop.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/confirm_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret line="272" column="19" lean-forward="false" selection-start-line="272" selection-start-column="15" selection-end-line="272" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user_orderlist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9400">
-          <caret line="376" column="33" lean-forward="false" selection-start-line="376" selection-start-column="33" selection-end-line="376" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/order_food.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1614">
-          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="17" column="53" lean-forward="false" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="741">
+          <caret line="76" column="19" lean-forward="false" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/user_center.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3425">
-          <caret line="141" column="22" lean-forward="false" selection-start-line="141" selection-start-column="22" selection-end-line="141" selection-end-column="22" />
+        <state relative-caret-position="426">
+          <caret line="254" column="33" lean-forward="false" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/user_center.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="85" column="50" lean-forward="false" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/back/Food_management.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="33" column="79" lean-forward="false" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/back/images_management.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/back/infor_management.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/back/starter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="105" column="57" lean-forward="false" selection-start-line="105" selection-start-column="57" selection-end-line="105" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="146" column="25" lean-forward="true" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/article_read.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1154">
+          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/account.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1825">
+          <caret line="75" column="1" lean-forward="false" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/base.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="925">
+          <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/os/file.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="245" column="5" lean-forward="false" selection-start-line="245" selection-start-column="5" selection-end-line="245" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/io/io.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="360" column="5" lean-forward="false" selection-start-line="360" selection-start-column="5" selection-end-line="360" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/admin_dish.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="35" column="49" lean-forward="false" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/mime/multipart/formdata.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="139" column="4" lean-forward="false" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/account.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="89" column="26" lean-forward="false" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/admin_dish.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="64" column="24" lean-forward="false" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/app.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../lx/demo1.go" />
+    <entry file="file://$PROJECT_DIR$/utils/common.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/confirm_order.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        <state relative-caret-position="1105">
+          <caret line="69" column="11" lean-forward="false" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp23707/home/mygo/src/github.com/astaxie/beego/vendor/golang.org/x/crypto/acme/autocert/autocert.go" />
+    <entry file="file://$PROJECT_DIR$/views/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2465">
+          <caret line="145" column="21" lean-forward="false" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
           <folding>
-            <element signature="n#!!block;n#UpdateIsBuy#0" expanded="false" />
+            <marker date="1526867476732" expanded="true" signature="2471:2488" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="5486:5511" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="5564:5593" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="5653:5689" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="5749:5785" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="5845:5881" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="5941:5977" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="6317:6333" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="6464:6495" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="6588:6618" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="6712:6730" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="7133:7148" ph="..." />
+            <marker date="1526867476732" expanded="true" signature="7212:7362" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/account.go">
+    <entry file="file://$PROJECT_DIR$/views/user_account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="72" column="11" lean-forward="false" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user_center.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="80" column="44" lean-forward="false" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/list.html">
+    <entry file="file://$PROJECT_DIR$/views/user_address.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6275">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <marker date="1523843171239" expanded="true" signature="2536:2553" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="5551:5576" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="5629:5647" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="5629:5658" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="5718:5754" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="5814:5850" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="5910:5946" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6006:6042" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6313:6329" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6460:6478" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6460:6489" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6460:6491" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6584:6602" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6584:6614" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6708:6726" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="6864:6882" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="7131:7146" ph="..." />
-            <marker date="1523843171239" expanded="true" signature="7210:7360" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/account.go">
+    <entry file="file://$PROJECT_DIR$/views/user_order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="115" column="14" lean-forward="false" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
-          <folding>
-            <element signature="e#21#91#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/order_food.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="102" column="34" lean-forward="false" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.18157181" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.18157181" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
