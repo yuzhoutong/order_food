@@ -46,6 +46,14 @@ func GetUserByName(name string) (u *OrderUser, err error) {
 	return
 }
 
+//根据用户名获取用户信息
+func GetUserById(id int) (u *OrderUser, err error) {
+	sql := `SELECT * FROM order_users
+	where order_users_id = ?`
+	err = orm.NewOrm().Raw(sql, id).QueryRow(&u)
+	return
+}
+
 //注册账号
 func RegisterUser(name, password, phone string) (err error) {
 	sql := `INSERT INTO order_users(NAME, PASSWORD, phone, create_time) VALUES(?,?,?,now())`

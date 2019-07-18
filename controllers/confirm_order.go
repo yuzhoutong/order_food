@@ -1,26 +1,37 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
+	"order_food/cache"
 )
 
 type ConfirmOrder struct {
-	beego.Controller
+	HomeController
 }
 
 //结算购物车页面渲染
 func (c *ConfirmOrder) ToOrderConfirm() {
 	//用户的uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//获取用户的收货地址信息
-	address, _ := models.GetUserAddress(uid)
+	address, err := models.GetUserAddress(uid)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取用户的收货地址信息失败", "结算购物车页面渲染/AddShops", err.Error(), c.Ctx.Input)
+		return
+	}
 	//获取用户的订单信息(菜名字，数量，价格)
-	orderInf, _ := models.GetUserCloseOrder(uid)
+	orderInf, err := models.GetUserCloseOrder(uid)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取用户的订单信息失败", "结算购物车页面渲染/AddShops", err.Error(), c.Ctx.Input)
+		return
+	}
 	//获取总价
-	all, _ := models.SumCount(uid)
+	all, err  := models.SumCount(uid)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取总价失败", "结算购物车页面渲染/AddShops", err.Error(), c.Ctx.Input)
+		return
+	}
 	//公告
 	notice, _ := models.GetNotic()
 	c.Data["notice"] = notice
@@ -40,8 +51,7 @@ func (c *ConfirmOrder) AddShops() {
 	}()
 	//获取数据
 	//获取用户的id
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//用户购物车所选的商品
 	var name = c.GetStrings("name")
 	var price = c.GetStrings("price")
@@ -51,6 +61,7 @@ func (c *ConfirmOrder) AddShops() {
 		err := models.Addshops(uid, count[i], name[i], price[i], ids[i])
 		if err != nil {
 			resultMap["msg"] = "结算购物车商品失败！"
+			cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "结算购物车商品失败", "获取结算购物车所选商品/AddShops", err.Error(), c.Ctx.Input)
 			return
 		}
 	}
@@ -68,8 +79,7 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase() {
 		c.ServeJSON()
 	}()
 	//用户的id
-	var id = c.Ctx.GetCookie("id")
-	var uid, _ = strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//订单号
 	var orderId = c.GetString("code")
 	//订单的总价
@@ -89,17 +99,23 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase() {
 		err := models.AddOrderDetail(uid, orderId, dishName[i], dishCount[i], dishPrice[i])
 		if err != nil {
 			resultMap["msg"] = "添加数据失败！"
+			cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "添加数据失败", "点击提交订单将该用户的订单号存在数据库中/SubmitOrderAddDatabase", err.Error(), c.Ctx.Input)
+			return
 		}
 		p, _ := strconv.Atoi(dishCount[i])
 		err1 := models.UpdateCountClick(dishName[i], p)
 		if err1 != nil {
 			resultMap["msg"] = "添加数量失败！！"
+			cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "添加数量失败", "点击提交订单将该用户的订单号存在数据库中/SubmitOrderAddDatabase", err.Error(), c.Ctx.Input)
+			return
 		}
 	}
 	//添加到订单表
 	err := models.AddOrderTable(uid, addressId, orderId, price, name)
 	if err != nil {
 		resultMap["msg"] = "添加到订单失败！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "添加到订单失败", "点击提交订单将该用户的订单号存在数据库中/SubmitOrderAddDatabase", err.Error(), c.Ctx.Input)
+		return
 	}
 	//add_order_car表中的ids
 	var ids = c.GetStrings("ids")
@@ -110,6 +126,7 @@ func (c *ConfirmOrder) SubmitOrderAddDatabase() {
 		err1 := models.DELAddOrderCar(uid, idsInt)
 		if err != nil || err1 != nil {
 			resultMap["msg"] = "删除数据库数据异常！"
+			cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "删除数据库数据异常", "点击提交订单将该用户的订单号存在数据库中/SubmitOrderAddDatabase", err.Error(), c.Ctx.Input)
 			return
 		}
 	}
@@ -127,8 +144,7 @@ func (c *ConfirmOrder) DeleteshopsFromDatabase() {
 		c.ServeJSON()
 	}()
 	//用户的uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//获取订单id
 	var orderId = c.GetString("orderId")
 	//add_order_car表中的ids
@@ -140,6 +156,7 @@ func (c *ConfirmOrder) DeleteshopsFromDatabase() {
 		//err1 := models.DELAddOrderCar(uid, idsInt)
 		if err != nil {
 			resultMap["msg"] = "删除数据库数据异常！"
+			cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "删除数据库数据异常", "当单击付款时(支付成功)/DeleteshopsFromDatabase", err.Error(), c.Ctx.Input)
 			return
 		}
 	}
@@ -147,6 +164,7 @@ func (c *ConfirmOrder) DeleteshopsFromDatabase() {
 	err := models.UpdateIsBuy(uid, orderId)
 	if err != nil {
 		resultMap["msg"] = "修改用户的购买状态失败！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "修改用户的购买状态失败", "当单击付款时(支付成功)/DeleteshopsFromDatabase", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200
@@ -162,13 +180,13 @@ func (c *ConfirmOrder) UpdateIsBuy() {
 		c.ServeJSON()
 	}()
 	//用户的uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//获取订单id
 	var orderId = c.GetString("orderId")
 	err := models.UpdateIsBuy(uid, orderId)
 	if err != nil {
 		resultMap["msg"] = "修改用户的购买状态失败！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "修改用户的购买状态失败", "点击未付款修改购买状态(支付成功)/UpdateIsBuy", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200

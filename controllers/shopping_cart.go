@@ -1,21 +1,19 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
 )
 
 type ShopCartCtroller struct {
-	beego.Controller
+	HomeController
 }
 
 //跳转到购物车
 func (c *ShopCartCtroller) INShopCart() {
 
 	//用户的uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//获取购物车列表
 	cartList, _ := models.DishCartList(uid)
 	//公告
@@ -35,8 +33,7 @@ func (c *ShopCartCtroller) AddShopCart() {
 
 	}()
 	//用户的uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//菜品的dish_id
 	var dishId, _ = c.GetInt("dishId")
 	err := models.AddCar(uid, dishId)
@@ -50,7 +47,7 @@ func (c *ShopCartCtroller) AddShopCart() {
 }
 
 //删除购物车的商品
-func (c ShopCartCtroller) DeleteShop() {
+func (c *ShopCartCtroller) DeleteShop() {
 	resultMap := make(map[string]interface{})
 	resultMap["ret"] = 403
 	defer func() {
@@ -59,8 +56,7 @@ func (c ShopCartCtroller) DeleteShop() {
 
 	}()
 	//获取用户id
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//购物车中当前选中商品的id
 	Id, _ := c.GetInt("Id")
 	err := models.DeleteCartShop(uid, Id)

@@ -4,18 +4,27 @@ import (
 	"github.com/astaxie/beego"
 	"order_food/models"
 	"order_food/utils"
+	"strconv"
+	"fmt"
+	"order_food/cache"
 )
 
 type HomeController struct {
 	beego.Controller
-	OrderUser models.OrderUser
+	OrderUser *models.OrderUser
 }
 
 func (c *HomeController) Prepare() {
 	var id = c.Ctx.GetCookie("id")
+	idi,_ := strconv.Atoi(id)
+	orderUserInfo, err := cache.GetUserById(idi)
+	if err != nil {
+		fmt.Println(err)
+	}
 	if id == "" {
 		c.Ctx.Redirect(302, "/login")
 	}
+	c.OrderUser = orderUserInfo
 }
 
 //用户页面

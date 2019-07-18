@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"order_food/models"
+	"order_food/cache"
 )
 
 type AdminUserController struct {
@@ -17,7 +18,11 @@ func (c *AdminUserController) UserManagement() {
 		condition += " and os.name = ?"
 		parars = append(parars, name)
 	}
-	list, _ := models.GetUserLoginInfo(condition, parars)
+	list, err := models.GetUserLoginInfo(condition, parars)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取用户登录记录失败", "用户登录记录/UserManagement", err.Error(), c.Ctx.Input)
+		return
+	}
 	c.Data["list"] = list
 	c.TplName = "back/user_management.html"
 }
@@ -35,6 +40,7 @@ func (c *AdminUserController) DeleteUserInfo() {
 	err := models.DeleteUserByUid(uid)
 	if err != nil {
 		resultMap["msg"] = "删除用户错误！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "删除用户错误", "删除用户/DeleteUserInfo", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200
@@ -60,6 +66,7 @@ func (c *AdminUserController) UpdateUserStatus() {
 	err := models.UpdateUserStatus(uid, i)
 	if err != nil {
 		resultMap["msg"] = "修改用户状态错误！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "修改用户状态错误", "管理员修改用户的状态/UpdateUserStatus", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200
@@ -95,9 +102,10 @@ func (c *AdminUserController) UpdateAdmin() {
 		resultMap["msg"] = "原密码错误"
 		return
 	}
-	err1 := models.UpdateAdmin(newpwd, phone)
-	if err1 != nil {
+	err := models.UpdateAdmin(newpwd, phone)
+	if err != nil {
 		resultMap["msg"] = "修改密码失败"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "修改密码失败", "修改管理员信息/UpdateAdmin", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200

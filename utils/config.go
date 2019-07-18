@@ -34,6 +34,7 @@ func init() {
 	beego.Info("access")
 	// mysql
 	MYSQL_URL = config["mysql_url"]
+	BEEGO_CACHE = config["beego_cache"]
 	// redis
 	// show
 	beego.Info("┌───────────────────")

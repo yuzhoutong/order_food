@@ -1,13 +1,12 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"order_food/models"
-	"strconv"
+	"order_food/cache"
 )
 
 type OrderFoodController struct {
-	beego.Controller
+	HomeController
 }
 
 func (c *OrderFoodController) OrderFoodList() {
@@ -15,13 +14,25 @@ func (c *OrderFoodController) OrderFoodList() {
 	condition := ""
 	params := []string{}
 	//获取菜品列表
-	dishList, _ := models.DishList(condition, params)
+	dishList, err := models.DishList(condition, params)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取菜品列表", "获取菜品列表/OrderFoodList", err.Error(), c.Ctx.Input)
+		return
+	}
 	//获取菜品种类
-	dishkides, _ := models.DishKide()
+	dishkides, err := models.DishKide()
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取菜品种类失败", "获取菜品种类/OrderFoodList", err.Error(), c.Ctx.Input)
+		return
+	}
 	//获取用户id
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
-	orderlist, _ := models.GetUserCloseOrder(uid)
+	uid := c.OrderUser.OrderUsersId
+	//查询该用户的结算清单
+	orderlist, err  := models.GetUserCloseOrder(uid)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "查询该用户的结算清单失败", "查询该用户的结算清单/OrderFoodList", err.Error(), c.Ctx.Input)
+		return
+	}
 	c.Data["diskide"] = dishkides
 	c.Data["dishList"] = dishList
 	c.Data["orderList"] = orderlist
@@ -87,7 +98,11 @@ func (c *OrderFoodController) OrderFoodListJson() {
 		params = append(params, time)
 	}
 	//获取菜品列表
-	dishList, _ := models.DishList(condition, params)
+	dishList, err := models.DishList(condition, params)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取菜品列表", "条件筛选/OrderFoodListJson", err.Error(), c.Ctx.Input)
+		return
+	}
 	c.Data["json"] = dishList
 }
 
@@ -100,13 +115,13 @@ func (c *OrderFoodController) DeleteUserChooseFood() {
 		c.ServeJSON()
 	}()
 	//获取用户id
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//获取id 表add_order_car 的 id
 	id1, _ := c.GetInt("id")
 	err := models.DelUserChooseFood(uid, id1)
 	if err != nil {
 		resultMap["msg"] = "删除错误！！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "删除错误", "删除点餐页面用户所选的food/DeleteUserChooseFood", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200

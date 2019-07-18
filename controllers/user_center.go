@@ -1,13 +1,13 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
+	"order_food/cache"
 )
 
 type UserCenterController struct {
-	beego.Controller
+	HomeController
 	User *models.UserCenter
 }
 
@@ -34,8 +34,7 @@ func (c *UserCenterController) DeleteOrder() {
 	//获取参数订单id
 	var orderId = c.GetString("orderId")
 	//获取用户uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	err := models.DeleteOrder(uid, orderId)
 	if err != nil {
 		resultMap["msg"] = "删除订单失败！"
@@ -62,8 +61,7 @@ func (c *UserCenterController) GetOrderDetail() {
 	}()
 	//订单号
 	orderId := c.GetString("orderId")
-	id := c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	//获取地址id
 	addressId, _ := models.GetAddressIdByOrderId(orderId)
 	//根据地址id获地址信息
@@ -149,8 +147,7 @@ func (c *UserCenterController) UpdateAddress() {
 	//电话号码
 	var phone = c.GetString("phone")
 	//用户的id
-	var id1 = c.Ctx.GetCookie("id")
-	var uid, _ = strconv.Atoi(id1)
+	uid := c.OrderUser.OrderUsersId
 	id, _ := c.GetInt("id")
 	//修改地址表
 	err := models.UpdateAddress(uid, id, address, rename, phone, provice, city, district)
@@ -178,8 +175,7 @@ func (c *UserCenterController) DeleteAddressInf() {
 		c.ServeJSON()
 	}()
 	//获取用户uid与id
-	var id1 = c.Ctx.GetCookie("id")
-	var uid, _ = strconv.Atoi(id1)
+	uid := c.OrderUser.OrderUsersId
 	var id, _ = c.GetInt("id")
 	err := models.DelAddress(uid, id)
 	if err != nil {
@@ -213,8 +209,7 @@ func (c *UserCenterController) AddAddress() {
 	//电话号码
 	var phone = c.GetString("phone")
 	//获取用户uid
-	var id = c.Ctx.GetCookie("id")
-	uid, _ := strconv.Atoi(id)
+	uid := c.OrderUser.OrderUsersId
 	err := models.AddAddress(uid, address, rename, phone, provice, city, district)
 	if err != nil {
 		resultMap["msg"] = "新增收货地址失败！"
@@ -227,8 +222,7 @@ func (c *UserCenterController) AddAddress() {
 //用户中心-我的留言
 func (c *UserCenterController) UserMessage() {
 	//获取订单号
-	var id1 = c.Ctx.GetCookie("id")
-	var uid, _ = strconv.Atoi(id1)
+	uid := c.OrderUser.OrderUsersId
 	OrderId := c.GetString("orderId")
 	c.Data["orderId"] = OrderId
 	evaList, _ := models.GetUserEvaluate(uid)
@@ -248,8 +242,7 @@ func (c *UserCenterController) UserSubmitEvaluate() {
 		c.ServeJSON()
 	}()
 	//获取参数
-	var id1 = c.Ctx.GetCookie("id")
-	var uid, _ = strconv.Atoi(id1)
+	uid := c.OrderUser.OrderUsersId
 	name, _ := models.GetUsernameByUid(uid)
 	var orderId = c.GetString("orderId")
 	var remark = c.GetString("inputText")
@@ -285,6 +278,8 @@ func (c *UserCenterController) DelUserevaluate() {
 	err := models.DeleteUserEvaluate(orderId, time)
 	if err != nil {
 		resultMap["msg"] = "删除用户评价失败"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "删除错误", "删除点餐页面用户所选的food/DeleteUserChooseFood", err.Error(), c.Ctx.Input)
+		return
 	}
 	resultMap["ret"] = 200
 	resultMap["msg"] = "删除评价成功！！"

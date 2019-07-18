@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"order_food/models"
 	"strconv"
+	"order_food/cache"
 )
 
 type AccountController struct {
@@ -24,6 +25,7 @@ func (c *AccountController) CheckPassword() {
 		c.Data["json"] = resultMap
 		c.ServeJSON()
 	}()
+
 	//获取用户输入的用户名与密码
 	username := c.GetString("username")
 	password := c.GetString("password")
@@ -96,6 +98,7 @@ func (c *AccountController) Register() {
 	err := models.RegisterUser(username, password, phone)
 	if err != nil {
 		resultMap["msg"] = "注册用户失败!"
+		cache.RecordLogs(0, 0, "ss", "ss", "注册用户失败", "注册用户/Register", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200

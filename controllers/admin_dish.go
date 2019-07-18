@@ -4,6 +4,7 @@ import (
 	"order_food/models"
 	"order_food/utils"
 	"time"
+	"order_food/cache"
 )
 
 type AdminDishController struct {
@@ -21,7 +22,10 @@ func (c *AdminDishController) FoodManagement() {
 		name = "%" + name + "%"
 		params = append(params, name)
 	}
-	FoodList, _ := models.GetDishList(condition, params)
+	FoodList, err := models.GetDishList(condition, params)
+	if err != nil {
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "获取公告失败", "公告/About", err.Error(), c.Ctx.Input)
+	}
 	c.Data["FoodList"] = FoodList
 	c.TplName = "back/Food_management.html"
 }
@@ -50,6 +54,7 @@ func (c *AdminDishController) UpdateImg() {
 	name, err := utils.InputImages(s, f, id)
 	if name == "" && err != nil {
 		resultMap["msg"] = "图片上传失败" + err.Error()
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "图片上传失败", "添加菜品上传图片/UpdateImg", err.Error(), c.Ctx.Input)
 		return
 	}
 	//图片的路径
@@ -65,6 +70,7 @@ func (c *AdminDishController) UpdateImg() {
 	err1 := models.AddDishDate(dish, detail, pic_path, types, price)
 	if err1 != nil {
 		resultMap["msg"] = "插入数据库数据失败！"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "插入数据库数据失败", "添加菜品上传图片/UpdateImg", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200
@@ -84,6 +90,7 @@ func (c *AdminDishController) DeleteDish() {
 	err := models.DeleteDishByDishId(DishId)
 	if err != nil {
 		resultMap["msg"] = "删除菜品错误"
+		cache.RecordLogs(c.OrderUser.OrderUsersId, 0, c.OrderUser.Name, c.OrderUser.Displayname, "删除菜品错误", "删除菜品/DeleteDish", err.Error(), c.Ctx.Input)
 		return
 	}
 	resultMap["ret"] = 200
